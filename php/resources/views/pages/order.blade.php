@@ -16,7 +16,9 @@
                                 <a href="#">Home</a>
                             </li>
                             <li class="breadcrumb-item">What We Do</li>
-                            <li class="breadcrumb-item active" aria-current="page"> Hard Binding </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Hard Binding
+                            </li>
                         </ol>
                     </nav>
                 </div>
@@ -59,7 +61,7 @@
                                                         <!--the three icons: default, ok file (img), error file (not an img)-->
                                                         <div class="all__holder">
                                                             <h1 class="imgupload">
-                                                                <img src="./images/icon _File Upload_.png" alt="" class="m-auto d-block" />
+                                                                <img src="./web/images/icon _File Upload_.png" alt="" class="m-auto d-block" />
                                                             </h1>
                                                             <h1 class="imgupload ok">
                                                                 <i class="fa fa-check"></i>
@@ -67,23 +69,31 @@
                                                             <h1 class="imgupload stop">
                                                                 <i class="fa fa-times"></i>
                                                             </h1>
-                                                            <!--this field changes dinamically displaying the filename we are trying to upload-->
+
                                                             <h6>Upload Design</h6>
                                                         </div>
-                                                        <p id="namefile"> (Support document Word or Pdf) <span>
+                                                        <p id="namefile">
+                                                            (Support document Word or Pdf)
+                                                            <span>
                                                                 <i class="fa-solid fa-circle-info"></i>
                                                             </span>
                                                         </p>
                                                         <!--our custom btn which which stays under the actual one-->
-                                                        <button type="button" id="btnup" class="btn btn-lg"> Browse for your file! </button>
+                                                        <button type="button" id="btnup" class="btn btn-lg">
+                                                            Browse for your file!
+                                                        </button>
                                                         <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
                                                         <input type="file" value="" name="file" id="file" class="fileup" />
-                                                        <p class="conv"> Convert Word to Pdf click on this Link </p>
+                                                        <p class="conv">
+                                                            Convert Word to Pdf click on this Link
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="button-row d-flex mt-5">
-                                                <button class="btn ml-auto js-btn-next next__button" type="button" title="Next" id="next_step_2"> Next </button>
+                                                <button disabled class="btn ml-auto js-btn-next next__button" type="button" title="Next" id="next_step_2">
+                                                    Next
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -95,21 +105,20 @@
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <div class="document__details mb-4">
-                                                    <h3>File Name : <span id="file_name"></span>
-                                                    </h3>
+                                                    <h3>File Name : <span id="file_name"></span></h3>
                                                     <table class="table table-striped">
                                                         <tbody>
                                                             <tr>
                                                                 <td class="pl-4">Total page</td>
-                                                                <td class="pr-4 text-right">0</td>
+                                                                <td class="pr-4 text-right" id="total_page">0</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="pl-4">Color page</td>
-                                                                <td class="pr-4 text-right">0</td>
+                                                                <td class="pr-4 text-right" id="color_page">0</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="pl-4">BW page</td>
-                                                                <td class="pr-4 text-right">0</td>
+                                                                <td class="pr-4 text-right" id="bw_page">0</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -145,15 +154,21 @@
                                                         <tbody>
                                                             <tr class="hard_binding_price_detail">
                                                                 <th>Hard Binding</th>
-                                                                <td class="text-right hard_binding_price">₹ 000</td>
+                                                                <td class="text-right hard_binding_price">
+                                                                    ₹ 000
+                                                                </td>
                                                             </tr>
                                                             <tr class="soft_binding_price_detail">
                                                                 <th>Soft Binding</th>
-                                                                <td class="text-right soft_binding_price">₹ 000</td>
+                                                                <td class="text-right soft_binding_price">
+                                                                    ₹ 000
+                                                                </td>
                                                             </tr>
                                                             <tr class="synopsis_binding_price_detail">
                                                                 <th>Synopsis</th>
-                                                                <td class="text-right synopsis_binding_price">₹ 000</td>
+                                                                <td class="text-right synopsis_binding_price">
+                                                                    ₹ 000
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -165,8 +180,12 @@
                                             </div>
                                         </div>
                                         <div class="button-row d-flex mt-4 col-12">
-                                            <button class="btn next__button js-btn-prev" type="button" title="Prev"> Prev </button>
-                                            <button class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_3"> Next </button>
+                                            <button disabled class="btn next__button js-btn-prev" type="button" title="Prev">
+                                                Prev
+                                            </button>
+                                            <button disabled class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_3">
+                                                Next
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -197,15 +216,15 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_size[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="A0"> A0 </option>
-                                                                                        <option value="A1"> A1 </option>
-                                                                                        <option value="A2"> A2 </option>
-                                                                                        <option value="A3"> A3 </option>
-                                                                                        <option value="A4"> A4 </option>
-                                                                                        <option value="A5"> A5 </option>
-                                                                                        <option value="A6"> A6 </option>
-                                                                                        <option value="A7"> A7 </option>
-                                                                                        <option value="A8"> A8 </option>
+                                                                                        <option value="A0">A0</option>
+                                                                                        <option value="A1">A1</option>
+                                                                                        <option value="A2">A2</option>
+                                                                                        <option value="A3">A3</option>
+                                                                                        <option value="A4">A4</option>
+                                                                                        <option value="A5">A5</option>
+                                                                                        <option value="A6">A6</option>
+                                                                                        <option value="A7">A7</option>
+                                                                                        <option value="A8">A8</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -229,11 +248,16 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_type[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or
-                                                                                            Equivalent</option>
-                                                                                        <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or
-                                                                                            Equivalent </option>
-                                                                                        <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent
+                                                                                        <option value="Paper One 100 GSM or Equivalent">
+                                                                                            Paper One 100 GSM or
+                                                                                            Equivalent
+                                                                                        </option>
+                                                                                        <option value="Bond Paper 85 GSM or Equivalent">
+                                                                                            Bond Paper 85 GSM or
+                                                                                            Equivalent
+                                                                                        </option>
+                                                                                        <option value="JK Easy 70 GSM or equivalent">
+                                                                                            JK Easy 70 GSM or equivalent
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -244,9 +268,18 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_color[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Black & White"> Black & White </option>
-                                                                                        <option value="Color"> Color </option>
-                                                                                        <option value="Royal Print"> Royal Print </option>
+                                                                                        <option value="Normal - Black & White">
+                                                                                            Normal - Black & White
+                                                                                        </option>
+                                                                                        <option value="Normal - Color">
+                                                                                            Normal - Color
+                                                                                        </option>
+                                                                                        <option value="Royal - Black & White">
+                                                                                            Royal - Black & White
+                                                                                        </option>
+                                                                                        <option value="Royal - Color">
+                                                                                            Royal - Color
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -256,8 +289,12 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="hard_binding_printing_type[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Single Side"> Single Side</option>
-                                                                                        <option value="Both Sidet"> Both Side </option>
+                                                                                        <option value="Single Side">
+                                                                                            Single Side
+                                                                                        </option>
+                                                                                        <option value="Both Sidet">
+                                                                                            Both Side
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -269,7 +306,8 @@
                                                     </div>
                                                     <div class="clearfix mt-4">
                                                         <button type="button" id="add-button" class="btn float-left add_btn_hard_binding">
-                                                            <i class="fas fa-plus fa-fw"></i> Create New </button>
+                                                            <i class="fas fa-plus fa-fw"></i> Create New
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <h3>Binding Details</h3>
@@ -278,7 +316,8 @@
                                                         <p>Colour of Covering Materials (Hard)</p>
                                                         <div class="bin__holder">
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/1.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/1.jpg" alt="" width="100" height="100" />
+
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -287,7 +326,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/2.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/2.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -296,7 +335,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/3.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/3.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -305,7 +344,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/4.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/4.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -314,7 +353,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/5.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/5.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -323,7 +362,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/6.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/6.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -332,7 +371,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/7.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/7.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -341,7 +380,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/8.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/8.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -350,7 +389,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/9.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/9.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -359,7 +398,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/10.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/10.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="hard_binding_cover_color_db" value="" />
@@ -369,12 +408,21 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 p-0 mt-5">
+                                                            <div class="searche__wrapp">
+                                                                <p>Covering Text Colour</p>
+                                                                <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="hard_binding_cover_text_color[]">
+                                                                    <!-- options -->
+                                                                    <option value="">Select</option>
+                                                                    <option value="Silver">Silver</option>
+                                                                    <option value="Golden">Golden</option>
+                                                                </select>
+                                                            </div>
                                                             <div class="btn-container">
-                                                                <p>Colour of Covering Materials (Hard)</p>
+                                                                <p>Cover Page Design</p>
                                                                 <!--the three icons: default, ok file (img), error file (not an img)-->
                                                                 <div class="all__holder">
                                                                     <h1 class="imgupload">
-                                                                        <img src="./images/icon _File Upload_.png" alt="" class="m-auto d-block" />
+                                                                        <img src="./web/images/icon _File Upload_.png" alt="" class="m-auto d-block" />
                                                                     </h1>
                                                                     <h1 class="imgupload ok">
                                                                         <i class="fa fa-check"></i>
@@ -385,16 +433,20 @@
                                                                     <!--this field changes dinamically displaying the filename we are trying to upload-->
                                                                     <h6>Upload Design</h6>
                                                                 </div>
-                                                                <p id="namefile"> (Support document Word or Pdf) <span>
+                                                                <p id="namefile">
+                                                                    (Support document Word or Pdf)
+                                                                    <span>
                                                                         <i class="fa-solid fa-circle-info"></i>
                                                                     </span>
                                                                 </p>
                                                                 <!--our custom btn which which stays under the actual one-->
-                                                                <button type="button" id="btnup" class="btn btn-lg"> Browse for your file! </button>
+                                                                <button type="button" id="btnup" class="btn btn-lg">
+                                                                    Browse for your file!
+                                                                </button>
                                                                 <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                                <input type="file" value="" name="fileup" id="fileup" name="hard_binding_cover_design" />
+                                                                <input type="file" class="fileup" value="" name="fileup" id="fileup" name="hard_binding_cover_design" />
                                                                 <div class="form-group form-check mt-3 d-none">
-                                                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1" /> -->
+                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="hard_binding_same_as_cover" />
                                                                     <label class="form-check-label" for="exampleCheck1">Same as thesis cover</label>
                                                                 </div>
                                                             </div>
@@ -410,7 +462,7 @@
                                                                 <label class="form-check-label" for="exampleCheck1">Print Not Required</label>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row hard_binding_spine_content">
                                                             <div class="col-sm-4">
                                                                 <div class="searche__wrapp">
                                                                     <p>Top content area</p>
@@ -441,15 +493,21 @@
                                                     <tbody>
                                                         <tr class="hard_binding_price_detail">
                                                             <th>Hard Binding</th>
-                                                            <td class="text-right hard_binding_price">₹ 000</td>
+                                                            <td class="text-right hard_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                         <tr class="soft_binding_price_detail">
                                                             <th>Soft Binding</th>
-                                                            <td class="text-right soft_binding_price">₹ 000</td>
+                                                            <td class="text-right soft_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                         <tr class="synopsis_binding_price_detail">
                                                             <th>Synopsis</th>
-                                                            <td class="text-right synopsis_binding_price">₹ 000</td>
+                                                            <td class="text-right synopsis_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -462,8 +520,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="button-row d-flex mt-4 col-12">
-                                            <button class="btn next__button js-btn-prev" type="button" title="Prev"> Prev </button>
-                                            <button class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_4"> Next </button>
+                                            <button disabled class="btn next__button js-btn-prev" type="button" title="Prev">
+                                                Prev
+                                            </button>
+                                            <button disabled class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_4">
+                                                Next
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -494,15 +556,15 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="soft_binding_paper_size[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="A0"> A0 </option>
-                                                                                        <option value="A1"> A1 </option>
-                                                                                        <option value="A2"> A2 </option>
-                                                                                        <option value="A3"> A3 </option>
-                                                                                        <option value="A4"> A4 </option>
-                                                                                        <option value="A5"> A5 </option>
-                                                                                        <option value="A6"> A6 </option>
-                                                                                        <option value="A7"> A7 </option>
-                                                                                        <option value="A8"> A8 </option>
+                                                                                        <option value="A0">A0</option>
+                                                                                        <option value="A1">A1</option>
+                                                                                        <option value="A2">A2</option>
+                                                                                        <option value="A3">A3</option>
+                                                                                        <option value="A4">A4</option>
+                                                                                        <option value="A5">A5</option>
+                                                                                        <option value="A6">A6</option>
+                                                                                        <option value="A7">A7</option>
+                                                                                        <option value="A8">A8</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -526,11 +588,16 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="soft_binding_paper_type[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or
-                                                                                            Equivalent</option>
-                                                                                        <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or
-                                                                                            Equivalent </option>
-                                                                                        <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent
+                                                                                        <option value="Paper One 100 GSM or Equivalent">
+                                                                                            Paper One 100 GSM or
+                                                                                            Equivalent
+                                                                                        </option>
+                                                                                        <option value="Bond Paper 85 GSM or Equivalent">
+                                                                                            Bond Paper 85 GSM or
+                                                                                            Equivalent
+                                                                                        </option>
+                                                                                        <option value="JK Easy 70 GSM or equivalent">
+                                                                                            JK Easy 70 GSM or equivalent
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -541,9 +608,18 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="soft_binding_paper_color[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Black & White"> Black & White </option>
-                                                                                        <option value="Color"> Color </option>
-                                                                                        <option value="Royal Print"> Royal Print </option>
+                                                                                        <option value="Normal - Black & White">
+                                                                                            Normal - Black & White
+                                                                                        </option>
+                                                                                        <option value="Normal Color">
+                                                                                            Normal - Color
+                                                                                        </option>
+                                                                                        <option value="Royal - Black & White">
+                                                                                            Royal - Black & White
+                                                                                        </option>
+                                                                                        <option value="Royal - Color">
+                                                                                            Royal - Color
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -553,8 +629,12 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="soft_binding_printing_type[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Single Side"> Single Side</option>
-                                                                                        <option value="Both Sidet"> Both Side </option>
+                                                                                        <option value="Single Side">
+                                                                                            Single Side
+                                                                                        </option>
+                                                                                        <option value="Both Sidet">
+                                                                                            Both Side
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -566,7 +646,8 @@
                                                     </div>
                                                     <div class="clearfix mt-4">
                                                         <button type="button" id="add-button" class="btn float-left add_btn_soft_binding">
-                                                            <i class="fas fa-plus fa-fw"></i> Create New </button>
+                                                            <i class="fas fa-plus fa-fw"></i> Create New
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <h3>Binding Details</h3>
@@ -575,7 +656,7 @@
                                                         <p>Colour of Covering Materials (Hard)</p>
                                                         <div class="bin__holder">
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/1.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/1.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -584,7 +665,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/2.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/2.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -593,7 +674,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/3.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/3.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -602,7 +683,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/4.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/4.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -611,7 +692,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/5.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/5.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -620,7 +701,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/6.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/6.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -629,7 +710,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/7.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/7.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -638,7 +719,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/8.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/8.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -647,7 +728,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/9.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/9.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -656,7 +737,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/10.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/10.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="soft_binding_cover_color_db" value="" />
@@ -666,12 +747,21 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 p-0 mt-5">
+                                                            <div class="searche__wrapp">
+                                                                <p>Covering Text Colour</p>
+                                                                <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="soft_binding_cover_text_color[]">
+                                                                    <!-- options -->
+                                                                    <option value="">Select</option>
+                                                                    <option value="Silver">Silver</option>
+                                                                    <option value="Golden">Golden</option>
+                                                                </select>
+                                                            </div>
                                                             <div class="btn-container">
-                                                                <p>Colour of Covering Materials (Hard)</p>
+                                                                <p>Cover Page Design</p>
                                                                 <!--the three icons: default, ok file (img), error file (not an img)-->
                                                                 <div class="all__holder">
                                                                     <h1 class="imgupload">
-                                                                        <img src="./images/icon _File Upload_.png" alt="" class="m-auto d-block" />
+                                                                        <img src="./web/images/icon _File Upload_.png" alt="" class="m-auto d-block" />
                                                                     </h1>
                                                                     <h1 class="imgupload ok">
                                                                         <i class="fa fa-check"></i>
@@ -682,14 +772,18 @@
                                                                     <!--this field changes dinamically displaying the filename we are trying to upload-->
                                                                     <h6>Upload Design</h6>
                                                                 </div>
-                                                                <p id="namefile"> (Support document Word or Pdf) <span>
+                                                                <p id="namefile">
+                                                                    (Support document Word or Pdf)
+                                                                    <span>
                                                                         <i class="fa-solid fa-circle-info"></i>
                                                                     </span>
                                                                 </p>
                                                                 <!--our custom btn which which stays under the actual one-->
-                                                                <button type="button" id="btnup" class="btn btn-lg"> Browse for your file! </button>
+                                                                <button type="button" id="btnup" class="btn btn-lg">
+                                                                    Browse for your file!
+                                                                </button>
                                                                 <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                                <input type="file" value="" name="fileup" id="fileup" name="soft_binding_cover_design" />
+                                                                <input type="file" class="fileup" value="" name="fileup" id="fileup" name="soft_binding_cover_design" />
                                                                 <div class="form-group form-check mt-3 d-none">
                                                                     <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1" /> -->
                                                                     <label class="form-check-label" for="exampleCheck1">Same as thesis cover</label>
@@ -738,15 +832,21 @@
                                                     <tbody>
                                                         <tr class="hard_binding_price_detail">
                                                             <th>Hard Binding</th>
-                                                            <td class="text-right hard_binding_price">₹ 000</td>
+                                                            <td class="text-right hard_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                         <tr class="soft_binding_price_detail">
                                                             <th>Soft Binding</th>
-                                                            <td class="text-right soft_binding_price">₹ 000</td>
+                                                            <td class="text-right soft_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                         <tr class="synopsis_binding_price_detail">
                                                             <th>Synopsis</th>
-                                                            <td class="text-right synopsis_binding_price">₹ 000</td>
+                                                            <td class="text-right synopsis_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -759,8 +859,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="button-row d-flex mt-4 col-12">
-                                            <button class="btn next__button js-btn-prev" type="button" title="Prev"> Prev </button>
-                                            <button class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_5"> Next </button>
+                                            <button disabled class="btn next__button js-btn-prev" type="button" title="Prev">
+                                                Prev
+                                            </button>
+                                            <button disabled class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_5">
+                                                Next
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -791,15 +895,15 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="synopsis_binding_paper_size[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="A0"> A0 </option>
-                                                                                        <option value="A1"> A1 </option>
-                                                                                        <option value="A2"> A2 </option>
-                                                                                        <option value="A3"> A3 </option>
-                                                                                        <option value="A4"> A4 </option>
-                                                                                        <option value="A5"> A5 </option>
-                                                                                        <option value="A6"> A6 </option>
-                                                                                        <option value="A7"> A7 </option>
-                                                                                        <option value="A8"> A8 </option>
+                                                                                        <option value="A0">A0</option>
+                                                                                        <option value="A1">A1</option>
+                                                                                        <option value="A2">A2</option>
+                                                                                        <option value="A3">A3</option>
+                                                                                        <option value="A4">A4</option>
+                                                                                        <option value="A5">A5</option>
+                                                                                        <option value="A6">A6</option>
+                                                                                        <option value="A7">A7</option>
+                                                                                        <option value="A8">A8</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -823,11 +927,16 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="synopsis_binding_paper_type[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or
-                                                                                            Equivalent</option>
-                                                                                        <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or
-                                                                                            Equivalent </option>
-                                                                                        <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent
+                                                                                        <option value="Paper One 100 GSM or Equivalent">
+                                                                                            Paper One 100 GSM or
+                                                                                            Equivalent
+                                                                                        </option>
+                                                                                        <option value="Bond Paper 85 GSM or Equivalent">
+                                                                                            Bond Paper 85 GSM or
+                                                                                            Equivalent
+                                                                                        </option>
+                                                                                        <option value="JK Easy 70 GSM or equivalent">
+                                                                                            JK Easy 70 GSM or equivalent
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -838,9 +947,18 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="synopsis_binding_paper_color[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Black & White"> Black & White </option>
-                                                                                        <option value="Color"> Color </option>
-                                                                                        <option value="Royal Print"> Royal Print </option>
+                                                                                        <option value="Normal - Black & White">
+                                                                                            Normal - Black & White
+                                                                                        </option>
+                                                                                        <option value="Normal Color">
+                                                                                            Normal - Color
+                                                                                        </option>
+                                                                                        <option value="Royal - Black & White">
+                                                                                            Royal - Black & White
+                                                                                        </option>
+                                                                                        <option value="Royal - Color">
+                                                                                            Royal - Color
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -850,8 +968,12 @@
                                                                                     <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown" data-profile="minimal" name="synopsis_binding_printing_type[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="Single Side"> Single Side</option>
-                                                                                        <option value="Both Sidet"> Both Side </option>
+                                                                                        <option value="Single Side">
+                                                                                            Single Side
+                                                                                        </option>
+                                                                                        <option value="Both Sidet">
+                                                                                            Both Side
+                                                                                        </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -863,7 +985,8 @@
                                                     </div>
                                                     <div class="clearfix mt-4">
                                                         <button type="button" id="add-button" class="btn float-left add_btn_synopsis_binding">
-                                                            <i class="fas fa-plus fa-fw"></i> Create New </button>
+                                                            <i class="fas fa-plus fa-fw"></i> Create New
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <h3>Binding Details</h3>
@@ -872,7 +995,7 @@
                                                         <p>Colour of Covering Materials (Hard)</p>
                                                         <div class="bin__holder">
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/1.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/1.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -881,7 +1004,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/2.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/2.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -890,7 +1013,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/3.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/3.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -899,7 +1022,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/4.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/4.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -908,7 +1031,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/5.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/5.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -917,7 +1040,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/6.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/6.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -926,7 +1049,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/7.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/7.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -935,7 +1058,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/8.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/8.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -944,7 +1067,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/9.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/9.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -953,7 +1076,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="ddone">
-                                                                <img src="./images/bindingcolor/10.jpg" alt="" />
+                                                                <img src="./web/images/bindingcolor/10.jpg" alt="" />
                                                                 <div class="form-check">
                                                                     <label class="form-check-label w-100">
                                                                         <input type="radio" class="form-check-input" name="synopsis_binding_cover_color_db" value="" />
@@ -968,7 +1091,7 @@
                                                                 <!--the three icons: default, ok file (img), error file (not an img)-->
                                                                 <div class="all__holder">
                                                                     <h1 class="imgupload">
-                                                                        <img src="./images/icon _File Upload_.png" alt="" class="m-auto d-block" />
+                                                                        <img src="./web/images/icon _File Upload_.png" alt="" class="m-auto d-block" />
                                                                     </h1>
                                                                     <h1 class="imgupload ok">
                                                                         <i class="fa fa-check"></i>
@@ -979,14 +1102,18 @@
                                                                     <!--this field changes dinamically displaying the filename we are trying to upload-->
                                                                     <h6>Upload Design</h6>
                                                                 </div>
-                                                                <p id="namefile"> (Support document Word or Pdf) <span>
+                                                                <p id="namefile">
+                                                                    (Support document Word or Pdf)
+                                                                    <span>
                                                                         <i class="fa-solid fa-circle-info"></i>
                                                                     </span>
                                                                 </p>
                                                                 <!--our custom btn which which stays under the actual one-->
-                                                                <button type="button" id="btnup" class="btn btn-lg"> Browse for your file! </button>
+                                                                <button type="button" id="btnup" class="btn btn-lg">
+                                                                    Browse for your file!
+                                                                </button>
                                                                 <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                                <input type="file" value="" name="fileup" id="fileup" name="synopsis_binding_cover_design" />
+                                                                <input type="file" class="fileup" value="" name="fileup" id="fileup" name="synopsis_binding_cover_design" />
                                                                 <div class="form-group form-check mt-3 d-none">
                                                                     <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1" /> -->
                                                                     <label class="form-check-label" for="exampleCheck1">Same as thesis cover</label>
@@ -1035,15 +1162,21 @@
                                                     <tbody>
                                                         <tr class="hard_binding_price_detail">
                                                             <th>Hard Binding</th>
-                                                            <td class="text-right hard_binding_price">₹ 000</td>
+                                                            <td class="text-right hard_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                         <tr class="soft_binding_price_detail">
                                                             <th>Soft Binding</th>
-                                                            <td class="text-right soft_binding_price">₹ 000</td>
+                                                            <td class="text-right soft_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                         <tr class="synopsis_binding_price_detail">
                                                             <th>Synopsis</th>
-                                                            <td class="text-right synopsis_binding_price">₹ 000</td>
+                                                            <td class="text-right synopsis_binding_price">
+                                                                ₹ 000
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -1056,8 +1189,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="button-row d-flex mt-4 col-12">
-                                            <button class="btn next__button js-btn-prev" type="button" title="Prev"> Prev </button>
-                                            <button class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_6"> Next </button>
+                                            <button disabled class="btn next__button js-btn-prev" type="button" title="Prev">
+                                                Prev
+                                            </button>
+                                            <button disabled class="btn next__button ml-auto js-btn-next" type="button" title="Next" id="next_step_6">
+                                                Next
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -1065,9 +1202,7 @@
                                 <!--single form panel 6-->
                                 <div id="step-6" class="multisteps-form__panel p-4 bg-white" data-animation="scaleIn">
                                     <h2 class="text-center">Order Summary</h2>
-                                    <div id="order_summery">
-
-                                    </div>
+                                    <div id="order_summery"></div>
                                 </div>
                             </form>
                         </div>
@@ -1077,6 +1212,30 @@
         </div>
     </section>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.hoverZoom.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".thumb img").hoverZoom({
+            speedView: 600,
+            speedRemove: 400,
+            showCaption: true,
+            speedCaption: 600,
+            debug: true,
+            hoverIntent: true,
+            loadingIndicatorPos: "center",
+            useBgImg: true,
+        });
+    });
+</script>
+<script src="js/multistep.js"></script>
+<!-- <script src="js/addremove.js"></script> -->
+<script src="https://kit.fontawesome.com/2d537fef4a.js" crossorigin="anonymous"></script>
+<script src="js/core.js"></script>
+<script src="js/owl.js"></script>
+<script src="js/script.js"></script>
+<script src="js/swiper.min.js"></script>
 
 <script>
     (function() {
@@ -1102,7 +1261,7 @@
             $(".imgupload.stop").show("slow");
             $("#namefile").css({
                 color: "red",
-                "font-weight": 700
+                "font-weight": 700,
             });
             $("#namefile").html("File " + filename + " is not  pic!");
             $("#submitbtn").hide();
@@ -1114,7 +1273,7 @@
             $(".imgupload.ok").show("slow");
             $("#namefile").css({
                 color: "green",
-                "font-weight": 700
+                "font-weight": 700,
             });
             $("#namefile").html(filename);
             $("#submitbtn").show();
@@ -1139,185 +1298,129 @@
 </script>
 
 <script>
-    const color_page = 200
-    const bw_page = 200
+    const color_page = 200;
+    const bw_page = 200;
 
-    const HARD_BINDING_COVER_BELOW_3_PRICE = 300
-    const HARD_BINDING_COVER_PRICE = 270
-    const SOFT_BINDING_COVER_PRICE = 270
-    const SYNOPSIS_BINDING_COVER_PRICE = 30
+    const HARD_BINDING_COVER_BELOW_3_PRICE = 300;
+    const HARD_BINDING_COVER_PRICE = 270;
+    const SOFT_BINDING_COVER_PRICE = 270;
+    const SYNOPSIS_BINDING_COVER_PRICE = 30;
 
+    var hard_binding_total_price = 0;
+    var soft_binding_total_price = 0;
+    var synopsis_binding_total_price = 0;
 
-    const GSM_100 = {
-        normal: {
-            bw: {
-                first_page: 6,
-                other_page: 2
-            },
-            color: {
-                first_page: 10,
-                other_page: 8
-            }
-        },
+    var hard_binding_selected = false;
+    var soft_binding_selected = false;
+    var synopsis_binding_selected = false;
 
-        royal: {
-            bw: {
-                first_page: 8,
-                other_page: 5
-            },
-            color: {
-                first_page: 10,
-                other_page: 8
-            }
-        }
-    }
+    var hard_binding_copies = 0
+    var soft_binding_copies = 0
+    var synopsis_binding_copies = 0
 
-
-    const GSM_85 = {
-        normal: {
-            bw: {
-                first_page: 6,
-                other_page: 2
-            },
-            color: {
-                first_page: 10,
-                other_page: 8
-            }
-        },
-
-        royal: {
-            bw: {
-                first_page: 8,
-                other_page: 5
-            },
-            color: {
-                first_page: 10,
-                other_page: 8
-            }
-        }
-    }
-
-
-    const GSM_70 = {
-        normal: {
-            bw: {
-                first_page: 5,
-                other_page: 1.5
-            },
-            color: {
-                first_page: 10,
-                other_page: 8
-            }
-        },
-
-        royal: {
-            bw: {
-                first_page: 6,
-                other_page: 4
-            },
-            color: {
-                first_page: 10,
-                other_page: 8
-            }
-        }
-    }
-</script>
-
-<script>
-    var hard_binding_total_price = 0
-    var soft_binding_total_price = 0
-    var synopsis_binding_total_price = 0
-
-    var hard_binding_selected = false
-    var soft_binding_selected = false
-    var synopsis_binding_selected = false
+    var order_summery = {}
 </script>
 
 <script>
     $(document).ready(function(event) {
         $("input[name='file']").on("change", function(event) {
-            $("#file_name").text(event.target.files[0].name)
-        })
+            $("#file_name").text(event.target.files[0].name);
+
+            $("#total_page").text(color_page + bw_page)
+            $("#color_page").text(color_page)
+            $("#bw_page").text(bw_page)
+        });
 
         // If User click on hard binding
         $("input[name='hard_binding']").on("change", function() {
             // If hard binding is checked
             if (this.checked) {
                 // Add Cover Price
-                hard_binding_total_price += HARD_BINDING_COVER_BELOW_3_PRICE
+                hard_binding_total_price += HARD_BINDING_COVER_BELOW_3_PRICE;
 
-                // Display Tab Link   
-                hard_binding_selected = true
-                $("#step-3-link").removeClass("d-none")
+                // Display Tab Link
+                hard_binding_selected = true;
+                $("#step-3-link").removeClass("d-none");
             } else {
                 // Deduct Cover Price
-                hard_binding_total_price -= HARD_BINDING_COVER_BELOW_3_PRICE
+                hard_binding_total_price -= HARD_BINDING_COVER_BELOW_3_PRICE;
 
                 // Hide Tab Link
-                hard_binding_selected = false
-                $("#step-3-link").addClass("d-none")
+                hard_binding_selected = false;
+                $("#step-3-link").addClass("d-none");
             }
-            if (hard_binding_selected || soft_binding_selected || synopsis_binding_selected) {
-                $("#step-6-link").removeClass("d-none")
+            if (
+                hard_binding_selected ||
+                soft_binding_selected ||
+                synopsis_binding_selected
+            ) {
+                $("#step-6-link").removeClass("d-none");
             } else {
-                $("#step-6-link").addClass("d-none")
+                $("#step-6-link").addClass("d-none");
             }
-        })
+        });
 
         // If User click on soft binding
         $("input[name='soft_binding']").on("change", function() {
             // If soft binding is checked
             if (this.checked) {
                 // Add Cover Price
-                soft_binding_total_price += SOFT_BINDING_COVER_PRICE
+                soft_binding_total_price += SOFT_BINDING_COVER_PRICE;
 
-                // Display Tab Link     
-                soft_binding_selected = true
-                $("#step-4-link").removeClass("d-none")
+                // Display Tab Link
+                soft_binding_selected = true;
+                $("#step-4-link").removeClass("d-none");
             } else {
                 // Deduct Cover Price
-                soft_binding_total_price -= SOFT_BINDING_COVER_PRICE
+                soft_binding_total_price -= SOFT_BINDING_COVER_PRICE;
 
-                // Hide Tab Link 
-                soft_binding_selected = false
-                $("#step-4-link").addClass("d-none")
+                // Hide Tab Link
+                soft_binding_selected = false;
+                $("#step-4-link").addClass("d-none");
             }
-            if (hard_binding_selected || soft_binding_selected || synopsis_binding_selected) {
-                $("#step-6-link").removeClass("d-none")
+            if (
+                hard_binding_selected ||
+                soft_binding_selected ||
+                synopsis_binding_selected
+            ) {
+                $("#step-6-link").removeClass("d-none");
             } else {
-                $("#step-6-link").addClass("d-none")
+                $("#step-6-link").addClass("d-none");
             }
-        })
+        });
 
         // If User click on synopsis binding
         $("input[name='synopsis_binding']").on("change", function() {
             // If synopsis binding is checked
             if (this.checked) {
                 // Add Cover Price
-                synopsis_binding_total_price += SYNOPSIS_BINDING_COVER_PRICE
+                synopsis_binding_total_price += SYNOPSIS_BINDING_COVER_PRICE;
 
-                // Display Tab Link    
-                synopsis_binding_selected = true
-                $("#step-5-link").removeClass("d-none")
+                // Display Tab Link
+                synopsis_binding_selected = true;
+                $("#step-5-link").removeClass("d-none");
             } else {
                 // Deduct Cover Price
-                synopsis_binding_total_price -= SYNOPSIS_BINDING_COVER_PRICE
+                synopsis_binding_total_price -= SYNOPSIS_BINDING_COVER_PRICE;
 
-                // Hide Tab Link 
-                synopsis_binding_selected = false
-                $("#step-5-link").addClass("d-none")
+                // Hide Tab Link
+                synopsis_binding_selected = false;
+                $("#step-5-link").addClass("d-none");
             }
-            if (hard_binding_selected || soft_binding_selected || synopsis_binding_selected) {
-                $("#step-6-link").removeClass("d-none")
+            if (
+                hard_binding_selected ||
+                soft_binding_selected ||
+                synopsis_binding_selected
+            ) {
+                $("#step-6-link").removeClass("d-none");
             } else {
-                $("#step-6-link").addClass("d-none")
+                $("#step-6-link").addClass("d-none");
             }
-        })
+        });
 
         // Hard Binding Create Button
         $(".add_btn_hard_binding").on("click", function(event) {
-
-            let time = new Date().valueOf()
+            let time = new Date().valueOf();
 
             $("#hard_binding_accordion").append(`
           <div class="card hard_binding_card">
@@ -1385,9 +1488,18 @@
                         data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_color[]">
                         <!-- options -->
                         <option value="">Select</option>
-                        <option value="Black & White"> Black & White </option>
-                        <option value="Color"> Color </option>
-                        <option value="Royal Print"> Royal Print </option>
+                        <option value="Normal - Black & White">
+                            Normal - Black & White
+                        </option>
+                        <option value="Normal Color">
+                            Normal - Color
+                        </option>
+                        <option value="Royal - Black & White">
+                            Royal - Black & White
+                        </option>
+                        <option value="Royal - Color">
+                            Royal - Color
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -1407,12 +1519,11 @@
               </div>
             </div>
           </div>
-        `)
-        })
+        `);
+        });
 
         $(".add_btn_soft_binding").on("click", function(event) {
-
-            let time = new Date().valueOf()
+            let time = new Date().valueOf();
 
             $(this).parent().parent().find(".accordion").append(`
           <div class="card soft_binding_card">
@@ -1479,9 +1590,18 @@
                         data-profile="minimal" name="soft_binding_paper_color[]">
                         <!-- options -->
                         <option value="">Select</option>
-                        <option value="Black & White"> Black & White </option>
-                        <option value="Color"> Color </option>
-                        <option value="Royal Print"> Royal Print </option>
+                        <option value="Normal - Black & White">
+                            Normal - Black & White
+                        </option>
+                        <option value="Normal Color">
+                            Normal - Color
+                        </option>
+                        <option value="Royal - Black & White">
+                            Royal - Black & White
+                        </option>
+                        <option value="Royal - Color">
+                            Royal - Color
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -1501,12 +1621,11 @@
               </div>
             </div>
           </div>
-        `)
-        })
+        `);
+        });
 
         $(".add_btn_synopsis_binding").on("click", function(event) {
-
-            let time = new Date().valueOf()
+            let time = new Date().valueOf();
 
             $(this).parent().parent().find(".accordion").append(`
           <div class="card synopsis_binding_card">
@@ -1573,9 +1692,18 @@
                         data-profile="minimal" name="synopsis_binding_paper_color[]">
                         <!-- options -->
                         <option value="">Select</option>
-                        <option value="Black & White"> Black & White </option>
-                        <option value="Color"> Color </option>
-                        <option value="Royal Print"> Royal Print </option>
+                        <option value="Normal - Black & White">
+                            Normal - Black & White
+                        </option>
+                        <option value="Normal Color">
+                            Normal - Color
+                        </option>
+                        <option value="Royal - Black & White">
+                            Royal - Black & White
+                        </option>
+                        <option value="Royal - Color">
+                            Royal - Color
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -1595,397 +1723,468 @@
               </div>
             </div>
           </div>
-        `)
-        })
-
+        `);
+        });
 
         setInterval(function() {
             $(".hard_binding_price").each(function() {
-                $(this).text(hard_binding_total_price)
-            })
+                $(this).text(hard_binding_total_price);
+            });
 
             $(".soft_binding_price").each(function() {
-                $(this).text(soft_binding_total_price)
-            })
+                $(this).text(soft_binding_total_price);
+            });
 
             $(".synopsis_binding_price").each(function() {
-                $(this).text(synopsis_binding_total_price)
-            })
+                $(this).text(synopsis_binding_total_price);
+            });
 
             $(".total_price").each(function() {
-                $(this).text(hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price)
-            })
+                $(this).text(
+                    hard_binding_total_price +
+                    soft_binding_total_price +
+                    synopsis_binding_total_price
+                );
+            });
 
             // generate_order_summery()
-        }, 500)
-    })
+        }, 500);
+    });
 
-
-    function generate_order_summery() {
-
-        // Get Hardbinding Details
-        var hard_bindings_orders = []
-        $("#hard_binding_accordion .hard_binding_card").each(function() {
-            console.log("hard_binding_card")
-            let hard_bindings_order = {
-                hard_binding_paper_size: $(this).find("select[name='hard_binding_paper_size[]']").val(),
-                hard_binding_qty: $(this).find("input[name='hard_binding_qty[]']").val(),
-                hard_binding_paper_type: $(this).find("select[name='hard_binding_paper_type[]']").val(),
-                hard_binding_paper_color: $(this).find("select[name='hard_binding_paper_color[]']").val(),
-                hard_binding_printing_type: $(this).find("select[name='hard_binding_printing_type[]']").val()
+    function get_rate(paper_type, color) {
+        if (paper_type == "Paper One 100 GSM or Equivalent") {
+            if (color == "Normal - Black & White") {
+                return {first_page: 6, other_page: 2}
+            } else if (color == "Normal - Color") {
+                return {first_page: 10, other_page: 8}
+            } else if (color == "Royal - Black & White") {
+                return {first_page: 8, other_page: 5}
+            } else if (color == "Royal - Color") {
+                return {first_page: 10, other_page: 8}
+            } else {
+                return {first_page: 0, other_page: 0}
             }
-            hard_bindings_orders.push(hard_bindings_order)
-        })
-
-        var soft_bindings_orders = []
-        $("#soft_binding_accordion .soft_binding_card").each(function() {
-            console.log("soft_binding_card")
-            let soft_bindings_order = {
-                soft_binding_paper_size: $(this).find("select[name='soft_binding_paper_size[]']").val(),
-                soft_binding_qty: $(this).find("input[name='soft_binding_qty[]']").val(),
-                soft_binding_paper_type: $(this).find("select[name='soft_binding_paper_type[]']").val(),
-                soft_binding_paper_color: $(this).find("select[name='soft_binding_paper_color[]']").val(),
-                soft_binding_printing_type: $(this).find("select[name='soft_binding_printing_type[]']").val()
+        } else if (paper_type == "Bond Paper 85 GSM or Equivalent") {
+            if (color == "Normal - Black & White") {
+                return {first_page: 6, other_page: 2}
+            } else if (color == "Normal - Color") {
+                return {first_page: 10, other_page: 8}
+            } else if (color == "Royal - Black & White") {
+                return {first_page: 8, other_page: 5}
+            } else if (color == "Royal - Color") {
+                return {first_page: 10, other_page: 8}
+            } else {
+                return {first_page: 0, other_page: 0}
             }
-
-            soft_bindings_orders.push(soft_bindings_order)
-        })
-
-        var synopsis_bindings_orders = []
-        $("#synopsis_binding_accordion .synopsis_binding_card").each(function() {
-            console.log("synopsis_binding_card")
-            let synopsis_bindings_order = {
-                synopsis_binding_paper_size: $(this).find("select[name='synopsis_binding_paper_size[]']").val(),
-                synopsis_binding_qty: $(this).find("input[name='synopsis_binding_qty[]']").val(),
-                synopsis_binding_paper_type: $(this).find("select[name='synopsis_binding_paper_type[]']").val(),
-                synopsis_binding_paper_color: $(this).find("select[name='synopsis_binding_paper_color[]']").val(),
-                synopsis_binding_printing_type: $(this).find("select[name='synopsis_binding_printing_type[]']").val()
+        } else {
+            if (color == "Normal - Black & White") {
+                return {first_page: 5, other_page: 1.5}
+            } else if (color == "Normal - Color") {
+                return {first_page: 10, other_page: 8}
+            } else if (color == "Royal - Black & White") {
+                return {first_page: 6, other_page: 4}
+            } else if (color == "Royal - Color") {
+                return {first_page: 10, other_page: 8}
+            } else {
+                return {first_page: 0, other_page: 0}
             }
-
-            synopsis_bindings_orders.push(synopsis_bindings_order)
-        })
-
-
-        console.log({
-            hard_bindings_orders,
-            soft_bindings_orders,
-            synopsis_bindings_orders
-        })
-
-        // `<div class="multisteps-form__content">
-        //   <div>
-        //     <div class="printing__wrapp p-4 bg-white mt-5 hard_binding_order_summery">
-        //       <h3 class="mb-4">Hard Binding & Printing</h3>
-        //       <div class="printing__Details table-responsive">
-        //         <p>Binding Details</p>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Hard Bind</td>
-        //               <td>3</td>
-        //               <td class="text-right">₹ 900</td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //       </div>
-        //       <div class="printing__Details table-responsive">
-        //         <p>Print Details</p>
-        //         <span>1st Copy Charges</span>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col">Qty</th>
-        //               <th scope="col">Rate</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Normal Print BW</td>
-        //               <td>1</td>
-        //               <td>50</td>
-        //               <td>10</td>
-        //               <td class="text-right">₹ 500</td>
-        //             </tr>
-        //             <tr>
-        //               <td class="border-bottom"> Normal Print Color </td>
-        //               <td class="border-bottom">1</td>
-        //               <td class="border-bottom">150</td>
-        //               <td class="border-bottom">6</td>
-        //               <td class="text-right border-bottom"> ₹ 900 </td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <span>Additional Copy Charges</span>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col">Qty</th>
-        //               <th scope="col">Rate</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Normal Print BW</td>
-        //               <td>1</td>
-        //               <td>50</td>
-        //               <td>10</td>
-        //               <td class="text-right">₹ 500</td>
-        //             </tr>
-        //             <tr>
-        //               <td>Normal Print Color</td>
-        //               <td>1</td>
-        //               <td>150</td>
-        //               <td>6</td>
-        //               <td class="text-right">₹ 900</td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <div class="sub_total">
-        //           <h4>Sub Total</h4>
-        //           <h5>₹ 1900</h5>
-        //         </div>
-        //       </div>
-        //       <div class="edit__wrapp">
-        //         <h6>
-        //           <i class="fa-solid fa-pen-to-square"></i> Edit Order
-        //         </h6>
-        //       </div>
-        //     </div>
-        //     <div class="printing__wrapp p-4 bg-white mt-5 soft_binding_order_summery">
-        //       <h3 class="mb-4">Soft Binding & Printing</h3>
-        //       <div class="printing__Details table-responsive">
-        //         <p>Binding Details</p>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Hard Bind</td>
-        //               <td>3</td>
-        //               <td class="text-right">₹ 900</td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //       </div>
-        //       <div class="printing__Details table-responsive">
-        //         <p>Print Details</p>
-        //         <span>1st Copy Charges</span>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col">Qty</th>
-        //               <th scope="col">Rate</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Normal Print BW</td>
-        //               <td>1</td>
-        //               <td>50</td>
-        //               <td>10</td>
-        //               <td class="text-right">₹ 500</td>
-        //             </tr>
-        //             <tr>
-        //               <td class="border-bottom"> Normal Print Color </td>
-        //               <td class="border-bottom">1</td>
-        //               <td class="border-bottom">150</td>
-        //               <td class="border-bottom">6</td>
-        //               <td class="text-right border-bottom"> ₹ 900 </td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <span>Additional Copy Charges</span>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col">Qty</th>
-        //               <th scope="col">Rate</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Normal Print BW</td>
-        //               <td>1</td>
-        //               <td>50</td>
-        //               <td>10</td>
-        //               <td class="text-right">₹ 500</td>
-        //             </tr>
-        //             <tr>
-        //               <td>Normal Print Color</td>
-        //               <td>1</td>
-        //               <td>150</td>
-        //               <td>6</td>
-        //               <td class="text-right">₹ 900</td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <div class="sub_total">
-        //           <h4>Sub Total</h4>
-        //           <h5>₹ 1900</h5>
-        //         </div>
-        //       </div>
-        //       <div class="edit__wrapp">
-        //         <h6>
-        //           <i class="fa-solid fa-pen-to-square"></i> Edit Order
-        //         </h6>
-        //       </div>
-        //     </div>
-        //     <div class="printing__wrapp p-4 bg-white mt-5 synopsis_binding_order_summery">
-        //       <h3 class="mb-4">Synopsis Printing</h3>
-        //       <div class="printing__Details table-responsive">
-        //         <p>Print Details</p>
-        //         <span>1st Copy Charges</span>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col">Qty</th>
-        //               <th scope="col">Rate</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Normal Print BW</td>
-        //               <td>1</td>
-        //               <td>50</td>
-        //               <td>10</td>
-        //               <td class="text-right">₹ 500</td>
-        //             </tr>
-        //             <tr>
-        //               <td class="border-bottom"> Normal Print Color </td>
-        //               <td class="border-bottom">1</td>
-        //               <td class="border-bottom">150</td>
-        //               <td class="border-bottom">6</td>
-        //               <td class="text-right border-bottom"> ₹ 900 </td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <span>Additional Copy Charges</span>
-        //         <table class="table table-striped">
-        //           <thead>
-        //             <tr>
-        //               <th scope="col">Description</th>
-        //               <th scope="col">Copies</th>
-        //               <th scope="col">Qty</th>
-        //               <th scope="col">Rate</th>
-        //               <th scope="col" class="text-right">Cost</th>
-        //             </tr>
-        //           </thead>
-        //           <tbody>
-        //             <tr>
-        //               <td>Normal Print BW</td>
-        //               <td>1</td>
-        //               <td>50</td>
-        //               <td>10</td>
-        //               <td class="text-right">₹ 500</td>
-        //             </tr>
-        //             <tr>
-        //               <td>Normal Print Color</td>
-        //               <td>1</td>
-        //               <td>150</td>
-        //               <td>6</td>
-        //               <td class="text-right">₹ 900</td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <div class="sub_total">
-        //           <h4>Sub Total</h4>
-        //           <h5>₹ 1900</h5>
-        //         </div>
-        //       </div>
-        //       <div class="edit__wrapp">
-        //         <h6>
-        //           <i class="fa-solid fa-pen-to-square"></i> Edit Order
-        //         </h6>
-        //       </div>
-        //     </div>
-        //     <div class="printing__wrapp p-4 bg-white mt-5">
-        //       <h3 class="mb-4">Order Summary</h3>
-        //       <div class="printing__Details border-0 table-responsive">
-        //         <table class="table table-striped">
-        //           <tbody>
-        //             <tr>
-        //               <td>Hard Binding & Printing</td>
-        //               <td class="text-right">₹ 1900</td>
-        //             </tr>
-        //             <tr>
-        //               <td>Hard Binding & Printing</td>
-        //               <td class="text-right">₹ 1900</td>
-        //             </tr>
-        //             <tr>
-        //               <td>Hard Binding & Printing</td>
-        //               <td class="text-right">₹ 1900</td>
-        //             </tr>
-        //           </tbody>
-        //         </table>
-        //         <div class="col-sm-5 ml-auto">
-        //           <table class="table">
-        //             <tbody>
-        //               <tr>
-        //                 <td class="border-0"> Hard Binding & Printing </td>
-        //                 <td class="text-right border-0">₹ 1900</td>
-        //               </tr>
-        //             </tbody>
-        //           </table>
-        //           <div class="sub_total">
-        //             <h4>Sub Total</h4>
-        //             <h5>₹ 1900</h5>
-        //           </div>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        //   <div class="button-row d-flex mt-4">
-        //     <a href="checkout.html" class="btn ml-auto next__button">Confrom Order</a>
-        //     <button class="btn ml-auto next__button" type="button" title="Send">Confrom Order</button>
-        //   </div>
-        // </div>`
+        }
     }
 
+    function generate_order_summery() {
+        hard_binding_total_price = 0;
+        soft_binding_total_price = 0;
+        synopsis_binding_total_price = 0;
 
+        hard_binding_copies = 0;
+        soft_binding_copies = 0;
+        synopsis_binding_copies = 0;
 
+        $("#order_summery").empty()
+        // Get Hardbinding Details
+        var hard_bindings_orders = [];
+        $("#hard_binding_accordion .hard_binding_card").each(function() {
+            console.log("hard_binding_card");
+            let hard_bindings_order = {
+                hard_binding_paper_size: $(this)
+                    .find("select[name='hard_binding_paper_size[]']")
+                    .val(),
+                hard_binding_qty: $(this)
+                    .find("input[name='hard_binding_qty[]']")
+                    .val(),
+                hard_binding_paper_type: $(this)
+                    .find("select[name='hard_binding_paper_type[]']")
+                    .val(),
+                hard_binding_paper_color: $(this)
+                    .find("select[name='hard_binding_paper_color[]']")
+                    .val(),
+                hard_binding_printing_type: $(this)
+                    .find("select[name='hard_binding_printing_type[]']")
+                    .val(),
+            };
+            hard_bindings_orders.push(hard_bindings_order);
+        });
 
-    // $("#next_step_3").on("click", function () {
-    //   $("#step-3").removeClass("d-none")
-    // })
+        var soft_bindings_orders = [];
+        $("#soft_binding_accordion .soft_binding_card").each(function() {
+            console.log("soft_binding_card");
+            let soft_bindings_order = {
+                soft_binding_paper_size: $(this)
+                    .find("select[name='soft_binding_paper_size[]']")
+                    .val(),
+                soft_binding_qty: $(this)
+                    .find("input[name='soft_binding_qty[]']")
+                    .val(),
+                soft_binding_paper_type: $(this)
+                    .find("select[name='soft_binding_paper_type[]']")
+                    .val(),
+                soft_binding_paper_color: $(this)
+                    .find("select[name='soft_binding_paper_color[]']")
+                    .val(),
+                soft_binding_printing_type: $(this)
+                    .find("select[name='soft_binding_printing_type[]']")
+                    .val(),
+            };
 
-    // $("#next_step_4").on("click", function () {
-    //   $("#step-4").removeClass("d-none")
-    // })
+            soft_bindings_orders.push(soft_bindings_order);
+        });
 
-    // $("#next_step_5").on("click", function () {
-    //   $("#step-5").removeClass("d-none")
-    // })
+        var synopsis_bindings_orders = [];
+        $("#synopsis_binding_accordion .synopsis_binding_card").each(
+            function() {
+                console.log("synopsis_binding_card");
+                let synopsis_bindings_order = {
+                    synopsis_binding_paper_size: $(this)
+                        .find("select[name='synopsis_binding_paper_size[]']")
+                        .val(),
+                    synopsis_binding_qty: $(this)
+                        .find("input[name='synopsis_binding_qty[]']")
+                        .val(),
+                    synopsis_binding_paper_type: $(this)
+                        .find("select[name='synopsis_binding_paper_type[]']")
+                        .val(),
+                    synopsis_binding_paper_color: $(this)
+                        .find("select[name='synopsis_binding_paper_color[]']")
+                        .val(),
+                    synopsis_binding_printing_type: $(this)
+                        .find("select[name='synopsis_binding_printing_type[]']")
+                        .val(),
+                };
+
+                synopsis_bindings_orders.push(synopsis_bindings_order);
+            }
+        );
+
+        order_summery = {
+            hard_bindings_orders,
+            soft_bindings_orders,
+            synopsis_bindings_orders,
+        }
+
+        // var hard_binding_copies = 0
+        // var soft_binding_copies = 0
+        // var synopsis_binding_copies = 0
+
+        // Hard Binding Order Summary
+        var hard_binding_order_html = ""
+        hard_bindings_orders.forEach(order => {            
+            let rate = get_rate(order.hard_binding_paper_type, order.hard_binding_paper_color)
+            let total = 0
+
+            if(order.hard_binding_qty == 1)
+            {
+                total = rate.first_page
+            }
+            else
+            {
+                total = rate.first_page + ((order.hard_binding_qty - 1) * rate.other_page)
+            }
+            hard_binding_copies = Number(hard_binding_copies) + Number(order.hard_binding_qty)
+            hard_binding_total_price = hard_binding_total_price + total
+
+            hard_binding_order_html = hard_binding_order_html + `<tr>
+                                                                    <td>${order.hard_binding_paper_type}</td>
+                                                                    <td>${order.hard_binding_qty}</td>
+                                                                    <td>${order.hard_binding_paper_color}</td>
+                                                                    <td>${rate.first_page}</td>
+                                                                    <td>${rate.other_page}</td>
+                                                                    <td class="text-right">₹ ${total}</td>
+                                                                </tr>`
+        })
+
+        if(hard_binding_selected) {
+            $("#order_summery").append(        
+                `<div class="multisteps-form__content">
+                    <div>
+                        <div class="printing__wrapp p-4 bg-white mt-5 hard_binding_order_summery">
+                        <h3 class="mb-4">Hard Binding & Printing</h3>
+                        <div class="printing__Details table-responsive">
+                            <p>Binding Details</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hard Bind</td>
+                                        <td>${hard_binding_copies}</td>
+                                        <td class="text-right">₹ ${hard_binding_total_price}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="printing__Details table-responsive">
+                            <p>Print Details</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col">Colour/ BW</th>
+                                        <th scope="col">1st Copy Rate</th>
+                                        <th scope="col">Additional Copy Rate</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${hard_binding_order_html}
+                                </tbody>
+                            </table>
+                            <div class="sub_total">
+                                <h4>Sub Total</h4>
+                                <h5>₹ ${hard_binding_total_price}</h5>
+                            </div>
+                        </div>
+                        <div class="edit__wrapp">
+                            <h6>
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Order
+                            </h6>
+                        </div>
+                        </div>
+                    </div>
+                </div>`
+            )
+        }
+
+        // Soft Binding Order Summery
+        var soft_binding_order_html = ""
+        soft_bindings_orders.forEach(order => {            
+            let rate = get_rate(order.soft_binding_paper_type, order.soft_binding_paper_color)
+            let total = 0
+
+            if(order.soft_binding_qty == 1)
+            {
+                total = rate.first_page
+            }
+            else
+            {
+                total = rate.first_page + ((order.soft_binding_qty - 1) * rate.other_page)
+            }
+            soft_binding_copies = Number(soft_binding_copies) + Number(order.soft_binding_qty)
+            soft_binding_total_price = soft_binding_total_price + total
+
+            soft_binding_order_html = soft_binding_order_html + `<tr>
+                                                                    <td>${order.soft_binding_paper_type}</td>
+                                                                    <td>${order.soft_binding_qty}</td>
+                                                                    <td>${order.soft_binding_paper_color}</td>
+                                                                    <td>${rate.first_page}</td>
+                                                                    <td>${rate.other_page}</td>
+                                                                    <td class="text-right">₹ ${total}</td>
+                                                                </tr>`
+        })
+
+        if(soft_binding_selected) {
+            $("#order_summery").append(        
+                `<div class="multisteps-form__content">
+                    <div>
+                        <div class="printing__wrapp p-4 bg-white mt-5 soft_binding_order_summery">
+                        <h3 class="mb-4">soft Binding & Printing</h3>
+                        <div class="printing__Details table-responsive">
+                            <p>Binding Details</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>soft Bind</td>
+                                        <td>${soft_binding_copies}</td>
+                                        <td class="text-right">₹ ${soft_binding_total_price}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="printing__Details table-responsive">
+                            <p>Print Details</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col">Colour/ BW</th>
+                                        <th scope="col">1st Copy Rate</th>
+                                        <th scope="col">Additional Copy Rate</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${soft_binding_order_html}
+                                </tbody>
+                            </table>
+                            <div class="sub_total">
+                                <h4>Sub Total</h4>
+                                <h5>₹ ${soft_binding_total_price}</h5>
+                            </div>
+                        </div>
+                        <div class="edit__wrapp">
+                            <h6>
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Order
+                            </h6>
+                        </div>
+                        </div>
+                    </div>
+                </div>`
+            )
+        }
+
+        // Synopsis Binding Order Summery
+        var synopsis_binding_order_html = ""
+        synopsis_bindings_orders.forEach(order => {            
+            let rate = get_rate(order.synopsis_binding_paper_type, order.synopsis_binding_paper_color)
+            let total = 0
+
+            if(order.synopsis_binding_qty == 1)
+            {
+                total = rate.first_page
+            }
+            else
+            {
+                total = rate.first_page + ((order.synopsis_binding_qty - 1) * rate.other_page)
+            }
+            synopsis_binding_copies = Number(synopsis_binding_copies) + Number(order.synopsis_binding_qty)
+            synopsis_binding_total_price = synopsis_binding_total_price + total
+
+            synopsis_binding_order_html = synopsis_binding_order_html + `<tr>
+                                                                    <td>${order.synopsis_binding_paper_type}</td>
+                                                                    <td>${order.synopsis_binding_qty}</td>
+                                                                    <td>${order.synopsis_binding_paper_color}</td>
+                                                                    <td>${rate.first_page}</td>
+                                                                    <td>${rate.other_page}</td>
+                                                                    <td class="text-right">₹ ${total}</td>
+                                                                </tr>`
+        })
+
+        if(synopsis_binding_selected) {
+            $("#order_summery").append(        
+                `<div class="multisteps-form__content">
+                    <div>
+                        <div class="printing__wrapp p-4 bg-white mt-5 synopsis_binding_order_summery">
+                        <h3 class="mb-4">Synopsis Binding & Printing</h3>
+                        <div class="printing__Details table-responsive">
+                            <p>Binding Details</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Synopsis Bind</td>
+                                        <td>${synopsis_binding_copies}</td>
+                                        <td class="text-right">₹ ${synopsis_binding_total_price}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="printing__Details table-responsive">
+                            <p>Print Details</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col">Colour/ BW</th>
+                                        <th scope="col">1st Copy Rate</th>
+                                        <th scope="col">Additional Copy Rate</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${synopsis_binding_order_html}
+                                </tbody>
+                            </table>
+                            <div class="sub_total">
+                                <h4>Sub Total</h4>
+                                <h5>₹ ${synopsis_binding_total_price}</h5>
+                            </div>
+                        </div>
+                        <div class="edit__wrapp">
+                            <h6>
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Order
+                            </h6>
+                        </div>
+                        </div>
+                    </div>
+                </div>`
+            )
+        }
+
+        $("#order_summery").append(`
+            <div class="button-row d-flex mt-4">
+                <form action="{{ route('web.checkout') }}" method="POST">
+                @csrf
+                    <input type="text" class="d-none" name="order" value="${JSON.stringify(order_summery)}" />
+                    <input type="text" class="d-none" name="order_amount" value="${hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price}" />
+                    
+                    <input type="text" class="d-none" name="hard_binding_total_price" value="${hard_binding_total_price}" />
+                    <input type="text" class="d-none" name="soft_binding_total_price" value="${soft_binding_total_price}" />
+                    <input type="text" class="d-none" name="synopsis_binding_total_price" value="${synopsis_binding_total_price}" />
+                    
+                    <button class="btn ml-auto next__button" type="submit" title="Send">Confrom Order</button>
+                </form>
+            </div>
+        `)
+
+    }
+
+    // $("#next_step_3").on("click", function() {
+    //     if (hard_binding_selected == true && soft_binding_selected == false && synopsis_binding_selected == false) {
+    //         $("#next_step_4").click()
+    //     } else {
+    //         $("#next_step_4").click()
+    //     }
+    // });
+
+    // $("#next_step_4").on("click", function() {
+    //     if (hard_binding_selected == true && soft_binding_selected == true && synopsis_binding_selected == false) {
+    //         $("#next_step_4").click()
+    //     }
+    // });
+
+    // $("#next_step_5").on("click", function() {
+    //     if (hard_binding_selected == true && soft_binding_selected == true && synopsis_binding_selected == false) {
+    //         $("#next_step_4").click()
+    //     }
+    // });
 
     $("#next_step_6").on("click", function() {
-        generate_order_summery()
-    })
+        generate_order_summery();
+    });
+
+    $("#step-6-link").on("click", function() {
+        generate_order_summery();
+    });
 
     function calculate_hard_binding() {}
 

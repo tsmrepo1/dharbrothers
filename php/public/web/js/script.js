@@ -497,58 +497,7 @@
 	}
 
 
-	// jquery ready start
-	$(document).ready(function () {
-		// jQuery code
 
-		$("[data-trigger]").on("click", function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-			var offcanvas_id = $(this).attr('data-trigger');
-			$(offcanvas_id).toggleClass("show");
-			$('body').toggleClass("offcanvas-active");
-			$(".screen-overlay").toggleClass("show");
-
-		});
-
-
-		// Close menu when pressing ESC
-		$(document).on('keydown', function (event) {
-			if (event.keyCode === 27) {
-				$(".offcanvas").removeClass("show");
-				$("body").removeClass("overlay-active");
-			}
-		});
-
-		$(".btn-close, .screen-overlay").click(function (e) {
-			$(".screen-overlay").removeClass("show");
-			$(".offcanvas").removeClass("show");
-			$("body").removeClass("offcanvas-active");
-
-
-		});
-
-		$(document).ready(function () {
-			$("#example").DataTable({
-				aLengthMenu: [
-					[5, 10, 25, -1],
-					[5, 10, 25, "All"],
-				],
-				iDisplayLength: 5,
-			});
-		});
-
-		function checkAll(bx) {
-			var cbs = document.getElementsByTagName("input");
-			for (var i = 0; i < cbs.length; i++) {
-				if (cbs[i].type == "checkbox") {
-					cbs[i].checked = bx.checked;
-				}
-			}
-		}
-		
-
-	}); // jquery end
 
 
 

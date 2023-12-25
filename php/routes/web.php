@@ -38,6 +38,7 @@ Route::get('/contact', [HomeController::class, "contact"])->name('web.contact');
 Route::get('/faq', [HomeController::class, "faq"])->name('web.faq');
 Route::post('/submit-lead', [LeadController::class, "store"])->name('web.lead');
 Route::get('/order', [HomeController::class, "order"])->name('web.order');
+Route::post('/order', [HomeController::class, "checkout"])->name('web.checkout');
 
 Route::middleware([
     'auth:sanctum',
