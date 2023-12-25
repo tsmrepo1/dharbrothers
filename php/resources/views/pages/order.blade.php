@@ -1879,6 +1879,8 @@
             hard_bindings_orders,
             soft_bindings_orders,
             synopsis_bindings_orders,
+            color_page,
+            bw_page
         }
 
         // var hard_binding_copies = 0
@@ -2140,11 +2142,12 @@
             )
         }
 
+        let order_summery_json = JSON.stringify(order_summery)
         $("#order_summery").append(`
             <div class="button-row d-flex mt-4">
                 <form action="{{ route('web.checkout') }}" method="POST">
                 @csrf
-                    <input type="text" class="d-none" name="order" value="${JSON.stringify(order_summery)}" />
+                    <input type="text" class="d-none" name="order" value='${order_summery_json}' />
                     <input type="text" class="d-none" name="order_amount" value="${hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price}" />
                     
                     <input type="text" class="d-none" name="hard_binding_total_price" value="${hard_binding_total_price}" />

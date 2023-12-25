@@ -39,6 +39,7 @@ Route::get('/faq', [HomeController::class, "faq"])->name('web.faq');
 Route::post('/submit-lead', [LeadController::class, "store"])->name('web.lead');
 Route::get('/order', [HomeController::class, "order"])->name('web.order');
 Route::post('/order', [HomeController::class, "checkout"])->name('web.checkout');
+Route::post('/place-order', [HomeController::class, "place_order"])->name('web.place_order');
 
 Route::middleware([
     'auth:sanctum',
@@ -55,7 +56,8 @@ Route::middleware([
     Route::resource("faqcategories", FaqCategoryController::class);
     Route::resource("services", ServiceController::class);
     Route::resource("banners", BannerController::class);
-
+    Route::get('/admin/orders', [DashboardController::class, "orders"])->name('admin.orders');
+    Route::get('/admin/order-detail/{order_id}', [DashboardController::class, "single_order"])->name('admin.single_order');
 
     Route::get('/my-account', [UserDashboard::class, "myaccount"])->name('user.myaccount');
 });

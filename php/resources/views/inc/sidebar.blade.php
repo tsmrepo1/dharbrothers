@@ -98,6 +98,13 @@ $permission = session('permission');
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{route('admin.orders')}}">
+                <div class="parent-icon"><i class='bx bx-user-circle'></i>
+                </div>
+                <div class="menu-title">Orders</div>
+            </a>
+        </li>
     </ul>
     <!--end navigation-->
 </div>
