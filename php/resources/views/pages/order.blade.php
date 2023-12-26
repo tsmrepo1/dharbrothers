@@ -1754,39 +1754,84 @@
     function get_rate(paper_type, color) {
         if (paper_type == "Paper One 100 GSM or Equivalent") {
             if (color == "Normal - Black & White") {
-                return {first_page: 6, other_page: 2}
+                return {
+                    first_page: 6,
+                    other_page: 2
+                }
             } else if (color == "Normal - Color") {
-                return {first_page: 10, other_page: 8}
+                return {
+                    first_page: 10,
+                    other_page: 8
+                }
             } else if (color == "Royal - Black & White") {
-                return {first_page: 8, other_page: 5}
+                return {
+                    first_page: 8,
+                    other_page: 5
+                }
             } else if (color == "Royal - Color") {
-                return {first_page: 10, other_page: 8}
+                return {
+                    first_page: 10,
+                    other_page: 8
+                }
             } else {
-                return {first_page: 0, other_page: 0}
+                return {
+                    first_page: 0,
+                    other_page: 0
+                }
             }
         } else if (paper_type == "Bond Paper 85 GSM or Equivalent") {
             if (color == "Normal - Black & White") {
-                return {first_page: 6, other_page: 2}
+                return {
+                    first_page: 6,
+                    other_page: 2
+                }
             } else if (color == "Normal - Color") {
-                return {first_page: 10, other_page: 8}
+                return {
+                    first_page: 10,
+                    other_page: 8
+                }
             } else if (color == "Royal - Black & White") {
-                return {first_page: 8, other_page: 5}
+                return {
+                    first_page: 8,
+                    other_page: 5
+                }
             } else if (color == "Royal - Color") {
-                return {first_page: 10, other_page: 8}
+                return {
+                    first_page: 10,
+                    other_page: 8
+                }
             } else {
-                return {first_page: 0, other_page: 0}
+                return {
+                    first_page: 0,
+                    other_page: 0
+                }
             }
         } else {
             if (color == "Normal - Black & White") {
-                return {first_page: 5, other_page: 1.5}
+                return {
+                    first_page: 5,
+                    other_page: 1.5
+                }
             } else if (color == "Normal - Color") {
-                return {first_page: 10, other_page: 8}
+                return {
+                    first_page: 10,
+                    other_page: 8
+                }
             } else if (color == "Royal - Black & White") {
-                return {first_page: 6, other_page: 4}
+                return {
+                    first_page: 6,
+                    other_page: 4
+                }
             } else if (color == "Royal - Color") {
-                return {first_page: 10, other_page: 8}
+                return {
+                    first_page: 10,
+                    other_page: 8
+                }
             } else {
-                return {first_page: 0, other_page: 0}
+                return {
+                    first_page: 0,
+                    other_page: 0
+                }
             }
         }
     }
@@ -1883,24 +1928,46 @@
             bw_page
         }
 
-        // var hard_binding_copies = 0
-        // var soft_binding_copies = 0
-        // var synopsis_binding_copies = 0
-
         // Hard Binding Order Summary
         var hard_binding_order_html = ""
-        hard_bindings_orders.forEach(order => {            
+        hard_bindings_orders.forEach(order => {
             let rate = get_rate(order.hard_binding_paper_type, order.hard_binding_paper_color)
             let total = 0
 
-            if(order.hard_binding_qty == 1)
-            {
-                total = rate.first_page
+            let number_of_color_page = color_page
+            let number_of_bw_page = bw_page
+
+            if (order.hard_binding_paper_color == "Normal - Black & White" || order.hard_binding_paper_color == "Royal - Black & White") {
+                number_of_bw_page = number_of_bw_page + number_of_color_page
+                number_of_color_page = 0
             }
-            else
-            {
-                total = rate.first_page + ((order.hard_binding_qty - 1) * rate.other_page)
+
+            // Calculate Page Printing Price
+            if (order.hard_binding_qty == 1) {
+                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            } 
+            else if (order.hard_binding_qty > 1) {
+                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+
+                total += (((order.hard_binding_qty - 1) * number_of_bw_page) * rate.other_page) + (((order.hard_binding_qty - 1) * number_of_color_page) * rate.other_page)
             }
+            else {
+                total += 0
+            }
+
+            // Calculate Binding Price
+            if (order.hard_binding_qty < 3) {
+                total += order.hard_binding_qty * 300
+            } 
+            else if (order.hard_binding_qty >= 3) {
+                total += order.hard_binding_qty * 270
+            }
+            else {
+                total += 0
+            }
+        
+
+
             hard_binding_copies = Number(hard_binding_copies) + Number(order.hard_binding_qty)
             hard_binding_total_price = hard_binding_total_price + total
 
@@ -1914,8 +1981,8 @@
                                                                 </tr>`
         })
 
-        if(hard_binding_selected) {
-            $("#order_summery").append(        
+        if (hard_binding_selected) {
+            $("#order_summery").append(
                 `<div class="multisteps-form__content">
                     <div>
                         <div class="printing__wrapp p-4 bg-white mt-5 hard_binding_order_summery">
@@ -1974,16 +2041,13 @@
 
         // Soft Binding Order Summery
         var soft_binding_order_html = ""
-        soft_bindings_orders.forEach(order => {            
+        soft_bindings_orders.forEach(order => {
             let rate = get_rate(order.soft_binding_paper_type, order.soft_binding_paper_color)
             let total = 0
 
-            if(order.soft_binding_qty == 1)
-            {
+            if (order.soft_binding_qty == 1) {
                 total = rate.first_page
-            }
-            else
-            {
+            } else {
                 total = rate.first_page + ((order.soft_binding_qty - 1) * rate.other_page)
             }
             soft_binding_copies = Number(soft_binding_copies) + Number(order.soft_binding_qty)
@@ -1999,8 +2063,8 @@
                                                                 </tr>`
         })
 
-        if(soft_binding_selected) {
-            $("#order_summery").append(        
+        if (soft_binding_selected) {
+            $("#order_summery").append(
                 `<div class="multisteps-form__content">
                     <div>
                         <div class="printing__wrapp p-4 bg-white mt-5 soft_binding_order_summery">
@@ -2059,16 +2123,13 @@
 
         // Synopsis Binding Order Summery
         var synopsis_binding_order_html = ""
-        synopsis_bindings_orders.forEach(order => {            
+        synopsis_bindings_orders.forEach(order => {
             let rate = get_rate(order.synopsis_binding_paper_type, order.synopsis_binding_paper_color)
             let total = 0
 
-            if(order.synopsis_binding_qty == 1)
-            {
+            if (order.synopsis_binding_qty == 1) {
                 total = rate.first_page
-            }
-            else
-            {
+            } else {
                 total = rate.first_page + ((order.synopsis_binding_qty - 1) * rate.other_page)
             }
             synopsis_binding_copies = Number(synopsis_binding_copies) + Number(order.synopsis_binding_qty)
@@ -2084,8 +2145,8 @@
                                                                 </tr>`
         })
 
-        if(synopsis_binding_selected) {
-            $("#order_summery").append(        
+        if (synopsis_binding_selected) {
+            $("#order_summery").append(
                 `<div class="multisteps-form__content">
                     <div>
                         <div class="printing__wrapp p-4 bg-white mt-5 synopsis_binding_order_summery">
