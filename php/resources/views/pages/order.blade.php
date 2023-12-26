@@ -298,6 +298,23 @@
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="col-sm-6 mb-4">
+                                                                                <div class="searche__wrapp">
+                                                                                    <p>A4 Pockets (in copies)</p>
+                                                                                    <input type="text" class="form-control" name="hard_binding_a4_pockets[]" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 mb-4">
+                                                                                <div class="searche__wrapp">
+                                                                                    <p>CD Pockets (in copies)</p>
+                                                                                    <input type="text" class="form-control" name="hard_binding_cd_pockets[]" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6"></div>
+                                                                            <div class="col-sm-12">
+                                                                                <p>Additional Information</p>
+                                                                                <textarea class="form-control" name="hard_binding_information[]"></textarea>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -611,7 +628,7 @@
                                                                                         <option value="Normal - Black & White">
                                                                                             Normal - Black & White
                                                                                         </option>
-                                                                                        <option value="Normal Color">
+                                                                                        <option value="Normal - Color">
                                                                                             Normal - Color
                                                                                         </option>
                                                                                         <option value="Royal - Black & White">
@@ -637,6 +654,23 @@
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 mb-4">
+                                                                                <div class="searche__wrapp">
+                                                                                    <p>A4 Pockets (in copies)</p>
+                                                                                    <input type="text" class="form-control" name="soft_binding_a4_pockets[]" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 mb-4">
+                                                                                <div class="searche__wrapp">
+                                                                                    <p>CD Pockets (in copies)</p>
+                                                                                    <input type="text" class="form-control" name="soft_binding_cd_pockets[]" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6"></div>
+                                                                            <div class="col-sm-12">
+                                                                                <p>Additional Information</p>
+                                                                                <textarea class="form-control" name="soft_binding_information[]"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -950,7 +984,7 @@
                                                                                         <option value="Normal - Black & White">
                                                                                             Normal - Black & White
                                                                                         </option>
-                                                                                        <option value="Normal Color">
+                                                                                        <option value="Normal - Color">
                                                                                             Normal - Color
                                                                                         </option>
                                                                                         <option value="Royal - Black & White">
@@ -1435,86 +1469,103 @@
             <div id="collapse_${time}" class="collapse" data-parent="#hard_binding_accordion">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Papers Size</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select"
-                        data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_size[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="A0"> A0 </option>
-                        <option value="A1"> A1 </option>
-                        <option value="A2"> A2 </option>
-                        <option value="A3"> A3 </option>
-                        <option value="A4"> A4 </option>
-                        <option value="A5"> A5 </option>
-                        <option value="A6"> A6 </option>
-                        <option value="A7"> A7 </option>
-                        <option value="A8"> A8 </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Papers Size</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select"
+                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_size[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="A0"> A0 </option>
+                            <option value="A1"> A1 </option>
+                            <option value="A2"> A2 </option>
+                            <option value="A3"> A3 </option>
+                            <option value="A4"> A4 </option>
+                            <option value="A5"> A5 </option>
+                            <option value="A6"> A6 </option>
+                            <option value="A7"> A7 </option>
+                            <option value="A8"> A8 </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>No Of Copies</p>
-                      <div class="qty-container">
-                        <button class="qty-btn-minus btn-light" type="button">
-                          <i class="fa fa-minus"></i>
-                        </button>
-                        <input type="text" value="0" class="input-qty" name="hard_binding_qty[]" />
-                        <button class="qty-btn-plus btn-light" type="button">
-                          <i class="fa fa-plus"></i>
-                        </button>
-                      </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>No Of Copies</p>
+                        <div class="qty-container">
+                            <button class="qty-btn-minus btn-light" type="button">
+                            <i class="fa fa-minus"></i>
+                            </button>
+                            <input type="text" value="0" class="input-qty" name="hard_binding_qty[]" />
+                            <button class="qty-btn-plus btn-light" type="button">
+                            <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Papers</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select"
-                        data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_type[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
-                        <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
-                        <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Papers</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select"
+                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_type[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
+                            <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
+                            <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Color</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select"
-                        data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_color[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Normal - Black & White">
-                            Normal - Black & White
-                        </option>
-                        <option value="Normal Color">
-                            Normal - Color
-                        </option>
-                        <option value="Royal - Black & White">
-                            Royal - Black & White
-                        </option>
-                        <option value="Royal - Color">
-                            Royal - Color
-                        </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Color</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select"
+                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_color[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="Normal - Black & White">
+                                Normal - Black & White
+                            </option>
+                            <option value="Normal - Color">
+                                Normal - Color
+                            </option>
+                            <option value="Royal - Black & White">
+                                Royal - Black & White
+                            </option>
+                            <option value="Royal - Color">
+                                Royal - Color
+                            </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Printing Type</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select"
-                        data-role="select-dropdown" data-profile="minimal" name="hard_binding_printing_type[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Single Side"> Single Side</option>
-                        <option value="Both Sidet"> Both Side </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Printing Type</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select"
+                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_printing_type[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="Single Side"> Single Side</option>
+                            <option value="Both Sidet"> Both Side </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                            <p>A4 Pockets (in copies)</p>
+                            <input type="text" class="form-control" name="hard_binding_a4_pockets[]" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                            <p>CD Pockets (in copies)</p>
+                            <input type="text" class="form-control" name="hard_binding_cd_pockets[]" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-12">
+                        <p>Additional Information</p>
+                        <textarea class="form-control" name="hard_binding_information[]"></textarea>
+                    </div>
                 </div>
               </div>
             </div>
@@ -1537,86 +1588,103 @@
             <div id="collapse_${time}" class="collapse show" data-parent="#soft_binding_accordion">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Papers Size</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="soft_binding_paper_size[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="A0"> A0 </option>
-                        <option value="A1"> A1 </option>
-                        <option value="A2"> A2 </option>
-                        <option value="A3"> A3 </option>
-                        <option value="A4"> A4 </option>
-                        <option value="A5"> A5 </option>
-                        <option value="A6"> A6 </option>
-                        <option value="A7"> A7 </option>
-                        <option value="A8"> A8 </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Papers Size</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
+                            data-profile="minimal" name="soft_binding_paper_size[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="A0"> A0 </option>
+                            <option value="A1"> A1 </option>
+                            <option value="A2"> A2 </option>
+                            <option value="A3"> A3 </option>
+                            <option value="A4"> A4 </option>
+                            <option value="A5"> A5 </option>
+                            <option value="A6"> A6 </option>
+                            <option value="A7"> A7 </option>
+                            <option value="A8"> A8 </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>No Of Copies</p>
-                      <div class="qty-container">
-                        <button class="qty-btn-minus btn-light" type="button">
-                          <i class="fa fa-minus"></i>
-                        </button>
-                        <input type="text" value="0" class="input-qty" name="soft_binding_qty[]" />
-                        <button class="qty-btn-plus btn-light" type="button">
-                          <i class="fa fa-plus"></i>
-                        </button>
-                      </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>No Of Copies</p>
+                        <div class="qty-container">
+                            <button class="qty-btn-minus btn-light" type="button">
+                            <i class="fa fa-minus"></i>
+                            </button>
+                            <input type="text" value="0" class="input-qty" name="soft_binding_qty[]" />
+                            <button class="qty-btn-plus btn-light" type="button">
+                            <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Papers</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="soft_binding_paper_type[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
-                        <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
-                        <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Papers</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
+                            data-profile="minimal" name="soft_binding_paper_type[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
+                            <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
+                            <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Color</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="soft_binding_paper_color[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Normal - Black & White">
-                            Normal - Black & White
-                        </option>
-                        <option value="Normal Color">
-                            Normal - Color
-                        </option>
-                        <option value="Royal - Black & White">
-                            Royal - Black & White
-                        </option>
-                        <option value="Royal - Color">
-                            Royal - Color
-                        </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Color</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
+                            data-profile="minimal" name="soft_binding_paper_color[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="Normal - Black & White">
+                                Normal - Black & White
+                            </option>
+                            <option value="Normal - Color">
+                                Normal - Color
+                            </option>
+                            <option value="Royal - Black & White">
+                                Royal - Black & White
+                            </option>
+                            <option value="Royal - Color">
+                                Royal - Color
+                            </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Printing Type</p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="soft_binding_printing_type[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Single Side"> Single Side</option>
-                        <option value="Both Sidet"> Both Side </option>
-                      </select>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                        <p>Printing Type</p>
+                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
+                            data-profile="minimal" name="soft_binding_printing_type[]">
+                            <!-- options -->
+                            <option value="">Select</option>
+                            <option value="Single Side"> Single Side</option>
+                            <option value="Both Sidet"> Both Side </option>
+                        </select>
+                        </div>
                     </div>
-                  </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                            <p>A4 Pockets (in copies)</p>
+                            <input type="text" class="form-control" name="soft_binding_a4_pockets[]" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="searche__wrapp">
+                            <p>CD Pockets (in copies)</p>
+                            <input type="text" class="form-control" name="soft_binding_cd_pockets[]" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-12">
+                        <p>Additional Information</p>
+                        <textarea class="form-control" name="soft_binding_information[]"></textarea>
+                    </div>
                 </div>
               </div>
             </div>
@@ -1695,7 +1763,7 @@
                         <option value="Normal - Black & White">
                             Normal - Black & White
                         </option>
-                        <option value="Normal Color">
+                        <option value="Normal - Color">
                             Normal - Color
                         </option>
                         <option value="Royal - Black & White">
@@ -1936,37 +2004,44 @@
 
             let number_of_color_page = color_page
             let number_of_bw_page = bw_page
+            let number_of_total_page = 0
 
             if (order.hard_binding_paper_color == "Normal - Black & White" || order.hard_binding_paper_color == "Royal - Black & White") {
                 number_of_bw_page = number_of_bw_page + number_of_color_page
                 number_of_color_page = 0
-            }
-
-            // Calculate Page Printing Price
-            if (order.hard_binding_qty == 1) {
-                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
-            } 
-            else if (order.hard_binding_qty > 1) {
-                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
-
-                total += (((order.hard_binding_qty - 1) * number_of_bw_page) * rate.other_page) + (((order.hard_binding_qty - 1) * number_of_color_page) * rate.other_page)
+                number_of_total_page = number_of_bw_page
             }
             else {
+                number_of_color_page = number_of_color_page + number_of_bw_page
+                number_of_bw_page = 0
+                number_of_total_page = number_of_color_page
+            }
+
+            console.log({number_of_bw_page, number_of_color_page, number_of_total_page})
+            // Calculate Page Printing Price
+            if (order.hard_binding_qty == 1) 
+            {
+                total += number_of_total_page * rate.first_page
+            } 
+            else if (order.hard_binding_qty > 1) 
+            {
+                total += number_of_total_page * rate.first_page
+
+                total += ((order.hard_binding_qty - 1) * number_of_total_page) * rate.other_page
+            } 
+            else 
+            {
                 total += 0
             }
 
             // Calculate Binding Price
             if (order.hard_binding_qty < 3) {
                 total += order.hard_binding_qty * 300
-            } 
-            else if (order.hard_binding_qty >= 3) {
+            } else if (order.hard_binding_qty >= 3) {
                 total += order.hard_binding_qty * 270
-            }
-            else {
+            } else {
                 total += 0
             }
-        
-
 
             hard_binding_copies = Number(hard_binding_copies) + Number(order.hard_binding_qty)
             hard_binding_total_price = hard_binding_total_price + total
@@ -2044,12 +2119,28 @@
         soft_bindings_orders.forEach(order => {
             let rate = get_rate(order.soft_binding_paper_type, order.soft_binding_paper_color)
             let total = 0
+            let number_of_color_page = color_page
+            let number_of_bw_page = bw_page
 
-            if (order.soft_binding_qty == 1) {
-                total = rate.first_page
-            } else {
-                total = rate.first_page + ((order.soft_binding_qty - 1) * rate.other_page)
+            if (order.soft_binding_paper_color == "Normal - Black & White" || order.soft_binding_paper_color == "Royal - Black & White") {
+                number_of_bw_page = number_of_bw_page + number_of_color_page
+                number_of_color_page = 0
             }
+
+            // Calculate Page Printing Price
+            if (order.soft_binding_qty == 1) {
+                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            } else if (order.soft_binding_qty > 1) {
+                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+
+                total += (((order.soft_binding_qty - 1) * number_of_bw_page) * rate.other_page) + (((order.soft_binding_qty - 1) * number_of_color_page) * rate.other_page)
+            } else {
+                total += 0
+            }
+
+            // Calculate Binding Price
+            total += order.soft_binding_qty * 270
+
             soft_binding_copies = Number(soft_binding_copies) + Number(order.soft_binding_qty)
             soft_binding_total_price = soft_binding_total_price + total
 
@@ -2126,12 +2217,28 @@
         synopsis_bindings_orders.forEach(order => {
             let rate = get_rate(order.synopsis_binding_paper_type, order.synopsis_binding_paper_color)
             let total = 0
+            let number_of_color_page = color_page
+            let number_of_bw_page = bw_page
 
-            if (order.synopsis_binding_qty == 1) {
-                total = rate.first_page
-            } else {
-                total = rate.first_page + ((order.synopsis_binding_qty - 1) * rate.other_page)
+            if (order.synopsis_binding_paper_color == "Normal - Black & White" || order.synopsis_binding_paper_color == "Royal - Black & White") {
+                number_of_bw_page = number_of_bw_page + number_of_color_page
+                number_of_color_page = 0
             }
+
+            // Calculate Page Printing Price
+            if (order.synopsis_binding_qty == 1) {
+                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            } else if (order.synopsis_binding_qty > 1) {
+                total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+
+                total += (((order.synopsis_binding_qty - 1) * number_of_bw_page) * rate.other_page) + (((order.synopsis_binding_qty - 1) * number_of_color_page) * rate.other_page)
+            } else {
+                total += 0
+            }
+
+            // Calculate Binding Price
+            total += order.synopsis_binding_qty * 30
+
             synopsis_binding_copies = Number(synopsis_binding_copies) + Number(order.synopsis_binding_qty)
             synopsis_binding_total_price = synopsis_binding_total_price + total
 
@@ -2219,28 +2326,7 @@
                 </form>
             </div>
         `)
-
     }
-
-    // $("#next_step_3").on("click", function() {
-    //     if (hard_binding_selected == true && soft_binding_selected == false && synopsis_binding_selected == false) {
-    //         $("#next_step_4").click()
-    //     } else {
-    //         $("#next_step_4").click()
-    //     }
-    // });
-
-    // $("#next_step_4").on("click", function() {
-    //     if (hard_binding_selected == true && soft_binding_selected == true && synopsis_binding_selected == false) {
-    //         $("#next_step_4").click()
-    //     }
-    // });
-
-    // $("#next_step_5").on("click", function() {
-    //     if (hard_binding_selected == true && soft_binding_selected == true && synopsis_binding_selected == false) {
-    //         $("#next_step_4").click()
-    //     }
-    // });
 
     $("#next_step_6").on("click", function() {
         generate_order_summery();

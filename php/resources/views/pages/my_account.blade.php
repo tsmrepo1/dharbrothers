@@ -1,7 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-
 @php
     function get_binding_rate($paper_type, $color) {
         if ($paper_type == "Paper One 100 GSM or Equivalent") {
@@ -56,6 +55,9 @@ $synopsis_binding_qty = 0;
 $hard_binding_price = 0;
 $soft_binding_price = 0;
 $synopsis_binding_price = 0;
+
+$color_page = $order_detail->color_page;
+$bw_page = $order_detail->bw_page;
 @endphp
 
 @foreach($order_detail->hard_bindings_orders as $hard_order)
@@ -91,8 +93,8 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
             <table class="table table-striped">
                 <thead>
                     <th scope="col">Description</th>
-                    <th scope="col">Copies</th>
                     <th scope="col">Colour/ BW</th>
+                    <th scope="col">Copies</th>
                     <th scope="col">1st Copy Rate</th>
                     <th scope="col">Additional Copy Rate</th>
                     <th scope="col" class="text-right">Cost</th>
@@ -102,12 +104,44 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     @php
                     $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
                     $total = 0;
-                    if($hard_order->hard_binding_qty == 1) {
-                        $total = $rate['first_page'];
+
+                    $numberOfColorPage = $color_page;
+                    $numberOfBWPage = $bw_page;
+                    $numberOfTotalPage = 0;
+
+                    if ($hard_order->hard_binding_paper_color == "Normal - Black & White" || $hard_order->hard_binding_paper_color == "Royal - Black & White") {
+                        $numberOfBWPage += $numberOfColorPage;
+                        $numberOfColorPage = 0;
+                        $numberOfTotalPage = $numberOfBWPage;
                     }
                     else {
-                        $total = $rate['first_page'] + (($hard_order->hard_binding_qty - 1) * $rate['other_page']);
+                        $numberOfBWPage = 0;
+                        $numberOfColorPage += $numberOfBWPage;
+                        $numberOfTotalPage = $numberOfColorPage;
                     }
+
+                    // Calculate Page Printing Price
+                    if ($hard_order->hard_binding_qty == 1) 
+                    {
+                        $total += ($numberOfTotalPage * $rate['first_page']) + ($numberOfTotalPage * $rate['first_page']);
+                    } 
+                    elseif ($hard_order->hard_binding_qty > 1) 
+                    {
+                        $total += ($numberOfTotalPage * $rate['first_page']) + ($numberOfTotalPage * $rate['first_page']);
+
+                        $total += (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage * $rate['other_page']) + (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage * $rate['other_page']);
+                    }
+
+                    // Calculate Binding Price
+                    if ($hard_order->hard_binding_qty < 3) 
+                    {
+                        $total += $hard_order->hard_binding_qty * 300;
+                    } 
+                    elseif ($hard_order->hard_binding_qty >= 3) 
+                    {
+                        $total += $hard_order->hard_binding_qty * 270;
+                    }
+
                     $hard_binding_price = $hard_binding_price + $total;
                     @endphp
                     <tr>
