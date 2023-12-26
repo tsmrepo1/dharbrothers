@@ -46,7 +46,7 @@
                                     <label class="form-label">Answer</label>
                                     <input type="text" class="form-control" name="answer">
                                 </div>
-                                <div class="col-md-12 col-md-12">
+                                <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary px-5">Save</button>
                                 </div>
                             </form>
