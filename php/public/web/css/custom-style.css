@@ -819,7 +819,7 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
   color: #999;
 }
 
-.accicon .fa-trash{color: #e92029; margin:3px 10px;}
+.accicononere .fa-trash{color: #e92029; margin:3px 10px;}
 
 
 
@@ -1107,3 +1107,9 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
 .status-upload form button>i {
   margin-right: 7px;
 }
+
+.my-holder .card-header{width: 90%;}
+.accicononere{width: 25px;
+  margin-left: auto;
+  display: flex;
+  margin-top: -28px;}

@@ -227,7 +227,12 @@
                                                                     <span class="accicon">
                                                                         <i class="fas fa-angle-down rotate-icon"></i>
                                                                     </span>
+                                                                    
                                                                 </div>
+                                                                  <span class="accicononere">
+                                                                        <a href="#" class="btn-trash"><i
+                                                                            class="fa-solid fa-trash"></i></a>
+                                                                    </span>
                                                                 <div id="collapseOne" class="collapse show"
                                                                     data-parent="#hard_binding_accordion">
                                                                     <div class="card-body">
@@ -441,7 +446,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 1" />
                                                                                 <div class="text-right d-block">DB 1
                                                                                 </div>
                                                                             </label>
@@ -461,7 +466,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 2" />
                                                                                 <div class="text-right d-block">DB 2
                                                                                 </div>
                                                                             </label>
@@ -833,7 +838,12 @@
                                                                     <span class="accicon">
                                                                         <i class="fas fa-angle-down rotate-icon"></i>
                                                                     </span>
+                                                                     
                                                                 </div>
+                                                                  <span class="accicononere">
+                                                                        <a href="#" class="btn-trash"><i
+                                                                            class="fa-solid fa-trash"></i></a>
+                                                                    </span>
                                                                 <div id="collapseOne" class="collapse show"
                                                                     data-parent="#soft_binding_accordion">
                                                                     <div class="card-body">
@@ -1424,11 +1434,12 @@
                                                                     <span class="accicon">
                                                                         <i class="fas fa-angle-down rotate-icon"></i>
                                                                     </span>
-                                                                    <span class="accicon">
-                                                                        <a href="#"><i
-                                                                                class="fa-solid fa-trash"></i></a>
-                                                                    </span>
+                                                                    
                                                                 </div>
+                                                                <span class="accicononere">
+                                                                        <a href="#" class="btn-trash"><i
+                                                                            class="fa-solid fa-trash"></i></a>
+                                                                    </span>
                                                                 <div id="collapseOne" class="collapse show"
                                                                     data-parent="#synopsis_binding_accordion">
                                                                     <div class="card-body">
@@ -1986,6 +1997,7 @@ $(document).ready(function() {
 <script src="js/swiper.min.js"></script>
 <!-- show and hide -->
 <script>
+    
 function elementExists(element) {
     if ($(element).length) {
         return true;
@@ -2003,6 +2015,10 @@ function elementVisible(element) {
 }
 
 $(document).ready(function() {
+    $(document).on("click", ".btn-trash", function() {
+        $(this).parent().parent().remove()
+    })
+
     $("#contentCard").hide(); //Hide card on page load
     $(".btnShow").click(function() {
         if (elementExists("#contentCard")) {
@@ -2126,6 +2142,7 @@ $(document).ready(function(event) {
         $("#color_page").text(color_page)
         $("#bw_page").text(bw_page)
     });
+    
 
     // If User click on hard binding
     $("input[name='hard_binding']").on("change", function() {
@@ -2227,7 +2244,12 @@ $(document).ready(function(event) {
               <span class="accicon">
                 <i class="fas fa-angle-down rotate-icon"></i>
               </span>
+               
             </div>
+            <span class="accicononere">
+                                                                        <a href="#" class="btn-trash"><i
+                                                                            class="fa-solid fa-trash"></i></a>
+                                                                    </span>
             <div id="collapse_${time}" class="collapse" data-parent="#hard_binding_accordion">
               <div class="card-body">
                 <div class="row">
@@ -2378,7 +2400,12 @@ $(document).ready(function(event) {
               <span class="accicon">
                 <i class="fas fa-angle-down rotate-icon"></i>
               </span>
+               
             </div>
+            <span class="accicononere">
+                                                                        <a href="#" class="btn-trash"><i
+                                                                            class="fa-solid fa-trash"></i></a>
+                                                                    </span>
             <div id="collapse_${time}" class="collapse show" data-parent="#soft_binding_accordion">
               <div class="card-body">
                 <div class="row">
@@ -2529,7 +2556,12 @@ $(document).ready(function(event) {
               <span class="accicon">
                 <i class="fas fa-angle-down rotate-icon"></i>
               </span>
+               
             </div>
+             <span class="accicononere">
+                                                                        <a href="#" class="btn-trash"><i
+                                                                            class="fa-solid fa-trash"></i></a>
+                                                                    </span>
             <div id="collapse_${time}" class="collapse show" data-parent="#synopsis_binding_accordion">
               <div class="card-body">
                 <div class="row">
@@ -2620,10 +2652,10 @@ $(document).ready(function(event) {
                   <div class="col-sm-6 mb-4">
                     <div class="searche__wrapp">
                       <p>Printing Type<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                                data-toggle="tooltip" title="Hooray!">
+                                                <i class=" fa-solid fa-circle-info"
+                                                    aria-hidden="true"></i>
+                                            </a></p>
                       <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                         data-profile="minimal" name="synopsis_binding_printing_type[]">
                         <!-- options -->
@@ -2780,6 +2812,17 @@ function generate_order_summery() {
             hard_binding_printing_type: $(this)
                 .find("select[name='hard_binding_printing_type[]']")
                 .val(),
+            hard_binding_a4_pockets: $(this)
+                .find("input[name='hard_binding_a4_pockets[]']")
+                .val(),
+
+            hard_binding_cd_pockets: $(this)
+                .find("input[name='hard_binding_cd_pockets[]']")
+                .val(),
+
+            hard_binding_information: $(this)
+                .find("textarea[name='hard_binding_information[]']")
+                .val(),
         };
         hard_bindings_orders.push(hard_bindings_order);
     });
@@ -2802,6 +2845,17 @@ function generate_order_summery() {
                 .val(),
             soft_binding_printing_type: $(this)
                 .find("select[name='soft_binding_printing_type[]']")
+                .val(),
+            soft_binding_a4_pockets: $(this)
+                .find("input[name='soft_binding_a4_pockets[]']")
+                .val(),
+
+            soft_binding_cd_pockets: $(this)
+                .find("input[name='soft_binding_cd_pockets[]']")
+                .val(),
+
+            soft_binding_information: $(this)
+                .find("textarea[name='soft_binding_information[]']")
                 .val(),
         };
 
@@ -2909,10 +2963,10 @@ function generate_order_summery() {
                         <h3 class="mb-4">Hard Binding & Printing</h3>
                         <div class="printing__Details table-responsive">
                             <p>Binding Details <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -2932,10 +2986,10 @@ function generate_order_summery() {
                         </div>
                         <div class="printing__Details table-responsive">
                             <p>Print Details<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -3017,10 +3071,10 @@ function generate_order_summery() {
                         <h3 class="mb-4">soft Binding & Printing</h3>
                         <div class="printing__Details table-responsive">
                             <p>Binding Details<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -3040,10 +3094,10 @@ function generate_order_summery() {
                         </div>
                         <div class="printing__Details table-responsive">
                             <p>Print Details<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -3125,10 +3179,10 @@ function generate_order_summery() {
                         <h3 class="mb-4">Synopsis Binding & Printing</h3>
                         <div class="printing__Details table-responsive">
                             <p>Binding Details<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -3148,10 +3202,10 @@ function generate_order_summery() {
                         </div>
                         <div class="printing__Details table-responsive">
                             <p>Print Details<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
