@@ -222,16 +222,8 @@
                                                             <div class="card hard_binding_card">
                                                                 <div class="card-header" data-toggle="collapse"
                                                                     data-target="#collapseOne" aria-expanded="true">
-                                                                    <span class="title w-50">Papers Size : <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></span>
-                                                                    <span class="title w-50">No Of Copies : <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></span>
+                                                                    <span class="title w-50">Papers Size : </span>
+                                                                    <span class="title w-50">No Of Copies : </span>
                                                                     <span class="accicon">
                                                                         <i class="fas fa-angle-down rotate-icon"></i>
                                                                     </span>
@@ -677,7 +669,7 @@
                                                                     <!--this field changes dinamically displaying the filename we are trying to upload-->
                                                                     <h6>Upload Design</h6>
                                                                 </div>
-                                                                <p id="namefile">
+                                                                <p id="namefile1">
                                                                     (Support document Word or Pdf)
                                                                     <a href="#" data-toggle="tooltip" title="Hooray!">
                                                                         <i class=" fa-solid fa-circle-info"
@@ -706,56 +698,73 @@
                                                                     aria-hidden="true"></i>
                                                             </a></p>
                                                         <div class="spine__holder">
-                                                            <div class="form-group form-check mr-3">
+                                                            <div class="form-group form-check mr-3 btnShow">
                                                                 <input type="radio" class="form-check-input"
                                                                     id="exampleCheck1" name="hard_binding_spine"
                                                                     value="Print Required" />
                                                                 <label class="form-check-label"
                                                                     for="exampleCheck1">Print Required</label>
                                                             </div>
-                                                            <div class="form-group form-check">
+                                                            <div class="form-group form-check btnHide">
                                                                 <input type="radio" class="form-check-input"
                                                                     id="exampleCheck1" name="hard_binding_spine"
                                                                     value="Print Not Required" />
                                                                 <label class="form-check-label"
                                                                     for="exampleCheck1">Print Not Required</label>
                                                             </div>
+
                                                         </div>
-                                                        <div class="row hard_binding_spine_content">
-                                                            <div class="col-sm-4">
-                                                                <div class="searche__wrapp">
-                                                                    <p>Top content area <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                                                                    <input type="text" name="" id=""
-                                                                        name="hard_binding_spine_top_content" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="searche__wrapp">
-                                                                    <p>Middle content area <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                                                                    <input type="text" name="" id=""
-                                                                        name="hard_binding_spine_middle_content" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="searche__wrapp">
-                                                                    <p>Bottom content area <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                                                                    <input type="text" name="" id=""
-                                                                        name="hard_binding_spine_bottom_content" />
+
+                                                        <div class="col-12" id="contentRow">
+                                                            <div class="card" id="contentCard">
+
+                                                                <div class="card-body">
+                                                                    <div class="row hard_binding_spine_content">
+                                                                        <div class="col-sm-4">
+                                                                            <div class="searche__wrapp">
+                                                                                <p>Top content area <a href="#"
+                                                                                        data-toggle="tooltip"
+                                                                                        title="Hooray!">
+                                                                                        <i class=" fa-solid fa-circle-info"
+                                                                                            aria-hidden="true"></i>
+                                                                                    </a></p>
+                                                                                <input type="text" name="" id=""
+                                                                                    name="hard_binding_spine_top_content" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                            <div class="searche__wrapp">
+                                                                                <p>Middle content area <a href="#"
+                                                                                        data-toggle="tooltip"
+                                                                                        title="Hooray!">
+                                                                                        <i class=" fa-solid fa-circle-info"
+                                                                                            aria-hidden="true"></i>
+                                                                                    </a></p>
+                                                                                <input type="text" name="" id=""
+                                                                                    name="hard_binding_spine_middle_content" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                            <div class="searche__wrapp">
+                                                                                <p>Bottom content area <a href="#"
+                                                                                        data-toggle="tooltip"
+                                                                                        title="Hooray!">
+                                                                                        <i class=" fa-solid fa-circle-info"
+                                                                                            aria-hidden="true"></i>
+                                                                                    </a></p>
+                                                                                <input type="text" name="" id=""
+                                                                                    name="hard_binding_spine_bottom_content" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+
+
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -818,16 +827,9 @@
                                                             <div class="card soft_binding_card">
                                                                 <div class="card-header" data-toggle="collapse"
                                                                     data-target="#collapseOne" aria-expanded="true">
-                                                                    <span class="title w-50">Papers Size : <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></span>
-                                                                    <span class="title w-50">No Of Copies : <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></span>
+                                                                    <span class="title w-50">Papers Size :
+                                                                    </span>
+                                                                    <span class="title w-50">No Of Copies : </span>
                                                                     <span class="accicon">
                                                                         <i class="fas fa-angle-down rotate-icon"></i>
                                                                     </span>
@@ -1278,7 +1280,7 @@
                                                                     <!--this field changes dinamically displaying the filename we are trying to upload-->
                                                                     <h6>Upload Design</h6>
                                                                 </div>
-                                                                <p id="namefile">
+                                                                <p id="namefile2">
                                                                     (Support document Word or Pdf)
                                                                     <a href="#" data-toggle="tooltip" title="Hooray!">
                                                                         <i class=" fa-solid fa-circle-info"
@@ -1422,6 +1424,10 @@
                                                                     <span class="accicon">
                                                                         <i class="fas fa-angle-down rotate-icon"></i>
                                                                     </span>
+                                                                    <span class="accicon">
+                                                                        <a href="#"><i
+                                                                                class="fa-solid fa-trash"></i></a>
+                                                                    </span>
                                                                 </div>
                                                                 <div id="collapseOne" class="collapse show"
                                                                     data-parent="#synopsis_binding_accordion">
@@ -1429,7 +1435,12 @@
                                                                         <div class="row">
                                                                             <div class="col-sm-6 mb-4">
                                                                                 <div class="searche__wrapp">
-                                                                                    <p>Papers Size</p>
+                                                                                    <p>Papers Size <a href="#"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Hooray!">
+                                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                                aria-hidden="true"></i>
+                                                                                        </a></p>
                                                                                     <select id="inlineFormCustomSelect"
                                                                                         class="form-control custom-select"
                                                                                         data-role="select-dropdown"
@@ -1451,7 +1462,12 @@
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
                                                                                 <div class="searche__wrapp">
-                                                                                    <p>No Of Copies</p>
+                                                                                    <p>No Of Copies <a href="#"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Hooray!">
+                                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                                aria-hidden="true"></i>
+                                                                                        </a></p>
                                                                                     <div class="qty-container">
                                                                                         <button
                                                                                             class="qty-btn-minus btn-light"
@@ -1471,7 +1487,12 @@
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
                                                                                 <div class="searche__wrapp">
-                                                                                    <p>Papers</p>
+                                                                                    <p>Papers <a href="#"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Hooray!">
+                                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                                aria-hidden="true"></i>
+                                                                                        </a></p>
                                                                                     <select id="inlineFormCustomSelect"
                                                                                         class="form-control custom-select"
                                                                                         data-role="select-dropdown"
@@ -1498,7 +1519,12 @@
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
                                                                                 <div class="searche__wrapp">
-                                                                                    <p>Color</p>
+                                                                                    <p>Color <a href="#"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Hooray!">
+                                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                                aria-hidden="true"></i>
+                                                                                        </a></p>
                                                                                     <select id="inlineFormCustomSelect"
                                                                                         class="form-control custom-select"
                                                                                         data-role="select-dropdown"
@@ -1525,7 +1551,12 @@
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
                                                                                 <div class="searche__wrapp">
-                                                                                    <p>Printing Type</p>
+                                                                                    <p>Printing Type <a href="#"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Hooray!">
+                                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                                aria-hidden="true"></i>
+                                                                                        </a></p>
                                                                                     <select id="inlineFormCustomSelect"
                                                                                         class="form-control custom-select"
                                                                                         data-role="select-dropdown"
@@ -1953,6 +1984,48 @@ $(document).ready(function() {
 <script src="js/owl.js"></script>
 <script src="js/script.js"></script>
 <script src="js/swiper.min.js"></script>
+<!-- show and hide -->
+<script>
+function elementExists(element) {
+    if ($(element).length) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function elementVisible(element) {
+    if ($(element).is(":visible")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+$(document).ready(function() {
+    $("#contentCard").hide(); //Hide card on page load
+    $(".btnShow").click(function() {
+        if (elementExists("#contentCard")) {
+            if (elementVisible("#contentCard")) {
+                alert("#contentCard is visible");
+            } else {
+                $("#contentCard").show();
+            }
+        } else {
+            alert("#contentCard has been removed. Use the create button");
+        }
+    });
+    $(".btnHide").click(function() {
+        if (elementVisible("#contentCard")) {
+            $("#contentCard").hide();
+        } else {
+            alert("#contentCard is not visible");
+        }
+    });
+
+
+});
+</script>
 <!-- tooltip -->
 <script>
 $(document).ready(function() {
@@ -2160,7 +2233,11 @@ $(document).ready(function(event) {
                 <div class="row">
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Papers Size</p>
+                        <p>Papers Size <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select"
                             data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_size[]">
                             <!-- options -->
@@ -2179,7 +2256,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>No Of Copies</p>
+                        <p>No Of Copies <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <div class="qty-container">
                             <button class="qty-btn-minus btn-light" type="button">
                             <i class="fa fa-minus"></i>
@@ -2193,7 +2274,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Papers</p>
+                        <p>Papers <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select"
                             data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_type[]">
                             <!-- options -->
@@ -2206,7 +2291,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Color</p>
+                        <p>Color <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select"
                             data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_color[]">
                             <!-- options -->
@@ -2228,7 +2317,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Printing Type</p>
+                        <p>Printing Type <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select"
                             data-role="select-dropdown" data-profile="minimal" name="hard_binding_printing_type[]">
                             <!-- options -->
@@ -2240,19 +2333,31 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                            <p>A4 Pockets (in copies)</p>
+                            <p>A4 Pockets (in copies) <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                             <input type="text" class="form-control" name="hard_binding_a4_pockets[]" />
                         </div>
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                            <p>CD Pockets (in copies)</p>
+                            <p>CD Pockets (in copies) <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                             <input type="text" class="form-control" name="hard_binding_cd_pockets[]" />
                         </div>
                     </div>
                     <div class="col-sm-6"></div>
                     <div class="col-sm-12">
-                        <p>Additional Information</p>
+                        <p>Additional Information <a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <textarea class="form-control" name="hard_binding_information[]"></textarea>
                     </div>
                 </div>
@@ -2279,7 +2384,11 @@ $(document).ready(function(event) {
                 <div class="row">
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Papers Size</p>
+                        <p>Papers Size<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                             data-profile="minimal" name="soft_binding_paper_size[]">
                             <!-- options -->
@@ -2298,7 +2407,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>No Of Copies</p>
+                        <p>No Of Copies<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <div class="qty-container">
                             <button class="qty-btn-minus btn-light" type="button">
                             <i class="fa fa-minus"></i>
@@ -2312,7 +2425,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Papers</p>
+                        <p>Papers<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                             data-profile="minimal" name="soft_binding_paper_type[]">
                             <!-- options -->
@@ -2325,7 +2442,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Color</p>
+                        <p>Color<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                             data-profile="minimal" name="soft_binding_paper_color[]">
                             <!-- options -->
@@ -2347,7 +2468,11 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                        <p>Printing Type</p>
+                        <p>Printing Type<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                             data-profile="minimal" name="soft_binding_printing_type[]">
                             <!-- options -->
@@ -2359,19 +2484,31 @@ $(document).ready(function(event) {
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                            <p>A4 Pockets (in copies)</p>
+                            <p>A4 Pockets (in copies)<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                             <input type="text" class="form-control" name="soft_binding_a4_pockets[]" />
                         </div>
                     </div>
                     <div class="col-sm-6 mb-4">
                         <div class="searche__wrapp">
-                            <p>CD Pockets (in copies)</p>
+                            <p>CD Pockets (in copies)<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                             <input type="text" class="form-control" name="soft_binding_cd_pockets[]" />
                         </div>
                     </div>
                     <div class="col-sm-6"></div>
                     <div class="col-sm-12">
-                        <p>Additional Information</p>
+                        <p>Additional Information<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                         <textarea class="form-control" name="soft_binding_information[]"></textarea>
                     </div>
                 </div>
@@ -2398,7 +2535,11 @@ $(document).ready(function(event) {
                 <div class="row">
                   <div class="col-sm-6 mb-4">
                     <div class="searche__wrapp">
-                      <p>Papers Size</p>
+                      <p>Papers Size<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                       <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                         data-profile="minimal" name="synopsis_binding_paper_size[]">
                         <!-- options -->
@@ -2417,7 +2558,11 @@ $(document).ready(function(event) {
                   </div>
                   <div class="col-sm-6 mb-4">
                     <div class="searche__wrapp">
-                      <p>No Of Copies</p>
+                      <p>No Of Copies<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                       <div class="qty-container">
                         <button class="qty-btn-minus btn-light" type="button">
                           <i class="fa fa-minus"></i>
@@ -2431,7 +2576,11 @@ $(document).ready(function(event) {
                   </div>
                   <div class="col-sm-6 mb-4">
                     <div class="searche__wrapp">
-                      <p>Papers</p>
+                      <p>Papers<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                       <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                         data-profile="minimal" name="synopsis_binding_paper_type[]">
                         <!-- options -->
@@ -2444,7 +2593,11 @@ $(document).ready(function(event) {
                   </div>
                   <div class="col-sm-6 mb-4">
                     <div class="searche__wrapp">
-                      <p>Color</p>
+                      <p>Color<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                       <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                         data-profile="minimal" name="synopsis_binding_paper_color[]">
                         <!-- options -->
@@ -2466,7 +2619,11 @@ $(document).ready(function(event) {
                   </div>
                   <div class="col-sm-6 mb-4">
                     <div class="searche__wrapp">
-                      <p>Printing Type</p>
+                      <p>Printing Type<a href="#"
+                                                                            data-toggle="tooltip" title="Hooray!">
+                                                                            <i class=" fa-solid fa-circle-info"
+                                                                                aria-hidden="true"></i>
+                                                                        </a></p>
                       <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
                         data-profile="minimal" name="synopsis_binding_printing_type[]">
                         <!-- options -->
@@ -2799,7 +2956,7 @@ function generate_order_summery() {
                                 <h5>₹ ${hard_binding_total_price}</h5>
                             </div>
                         </div>
-                        <div class="edit__wrapp">
+                        <div class="edit__wrapp" id="#step-3-link">
                             <h6>
                             <i class="fa-solid fa-pen-to-square"></i> Edit Order
                             </h6>

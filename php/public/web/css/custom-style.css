@@ -818,3 +818,5 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
   font-size: 19px;
   color: #999;
 }
+
+.accicon .fa-trash{color: #e92029; margin:3px 10px;}
