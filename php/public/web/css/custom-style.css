@@ -759,12 +759,7 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
 }
 #add-button{padding: 15px 60px; color: #000; text-align: center; font-size: 16px; background: #FAEDAE; margin-bottom: 100px;}
 .binding__details{width: 100%; padding: 30px; background: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.10); margin-top: 35px;}
-.bin__holder{width: 100%;display: grid;
-grid-template-columns: repeat(5, 1fr);
-grid-template-rows: 1fr;
-
-grid-column-gap: 28px;
-grid-row-gap: 0px; margin: 20px 0 0 0; }
+.bin__holder{width: 100%; margin: 20px 0 0 0; }
 
 .ddone img{width: 100%; margin-bottom: 10px;}
 .spine__holder{display: flex;}
@@ -792,3 +787,34 @@ grid-row-gap: 0px; margin: 20px 0 0 0; }
 .name__testimonial .testimonial img{width: 100%; height: 100%; display: block; object-fit: cover;border-radius: 100px;}
 .heading__tes{margin-left: 10px;width: 100%;max-width: 126px;}
 .heading__tes h6{font-size: 18px; font-weight: 700; color: #000; margin-bottom: 8px; border-bottom: solid 3px #159eb0; padding-bottom: 5px;}
+
+
+/* image zoom */
+.container-enlarge {
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+   
+}
+.container-enlarge > img {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+.container-enlarge span {
+    position: absolute;
+    top: -9999em;
+    left: -9999em;
+}
+.container-enlarge:hover span {
+    top: -555px;
+    left: -30px;
+    width: 800px;
+}
+.zoom-area { 
+  max-width: 390px;
+  margin: 50px auto 80px;
+  font-size: 19px;
+  color: #999;
+}
