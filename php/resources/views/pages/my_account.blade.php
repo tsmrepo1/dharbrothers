@@ -110,26 +110,30 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     $numberOfTotalPage = 0;
 
                     if ($hard_order->hard_binding_paper_color == "Normal - Black & White" || $hard_order->hard_binding_paper_color == "Royal - Black & White") {
-                        $numberOfBWPage += $numberOfColorPage;
+                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
                         $numberOfColorPage = 0;
                         $numberOfTotalPage = $numberOfBWPage;
                     }
                     else {
+                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
                         $numberOfBWPage = 0;
-                        $numberOfColorPage += $numberOfBWPage;
                         $numberOfTotalPage = $numberOfColorPage;
                     }
 
                     // Calculate Page Printing Price
                     if ($hard_order->hard_binding_qty == 1) 
                     {
-                        $total += ($numberOfTotalPage * $rate['first_page']) + ($numberOfTotalPage * $rate['first_page']);
+                        $total += $numberOfTotalPage * $rate['first_page'];
                     } 
                     elseif ($hard_order->hard_binding_qty > 1) 
                     {
-                        $total += ($numberOfTotalPage * $rate['first_page']) + ($numberOfTotalPage * $rate['first_page']);
+                        $total += $numberOfTotalPage * $rate['first_page'];
 
-                        $total += (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage * $rate['other_page']) + (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage * $rate['other_page']);
+                        $total += (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
+                    }
+                    else 
+                    {
+                        $total += 0;
                     }
 
                     // Calculate Binding Price
@@ -140,6 +144,10 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     elseif ($hard_order->hard_binding_qty >= 3) 
                     {
                         $total += $hard_order->hard_binding_qty * 270;
+                    }
+                    else 
+                    {
+                        $total += 0;
                     }
 
                     $hard_binding_price = $hard_binding_price + $total;
@@ -182,12 +190,41 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     @php
                     $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
                     $total = 0;
-                    if($soft_order->soft_binding_qty == 1) {
-                        $total = $rate['first_page'];
+
+                    $numberOfColorPage = $color_page;
+                    $numberOfBWPage = $bw_page;
+                    $numberOfTotalPage = 0;
+
+                    if ($soft_order->soft_binding_paper_color == "Normal - Black & White" || $soft_order->soft_binding_paper_color == "Royal - Black & White") {
+                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                        $numberOfColorPage = 0;
+                        $numberOfTotalPage = $numberOfBWPage;
                     }
                     else {
-                        $total = $rate['first_page'] + (($soft_order->soft_binding_qty - 1) * $rate['other_page']);
+                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                        $numberOfBWPage = 0;
+                        $numberOfTotalPage = $numberOfColorPage;
                     }
+
+                    // Calculate Page Printing Price
+                    if ($soft_order->soft_binding_qty == 1) 
+                    {
+                        $total += $numberOfTotalPage * $rate['first_page'];
+                    } 
+                    elseif ($soft_order->soft_binding_qty > 1) 
+                    {
+                        $total += $numberOfTotalPage * $rate['first_page'];
+
+                        $total += (($soft_order->soft_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
+                    }
+                    else 
+                    {
+                        $total += 0;
+                    }
+
+                    // Calculate Binding Price
+                    $total += $soft_order->soft_binding_qty * 270;
+
                     $soft_binding_price = $soft_binding_price + $total;
                     @endphp
                     <tr>
@@ -228,12 +265,41 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     @php
                     $rate = get_binding_rate($synopsis_order->synopsis_binding_paper_type, $synopsis_order->synopsis_binding_paper_color);
                     $total = 0;
-                    if($synopsis_order->synopsis_binding_qty == 1) {
-                        $total = $rate['first_page'];
+
+                    $numberOfColorPage = $color_page;
+                    $numberOfBWPage = $bw_page;
+                    $numberOfTotalPage = 0;
+
+                    if ($synopsis_order->synopsis_binding_paper_color == "Normal - Black & White" || $synopsis_order->synopsis_binding_paper_color == "Royal - Black & White") {
+                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                        $numberOfColorPage = 0;
+                        $numberOfTotalPage = $numberOfBWPage;
                     }
                     else {
-                        $total = $rate['first_page'] + (($synopsis_order->synopsis_binding_qty - 1) * $rate['other_page']);
+                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                        $numberOfBWPage = 0;
+                        $numberOfTotalPage = $numberOfColorPage;
                     }
+
+                    // Calculate Page Printing Price
+                    if ($synopsis_order->synopsis_binding_qty == 1) 
+                    {
+                        $total += $numberOfTotalPage * $rate['first_page'];
+                    } 
+                    elseif ($synopsis_order->synopsis_binding_qty > 1) 
+                    {
+                        $total += $numberOfTotalPage * $rate['first_page'];
+
+                        $total += (($synopsis_order->synopsis_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
+                    }
+                    else 
+                    {
+                        $total += 0;
+                    }
+
+                    // Calculate Binding Price
+                    $total += $synopsis_order->synopsis_binding_qty * 30;
+
                     $synopsis_binding_price = $synopsis_binding_price + $total;
                     @endphp
                     <tr>
@@ -255,7 +321,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </div>
     @endif
 
-    <div class="main-card mb-3 card">
+    <div class="main-card mb-3 card d-none">
         <div class="card-body">
             <h5 class="card-title">User Timeline</h5>
             <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
@@ -466,55 +532,13 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </div>
 
     <div class="one p-4 bg-white mt-5">
-        <div class="chat__holder">
-            <div class="d-flex">
-                <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                <div class="p-1">
-                    <div class="d-flex align-items-end">
-                        <div class="sender-name"><a href="#">#Surya Prakash</a></div>
-                        <div class="chat-time">09:54 24/05/21</div>
-                    </div>
-
-                    <div class="chat-text">
-                        Hello guys! lets get into the party
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex">
-                <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                <div class="p-1">
-                    <div class="d-flex align-items-end">
-                        <div class="sender-name"><a href="#">#Surya Prakash</a></div>
-                        <div class="chat-time">09:54 24/05/21</div>
-                    </div>
-
-                    <div class="chat-text">
-                        Hello guys! lets get into the party
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="widget-area no-padding blank">
             <div class="status-upload">
                 <form>
-                    <textarea placeholder="What are you doing right now?"></textarea>
-                    <ul>
-                        <li>
-                            <a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a>
-                        </li>
-                        <li>
-                            <a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a>
-                        </li>
-                        <li>
-                            <a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a>
-                        </li>
-                        <li>
-                            <a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a>
-                        </li>
-                    </ul>
-                    <button type="submit" class="btn btn-success green">
+                    <textarea placeholder="Do You Have Any Query? Message Us..." name="message"></textarea>
+                    <a id="btn-submit" href="#" class="btn btn-success green">
                         <i class="fa fa-share"></i>Post
-                    </button>
+                    </a>
                 </form>
             </div>
             <!-- Status Upload  -->
@@ -716,4 +740,16 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         </div>
     </section>
 </div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('textarea[name="message"]').change(function(){
+            var message = encodeURIComponent($(this).val()); // Encode the message to be URL-safe
+            var whatsappUrl = "https://api.whatsapp.com/send?phone=+918013767079&text=" + message;
+            $('#btn-submit').attr('href', whatsappUrl);
+        });
+    });
+</script>
 @stop

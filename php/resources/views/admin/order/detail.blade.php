@@ -8,42 +8,44 @@
     <!--end header -->
 
     @php
-    function get_binding_rate($paper_type, $color) {
-        if ($paper_type == "Paper One 100 GSM or Equivalent") {
-            if ($color == "Normal - Black & White") {
-                return ["first_page" => 6, "other_page" => 2];
-            } else if ($color == "Normal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else if ($color == "Royal - Black & White") {
-                return ["first_page" => 8, "other_page" => 5];
-            } else if ($color == "Royal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
+    if (!function_exists('get_binding_rate')) {
+        function get_binding_rate($paper_type, $color) {
+            if ($paper_type == "Paper One 100 GSM or Equivalent") {
+                if ($color == "Normal - Black & White") {
+                    return ["first_page" => 6, "other_page" => 2];
+                } else if ($color == "Normal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else if ($color == "Royal - Black & White") {
+                    return ["first_page" => 8, "other_page" => 5];
+                } else if ($color == "Royal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else {
+                    return ["first_page" => 0, "other_page" => 0];
+                }
+            } else if ($paper_type == "Bond Paper 85 GSM or Equivalent") {
+                if ($color == "Normal - Black & White") {
+                    return ["first_page" => 6, "other_page" => 2];
+                } else if ($color == "Normal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else if ($color == "Royal - Black & White") {
+                    return ["first_page" => 8, "other_page" => 5];
+                } else if ($color == "Royal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else {
+                    return ["first_page" => 0, "other_page" => 0];
+                }
             } else {
-                return ["first_page" => 0, "other_page" => 0];
-            }
-        } else if ($paper_type == "Bond Paper 85 GSM or Equivalent") {
-            if ($color == "Normal - Black & White") {
-                return ["first_page" => 6, "other_page" => 2];
-            } else if ($color == "Normal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else if ($color == "Royal - Black & White") {
-                return ["first_page" => 8, "other_page" => 5];
-            } else if ($color == "Royal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else {
-                return ["first_page" => 0, "other_page" => 0];
-            }
-        } else {
-            if ($color == "Normal - Black & White") {
-                return ["first_page" => 5, "other_page" => 1.5];
-            } else if ($color == "Normal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else if ($color == "Royal - Black & White") {
-                return ["first_page" => 6, "other_page" => 4];
-            } else if ($color == "Royal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else {
-                return ["first_page" => 0, "other_page" => 0];
+                if ($color == "Normal - Black & White") {
+                    return ["first_page" => 5, "other_page" => 1.5];
+                } else if ($color == "Normal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else if ($color == "Royal - Black & White") {
+                    return ["first_page" => 6, "other_page" => 4];
+                } else if ($color == "Royal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else {
+                    return ["first_page" => 0, "other_page" => 0];
+                }
             }
         }
     }
@@ -65,6 +67,8 @@
                             <div class="table table-responsive">
                                 @php
                                 $order_detail = json_decode($order->order_detail);
+                                $color_page = $order_detail->color_page;
+                                $bw_page = $order_detail->bw_page;
 
                                 $hard_binding_qty = 0;
                                 $soft_binding_qty = 0;
@@ -114,12 +118,52 @@
                                                 @php
                                                 $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
                                                 $total = 0;
-                                                if($hard_order->hard_binding_qty == 1) {
-                                                    $total = $rate['first_page'];
+
+                                                $numberOfColorPage = $color_page;
+                                                $numberOfBWPage = $bw_page;
+                                                $numberOfTotalPage = 0;
+
+                                                if ($hard_order->hard_binding_paper_color == "Normal - Black & White" || $hard_order->hard_binding_paper_color == "Royal - Black & White") {
+                                                    $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                                                    $numberOfColorPage = 0;
+                                                    $numberOfTotalPage = $numberOfBWPage;
                                                 }
                                                 else {
-                                                    $total = $rate['first_page'] + (($hard_order->hard_binding_qty - 1) * $rate['other_page']);
+                                                    $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                                                    $numberOfBWPage = 0;
+                                                    $numberOfTotalPage = $numberOfColorPage;
                                                 }
+
+                                                // Calculate Page Printing Price
+                                                if ($hard_order->hard_binding_qty == 1) 
+                                                {
+                                                    $total += $numberOfTotalPage * $rate['first_page'];
+                                                } 
+                                                elseif ($hard_order->hard_binding_qty > 1) 
+                                                {
+                                                    $total += $numberOfTotalPage * $rate['first_page'];
+
+                                                    $total += (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
+                                                }
+                                                else 
+                                                {
+                                                    $total += 0;
+                                                }
+
+                                                // Calculate Binding Price
+                                                if ($hard_order->hard_binding_qty < 3) 
+                                                {
+                                                    $total += $hard_order->hard_binding_qty * 300;
+                                                } 
+                                                elseif ($hard_order->hard_binding_qty >= 3) 
+                                                {
+                                                    $total += $hard_order->hard_binding_qty * 270;
+                                                }
+                                                else 
+                                                {
+                                                    $total += 0;
+                                                }
+
                                                 $hard_binding_qty   = $hard_binding_qty + $hard_order->hard_binding_qty;
                                                 $hard_binding_price = $hard_binding_price + $total;
                                                 @endphp
@@ -162,12 +206,42 @@
                                                 @php
                                                 $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
                                                 $total = 0;
-                                                if($soft_order->soft_binding_qty == 1) {
-                                                    $total = $rate['first_page'];
+
+                                                $numberOfColorPage = $color_page;
+                                                $numberOfBWPage = $bw_page;
+                                                $numberOfTotalPage = 0;
+
+                                                if ($soft_order->soft_binding_paper_color == "Normal - Black & White" || $soft_order->soft_binding_paper_color == "Royal - Black & White") {
+                                                    $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                                                    $numberOfColorPage = 0;
+                                                    $numberOfTotalPage = $numberOfBWPage;
                                                 }
                                                 else {
-                                                    $total = $rate['first_page'] + (($soft_order->soft_binding_qty - 1) * $rate['other_page']);
+                                                    $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                                                    $numberOfBWPage = 0;
+                                                    $numberOfTotalPage = $numberOfColorPage;
                                                 }
+
+                                                // Calculate Page Printing Price
+                                                if ($soft_order->soft_binding_qty == 1) 
+                                                {
+                                                    $total += $numberOfTotalPage * $rate['first_page'];
+                                                } 
+                                                elseif ($soft_order->soft_binding_qty > 1) 
+                                                {
+                                                    $total += $numberOfTotalPage * $rate['first_page'];
+
+                                                    $total += (($soft_order->soft_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
+                                                }
+                                                else 
+                                                {
+                                                    $total += 0;
+                                                }
+
+                                                // Calculate Binding Price
+                                                $total += $soft_order->soft_binding_qty * 270;
+
+                                                $soft_binding_qty   = $soft_binding_qty + $soft_order->soft_binding_qty;
                                                 $soft_binding_price = $soft_binding_price + $total;
                                                 @endphp
                                                 <tr>
@@ -205,12 +279,42 @@
                                                 @php
                                                 $rate = get_binding_rate($synopsis_order->synopsis_binding_paper_type, $synopsis_order->synopsis_binding_paper_color);
                                                 $total = 0;
-                                                if($synopsis_order->synopsis_binding_qty == 1) {
-                                                    $total = $rate['first_page'];
+
+                                                $numberOfColorPage = $color_page;
+                                                $numberOfBWPage = $bw_page;
+                                                $numberOfTotalPage = 0;
+
+                                                if ($synopsis_order->synopsis_binding_paper_color == "Normal - Black & White" || $synopsis_order->synopsis_binding_paper_color == "Royal - Black & White") {
+                                                    $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                                                    $numberOfColorPage = 0;
+                                                    $numberOfTotalPage = $numberOfBWPage;
                                                 }
                                                 else {
-                                                    $total = $rate['first_page'] + (($synopsis_order->synopsis_binding_qty - 1) * $rate['other_page']);
+                                                    $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                                                    $numberOfBWPage = 0;
+                                                    $numberOfTotalPage = $numberOfColorPage;
                                                 }
+
+                                                // Calculate Page Printing Price
+                                                if ($synopsis_order->synopsis_binding_qty == 1) 
+                                                {
+                                                    $total += $numberOfTotalPage * $rate['first_page'];
+                                                } 
+                                                elseif ($synopsis_order->synopsis_binding_qty > 1) 
+                                                {
+                                                    $total += $numberOfTotalPage * $rate['first_page'];
+
+                                                    $total += (($synopsis_order->synopsis_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
+                                                }
+                                                else 
+                                                {
+                                                    $total += 0;
+                                                }
+
+                                                // Calculate Binding Price
+                                                $total += $synopsis_order->synopsis_binding_qty * 30;
+
+                                                $synopsis_binding_qty   = $synopsis_binding_qty + $synopsis_order->synopsis_binding_qty;
                                                 $synopsis_binding_price = $synopsis_binding_price + $total;
                                                 @endphp
                                                 <tr>

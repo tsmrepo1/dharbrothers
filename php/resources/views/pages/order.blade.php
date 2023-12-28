@@ -486,7 +486,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 3" />
                                                                                 <div class="text-right d-block">DB 3
                                                                                 </div>
                                                                             </label>
@@ -506,7 +506,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 4" />
                                                                                 <div class="text-right d-block">DB 4
                                                                                 </div>
                                                                             </label>
@@ -526,7 +526,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 5" />
                                                                                 <div class="text-right d-block">DB 5
                                                                                 </div>
                                                                             </label>
@@ -546,7 +546,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 6" />
                                                                                 <div class="text-right d-block">DB 6
                                                                                 </div>
                                                                             </label>
@@ -566,7 +566,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 7" />
                                                                                 <div class="text-right d-block">DB 7
                                                                                 </div>
                                                                             </label>
@@ -586,7 +586,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 8" />
                                                                                 <div class="text-right d-block">DB 8
                                                                                 </div>
                                                                             </label>
@@ -606,7 +606,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 9" />
                                                                                 <div class="text-right d-block">DB 9
                                                                                 </div>
                                                                             </label>
@@ -626,7 +626,7 @@
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
                                                                                     name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    value="DB 10" />
                                                                                 <div class="text-right d-block">DB 10
                                                                                 </div>
                                                                             </label>
@@ -646,7 +646,7 @@
                                                                 <select id="inlineFormCustomSelect"
                                                                     class="form-control custom-select"
                                                                     data-role="select-dropdown" data-profile="minimal"
-                                                                    name="hard_binding_cover_text_color[]">
+                                                                    name="hard_binding_cover_text_color">
                                                                     <!-- options -->
                                                                     <option value="">Select</option>
                                                                     <option value="Silver">Silver</option>
@@ -765,11 +765,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -1062,8 +1057,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 1" />
                                                                                 <div class="text-right d-block">DB 1
                                                                                 </div>
                                                                             </label>
@@ -1082,8 +1077,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 2" />
                                                                                 <div class="text-right d-block">DB 2
                                                                                 </div>
                                                                             </label>
@@ -1102,8 +1097,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 3" />
                                                                                 <div class="text-right d-block">DB 3
                                                                                 </div>
                                                                             </label>
@@ -1122,8 +1117,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 4" />
                                                                                 <div class="text-right d-block">DB 4
                                                                                 </div>
                                                                             </label>
@@ -1142,8 +1137,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 5" />
                                                                                 <div class="text-right d-block">DB 5
                                                                                 </div>
                                                                             </label>
@@ -1162,8 +1157,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 6" />
                                                                                 <div class="text-right d-block">DB 6
                                                                                 </div>
                                                                             </label>
@@ -1182,8 +1177,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 7" />
                                                                                 <div class="text-right d-block">DB 7
                                                                                 </div>
                                                                             </label>
@@ -1202,8 +1197,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 8" />
                                                                                 <div class="text-right d-block">DB 8
                                                                                 </div>
                                                                             </label>
@@ -1222,8 +1217,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 9" />
                                                                                 <div class="text-right d-block">DB 9
                                                                                 </div>
                                                                             </label>
@@ -1242,8 +1237,8 @@
                                                                             <label class="form-check-label w-100">
                                                                                 <input type="radio"
                                                                                     class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
+                                                                                    name="soft_binding_cover_color_db"
+                                                                                    value="DB 10" />
                                                                                 <div class="text-right d-block">DB 10
                                                                                 </div>
                                                                             </label>
@@ -1262,7 +1257,7 @@
                                                                 <select id="inlineFormCustomSelect"
                                                                     class="form-control custom-select"
                                                                     data-role="select-dropdown" data-profile="minimal"
-                                                                    name="soft_binding_cover_text_color[]">
+                                                                    name="soft_binding_cover_text_color">
                                                                     <!-- options -->
                                                                     <option value="">Select</option>
                                                                     <option value="Silver">Silver</option>
@@ -1600,312 +1595,20 @@
                                                 <h3>Binding Details</h3>
                                                 <div>
                                                     <div class="binding__details">
-                                                        <p>Colour of Covering Materials (Hard) <a href="#"
-                                                                data-toggle="tooltip" title="Hooray!">
-                                                                <i class=" fa-solid fa-circle-info"
-                                                                    aria-hidden="true"></i>
-                                                            </a></p>
-                                                        <div class="bin__holder">
-                                                            <div class="row">
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/1.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/1.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 1
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/2.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/2.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 2
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/3.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/3.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 3
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/4.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/4.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 4
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/5.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/5.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 5
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/6.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/6.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 6
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/7.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/7.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 7
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/8.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/8.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 8
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/9.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/9.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 9
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-2">
-                                                                    <div class="container-enlarge">
-                                                                        <img src="./web/images/bindingcolor/10.jpg"
-                                                                            alt="" />
-                                                                        <span> <img
-                                                                                src="./web/images/bindingcolor/10.jpg"
-                                                                                alt="" /></span>
-
-                                                                        <div class="form-check all__formcheck">
-                                                                            <label class="form-check-label w-100">
-                                                                                <input type="radio"
-                                                                                    class="form-check-input"
-                                                                                    name="hard_binding_cover_color_db"
-                                                                                    value="" />
-                                                                                <div class="text-right d-block">DB 10
-                                                                                </div>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-5 p-0 mt-5">
-                                                            <div class="btn-container">
-                                                                <p>Colour of Covering Materials (Hard) <a href="#"
-                                                                        data-toggle="tooltip" title="Hooray!">
-                                                                        <i class=" fa-solid fa-circle-info"
-                                                                            aria-hidden="true"></i>
-                                                                    </a></p>
-                                                                <!--the three icons: default, ok file (img), error file (not an img)-->
-                                                                <div class="all__holder">
-                                                                    <h1 class="imgupload">
-                                                                        <img src="./web/images/icon _File Upload_.png"
-                                                                            alt="" class="m-auto d-block" />
-                                                                    </h1>
-                                                                    <h1 class="imgupload ok">
-                                                                        <i class="fa fa-check"></i>
-                                                                    </h1>
-                                                                    <h1 class="imgupload stop">
-                                                                        <i class="fa fa-times"></i>
-                                                                    </h1>
-                                                                    <!--this field changes dinamically displaying the filename we are trying to upload-->
-                                                                    <h6>Upload Design</h6>
-                                                                </div>
-                                                                <p id="namefile">
-                                                                    (Support document Word or Pdf)
-                                                                    <a href="#" data-toggle="tooltip" title="Hooray!">
-                                                                        <i class=" fa-solid fa-circle-info"
-                                                                            aria-hidden="true"></i>
-                                                                    </a>
-                                                                </p>
-                                                                <!--our custom btn which which stays under the actual one-->
-                                                                <button type="button" id="btnup" class="btn btn-lg">
-                                                                    Browse for your file!
-                                                                </button>
-                                                                <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                                <input type="file" class="fileup" value="" name="fileup"
-                                                                    id="fileup" name="synopsis_binding_cover_design" />
-                                                                <div class="form-group form-check mt-3 d-none">
-                                                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1" /> -->
-                                                                    <label class="form-check-label"
-                                                                        for="exampleCheck1">Same as thesis cover</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <p>Spine Printing Details <a href="#" data-toggle="tooltip"
-                                                                title="Hooray!">
-                                                                <i class=" fa-solid fa-circle-info"
-                                                                    aria-hidden="true"></i>
-                                                            </a></p>
                                                         <div class="spine__holder">
                                                             <div class="form-group form-check mr-3">
                                                                 <input type="radio" class="form-check-input"
-                                                                    id="exampleCheck1" name="synopsis_binding_spine"
-                                                                    value="Print Required" />
+                                                                    id="exampleCheck1" name="synopsis_binding_cover_design"
+                                                                    value="Same as Hard/ Soft Binding Cover" />
                                                                 <label class="form-check-label"
-                                                                    for="exampleCheck1">Print Required</label>
+                                                                    for="exampleCheck1">Same as Hard/ Soft Binding Cover</label>
                                                             </div>
                                                             <div class="form-group form-check">
                                                                 <input type="radio" class="form-check-input"
-                                                                    id="exampleCheck1" name="synopsis_binding_spine"
-                                                                    value="Print Not Required" />
+                                                                    id="exampleCheck1" name="synopsis_binding_cover_design"
+                                                                    value="Don't Need Cover Printing" />
                                                                 <label class="form-check-label"
-                                                                    for="exampleCheck1">Print Not Required</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
-                                                                <div class="searche__wrapp">
-                                                                    <p>Top content area <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                                                                    <input type="text" name="" id=""
-                                                                        name="synopsis_binding_spine_top_content" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="searche__wrapp">
-                                                                    <p>Middle content area <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                                                                    <input type="text" name="" id=""
-                                                                        name="synopsis_binding_spine_middle_content" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                                <div class="searche__wrapp">
-                                                                    <p>Bottom content area <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                                                                    <input type="text" name="" id=""
-                                                                        name="synopsis_binding_spine_bottom_content" />
-                                                                </div>
+                                                                    for="exampleCheck1">Don't Need Cover Printing</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2792,6 +2495,7 @@ function generate_order_summery() {
     synopsis_binding_copies = 0;
 
     $("#order_summery").empty()
+    
     // Get Hardbinding Details
     var hard_bindings_orders = [];
     $("#hard_binding_accordion .hard_binding_card").each(function() {
@@ -2827,6 +2531,7 @@ function generate_order_summery() {
         hard_bindings_orders.push(hard_bindings_order);
     });
 
+    // Get Soft Details
     var soft_bindings_orders = [];
     $("#soft_binding_accordion .soft_binding_card").each(function() {
         console.log("soft_binding_card");
@@ -2862,6 +2567,7 @@ function generate_order_summery() {
         soft_bindings_orders.push(soft_bindings_order);
     });
 
+    // Get Synopsis Details
     var synopsis_bindings_orders = [];
     $("#synopsis_binding_accordion .synopsis_binding_card").each(
         function() {
@@ -2888,15 +2594,43 @@ function generate_order_summery() {
         }
     );
 
+    var hard_binding_other_details = {
+        hard_binding_cover_color_db: $("input[name='hard_binding_cover_color_db']:checked").val(),
+        hard_binding_cover_text_color: $("select[name='hard_binding_cover_text_color']").val(),
+        hard_binding_cover_design: null,
+        hard_binding_spine: $("input[name='hard_binding_spine']:checked").val(),
+        hard_binding_spine_top_content: $("input[name='hard_binding_spine_top_content']").val(),
+        hard_binding_spine_middle_content: $("input[name='hard_binding_spine_top_content']").val(),
+        hard_binding_spine_bottom_content: $("input[name='hard_binding_spine_top_content']").val(),
+    }
+
+    var soft_binding_other_details = {
+        soft_binding_cover_color_db: $("input[name='soft_binding_cover_color_db']:checked").val(),
+        soft_binding_cover_text_color: $("select[name='soft_binding_cover_text_color']").val(),
+        soft_binding_cover_design: null,
+        soft_binding_spine: $("input[name='soft_binding_spine']:checked").val(),
+        soft_binding_spine_top_content: $("input[name='soft_binding_spine_top_content']").val(),
+        soft_binding_spine_middle_content: $("input[name='soft_binding_spine_top_content']").val(),
+        soft_binding_spine_bottom_content: $("input[name='soft_binding_spine_top_content']").val(),
+    }
+    
+    var synopsis_binding_other_details = {
+        synopsis_binding_cover_design: $("input[name='synopsis_binding_cover_design']:checked").val(),
+    }
+
+
     order_summery = {
         hard_bindings_orders,
+        hard_binding_other_details, 
         soft_bindings_orders,
+        soft_binding_other_details,
         synopsis_bindings_orders,
+        soft_binding_other_details,
         color_page,
         bw_page
     }
 
-    // Hard Binding Order Summary
+    // Hard Binding Order Summary DOM
     var hard_binding_order_html = ""
     hard_bindings_orders.forEach(order => {
         let rate = get_rate(order.hard_binding_paper_type, order.hard_binding_paper_color)
@@ -2917,11 +2651,6 @@ function generate_order_summery() {
             number_of_total_page = number_of_color_page
         }
 
-        console.log({
-            number_of_bw_page,
-            number_of_color_page,
-            number_of_total_page
-        })
         // Calculate Page Printing Price
         if (order.hard_binding_qty == 1) {
             total += number_of_total_page * rate.first_page
@@ -3021,28 +2750,34 @@ function generate_order_summery() {
         )
     }
 
-    // Soft Binding Order Summery
+    // Soft Binding Order Summery DOM
     var soft_binding_order_html = ""
     soft_bindings_orders.forEach(order => {
         let rate = get_rate(order.soft_binding_paper_type, order.soft_binding_paper_color)
         let total = 0
+
         let number_of_color_page = color_page
         let number_of_bw_page = bw_page
+        let number_of_total_page = 0
 
         if (order.soft_binding_paper_color == "Normal - Black & White" || order.soft_binding_paper_color ==
             "Royal - Black & White") {
             number_of_bw_page = number_of_bw_page + number_of_color_page
             number_of_color_page = 0
+            number_of_total_page = number_of_bw_page
+        } else {
+            number_of_color_page = number_of_color_page + number_of_bw_page
+            number_of_bw_page = 0
+            number_of_total_page = number_of_color_page
         }
 
         // Calculate Page Printing Price
         if (order.soft_binding_qty == 1) {
-            total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            total += number_of_total_page * rate.first_page
         } else if (order.soft_binding_qty > 1) {
-            total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            total += number_of_total_page * rate.first_page
 
-            total += (((order.soft_binding_qty - 1) * number_of_bw_page) * rate.other_page) + (((order
-                .soft_binding_qty - 1) * number_of_color_page) * rate.other_page)
+            total += ((order.soft_binding_qty - 1) * number_of_total_page) * rate.other_page
         } else {
             total += 0
         }
@@ -3129,28 +2864,34 @@ function generate_order_summery() {
         )
     }
 
-    // Synopsis Binding Order Summery
+    // Synopsis Binding Order Summery DOm
     var synopsis_binding_order_html = ""
     synopsis_bindings_orders.forEach(order => {
         let rate = get_rate(order.synopsis_binding_paper_type, order.synopsis_binding_paper_color)
         let total = 0
+
         let number_of_color_page = color_page
         let number_of_bw_page = bw_page
+        let number_of_total_page = 0
 
-        if (order.synopsis_binding_paper_color == "Normal - Black & White" || order
-            .synopsis_binding_paper_color == "Royal - Black & White") {
+        if (order.synopsis_binding_paper_color == "Normal - Black & White" || order.synopsis_binding_paper_color ==
+            "Royal - Black & White") {
             number_of_bw_page = number_of_bw_page + number_of_color_page
             number_of_color_page = 0
+            number_of_total_page = number_of_bw_page
+        } else {
+            number_of_color_page = number_of_color_page + number_of_bw_page
+            number_of_bw_page = 0
+            number_of_total_page = number_of_color_page
         }
 
         // Calculate Page Printing Price
         if (order.synopsis_binding_qty == 1) {
-            total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            total += number_of_total_page * rate.first_page
         } else if (order.synopsis_binding_qty > 1) {
-            total += (number_of_bw_page * rate.first_page) + (number_of_color_page * rate.first_page)
+            total += number_of_total_page * rate.first_page
 
-            total += (((order.synopsis_binding_qty - 1) * number_of_bw_page) * rate.other_page) + (((order
-                .synopsis_binding_qty - 1) * number_of_color_page) * rate.other_page)
+            total += ((order.synopsis_binding_qty - 1) * number_of_total_page) * rate.other_page
         } else {
             total += 0
         }
@@ -3239,20 +2980,20 @@ function generate_order_summery() {
 
     let order_summery_json = JSON.stringify(order_summery)
     $("#order_summery").append(`
-            <div class="button-row d-flex mt-4">
-                <form action="{{ route('web.checkout') }}" method="POST">
-                @csrf
-                    <input type="text" class="d-none" name="order" value='${order_summery_json}' />
-                    <input type="text" class="d-none" name="order_amount" value="${hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price}" />
-                    
-                    <input type="text" class="d-none" name="hard_binding_total_price" value="${hard_binding_total_price}" />
-                    <input type="text" class="d-none" name="soft_binding_total_price" value="${soft_binding_total_price}" />
-                    <input type="text" class="d-none" name="synopsis_binding_total_price" value="${synopsis_binding_total_price}" />
-                    
-                    <button class="btn ml-auto next__button" type="submit" title="Send">Confrom Order</button>
-                </form>
-            </div>
-        `)
+        <div class="button-row d-flex mt-4">
+            <form action="{{ route('web.checkout') }}" method="POST">
+            @csrf
+                <input type="text" class="d-none" name="order" value='${order_summery_json}' />
+                <input type="text" class="d-none" name="order_amount" value="${hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price}" />
+                
+                <input type="text" class="d-none" name="hard_binding_total_price" value="${hard_binding_total_price}" />
+                <input type="text" class="d-none" name="soft_binding_total_price" value="${soft_binding_total_price}" />
+                <input type="text" class="d-none" name="synopsis_binding_total_price" value="${synopsis_binding_total_price}" />
+                
+                <button class="btn ml-auto next__button" type="submit" title="Send">Confrom Order</button>
+            </form>
+        </div>
+    `)
 }
 
 $("#next_step_6").on("click", function() {
