@@ -687,7 +687,7 @@
                                                                 </button>
                                                                 <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
                                                                 <input type="file" class="fileup" value="" name="fileup"
-                                                                    id="fileup" name="hard_binding_cover_design" />
+                                                                    id="hard_binding_cover_design" name="hard_binding_cover_design" />
                                                                 <div class="form-group form-check mt-3 d-none">
                                                                     <input type="checkbox" class="form-check-input"
                                                                         id="exampleCheck1"
@@ -1298,7 +1298,7 @@
                                                                 </button>
                                                                 <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
                                                                 <input type="file" class="fileup" value="" name="fileup"
-                                                                    id="fileup" name="soft_binding_cover_design" />
+                                                                    id="soft_binding_cover_design" name="soft_binding_cover_design" />
                                                                 <div class="form-group form-check mt-3 d-none">
                                                                     <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1" /> -->
                                                                     <label class="form-check-label"
@@ -1834,10 +1834,86 @@ var soft_binding_copies = 0
 var synopsis_binding_copies = 0
 
 var order_summery = {}
+
+var thesis_file = null
+var hard_binding_cover_design = null
+var soft_binding_cover_design = null
 </script>
 
 <script>
+var apiUrl = "{{route('web.upload_file')}}";
+
 $(document).ready(function(event) {
+
+    $('#file').on('change', function () {
+        var formData = new FormData();
+        formData.append("file", this.files[0]); // Append the file
+
+        // Call the upload function
+        fetch(apiUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            window.thesis_file = data.file_name
+            // Handle the server response here
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+
+    $('#hard_binding_cover_design').on('change', function () {
+        var formData = new FormData();
+        formData.append("file", this.files[0]); // Append the file
+
+        // Call the upload function
+        fetch(apiUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            window.hard_binding_cover_design = data.file_name
+            // Handle the server response here
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+
+    $('#soft_binding_cover_design').on('change', function () {
+        var formData = new FormData();
+        formData.append("file", this.files[0]); // Append the file
+
+        // Call the upload function
+        fetch(apiUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            window.soft_binding_cover_design = data.file_name
+            // Handle the server response here
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+    
     $("input[name='file']").on("change", function(event) {
         $("#file_name").text(event.target.files[0].name);
 
@@ -1846,7 +1922,6 @@ $(document).ready(function(event) {
         $("#bw_page").text(bw_page)
     });
     
-
     // If User click on hard binding
     $("input[name='hard_binding']").on("change", function() {
         // If hard binding is checked
@@ -2597,7 +2672,7 @@ function generate_order_summery() {
     var hard_binding_other_details = {
         hard_binding_cover_color_db: $("input[name='hard_binding_cover_color_db']:checked").val(),
         hard_binding_cover_text_color: $("select[name='hard_binding_cover_text_color']").val(),
-        hard_binding_cover_design: null,
+        hard_binding_cover_design: window.hard_binding_cover_design,
         hard_binding_spine: $("input[name='hard_binding_spine']:checked").val(),
         hard_binding_spine_top_content: $("input[name='hard_binding_spine_top_content']").val(),
         hard_binding_spine_middle_content: $("input[name='hard_binding_spine_top_content']").val(),
@@ -2607,7 +2682,7 @@ function generate_order_summery() {
     var soft_binding_other_details = {
         soft_binding_cover_color_db: $("input[name='soft_binding_cover_color_db']:checked").val(),
         soft_binding_cover_text_color: $("select[name='soft_binding_cover_text_color']").val(),
-        soft_binding_cover_design: null,
+        soft_binding_cover_design: window.soft_binding_cover_design,
         soft_binding_spine: $("input[name='soft_binding_spine']:checked").val(),
         soft_binding_spine_top_content: $("input[name='soft_binding_spine_top_content']").val(),
         soft_binding_spine_middle_content: $("input[name='soft_binding_spine_top_content']").val(),
@@ -2620,6 +2695,7 @@ function generate_order_summery() {
 
 
     order_summery = {
+        thesis_file: window.thesis_file,
         hard_bindings_orders,
         hard_binding_other_details, 
         soft_bindings_orders,

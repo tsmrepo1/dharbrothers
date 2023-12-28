@@ -144,4 +144,10 @@ class HomeController extends Controller
         Auth::login($user);
         return redirect()->route("user.myaccount");
     }
+    public function upload_file(Request $request)
+    {
+        $fileName = $request->file('file')->store('uploads', 'public');
+
+        return response()->json(["file_name" => $fileName]);
+    }
 }

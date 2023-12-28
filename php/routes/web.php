@@ -41,6 +41,8 @@ Route::get('/order', [HomeController::class, "order"])->name('web.order');
 Route::post('/order', [HomeController::class, "checkout"])->name('web.checkout');
 Route::post('/place-order', [HomeController::class, "place_order"])->name('web.place_order');
 
+Route::post('/upload-file', [HomeController::class, "upload_file"])->name('web.upload_file');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
