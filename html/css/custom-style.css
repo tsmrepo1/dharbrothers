@@ -782,3 +782,52 @@ grid-row-gap: 0px; margin: 20px 0 0 0; }
 .edit__wrapp .fa-pen-to-square{font-size: 20px; color: #159EB0;}
 .colo__holder{font-size: 32px; font-weight: 500;color: #159EB0; margin-bottom: 25px; width: 100%; display: block;}
 .proceed{width: 100%; padding: 15px 30px; display: block; width: 100%; font-size: 16px; text-align: center; background: #FAEDAE; color: #000; margin-top: 30px;}
+
+
+
+/*you */
+
+/* thank you */
+
+.thinkyou__wrapp{padding: 80px 0;}
+.thank__holder {
+  padding: 40px;
+  background-color: rgb(255, 255, 255);
+  width: auto;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 0 25px rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+.thank__holder h2 {
+  font-size: 40px;
+  text-align: center;
+  color: #000;
+  margin: 40px 0 0 0;
+  font-weight: 700;
+}
+
+.thank__holder p {
+  font-size: 16px;
+  text-align: center;
+  color: #000;
+  margin-top: 15px;
+}
+.home {
+  width: 160px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #00b050;
+  color: #000;
+  margin: 30px auto 0 auto;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 100px;
+}
+.thinkyou__wrapp table{width: 100%;}
+.thinkyou__wrapp table th{padding: 10px; }
+.thinkyou__wrapp table td{padding: 10px;border: solid 1px #f0f4f5;}
+
