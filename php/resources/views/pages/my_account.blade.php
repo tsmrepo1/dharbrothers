@@ -545,6 +545,84 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         </div>
     </div>
 </aside>
+
+
+
+
+ <aside class="offcanvas offcanvas-right" id="my_offcanvas3">
+      <header class="p-4">
+        <button class="btn btn-close">&times Close</button>
+      </header>
+
+      <div class="chat-area">
+        <!-- chatbox -->
+        <div class="chatbox">
+          <div class="modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="msg-body">
+                  <ul>
+                    <li class="sender">
+                      <p>Hey, Are you there?</p>
+                      <span class="time">10:06 am</span>
+                    </li>
+                    <li class="sender">
+                      <p>Hey, Are you there?</p>
+                      <span class="time">10:16 am</span>
+                    </li>
+                    <li class="repaly">
+                      <p>yes!</p>
+                      <span class="time">10:20 am</span>
+                    </li>
+                    <li class="sender">
+                      <p>Hey, Are you there?</p>
+                      <span class="time">10:26 am</span>
+                    </li>
+                    <li class="sender">
+                      <p>Hey, Are you there?</p>
+                      <span class="time">10:32 am</span>
+                    </li>
+                    <li class="repaly">
+                      <p>How are you?</p>
+                      <span class="time">10:35 am</span>
+                    </li>
+                    <li>
+                      <div class="divider">
+                        <h6>Today</h6>
+                      </div>
+                    </li>
+
+                    <li class="repaly">
+                      <p>yes, tell me</p>
+                      <span class="time">10:36 am</span>
+                    </li>
+                    <li class="repaly">
+                      <p>yes... on it</p>
+                      <span class="time">junt now</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="send-box">
+                <form action="">
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="message…"
+                    placeholder="Write message…"
+                  />
+
+                  <button type="button">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
 @endforeach
 
 <div class="main__body__wrapp">
@@ -724,13 +802,95 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
-                                <h2>Contact</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Neque, eveniet earum. Sed accusantium eligendi molestiae
-                                    quo hic velit nobis et, tempora placeat ratione rem
-                                    blanditiis voluptates vel ipsam? Facilis, earum!
-                                </p>
+                                <div class="button__all__ticket mb-5">
+                                    <button
+                                        class="btn btn-primary"
+                                        data-toggle="modal"
+                                        data-target="#exampleModal"
+                                    >
+                                        Ticket
+                                    </button>
+                                </div>
+ <table
+                      id="example"
+                      class="table table-striped table-bordered"
+                      style="width: 100%"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Ticket</th>
+                          <th>Date</th>
+                          <th>Subject</th>
+                          <th>priority</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>TKT1661</td>
+                          <td>early leave</td>
+                          <td>Early Leave</td>
+                          <td>Jan 2, 2024</td>
+                          <td>Sarita Tressy Nair</td>
+                          <td>
+                            <button
+                              data-trigger="#my_offcanvas3"
+                              class="btn btn-primary"
+                              type="button"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Details"
+                            >
+                              <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>TKT1661</td>
+                          <td>early leave</td>
+                          <td>Early Leave</td>
+                          <td>Jan 2, 2024</td>
+                          <td>Sarita Tressy Nair</td>
+                          <td>$372,000</td>
+                        </tr>
+                        <tr>
+                          <td>TKT1661</td>
+                          <td>early leave</td>
+                          <td>Early Leave</td>
+                          <td>Jan 2, 2024</td>
+                          <td>Sarita Tressy Nair</td>
+                          <td>$372,000</td>
+                        </tr>
+
+                        <tr>
+                          <td>Michael Bruce</td>
+                          <td>Javascript Developer</td>
+                          <td>Singapore</td>
+                          <td>29</td>
+                          <td>2011-06-27</td>
+                          <td>$183,000</td>
+                        </tr>
+                        <tr>
+                          <td>Donna Snider</td>
+                          <td>Customer Support</td>
+                          <td>New York</td>
+                          <td>27</td>
+                          <td>2011-01-25</td>
+                          <td>$112,000</td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>Name</th>
+                          <th>Position</th>
+                          <th>Office</th>
+                          <th>Age</th>
+                          <th>Start date</th>
+                          <th>Salary</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+
                             </div>
                         </div>
                     </div>
@@ -741,6 +901,63 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </section>
 </div>
 
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ticket Request</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card__holder">
+              <div class="row">
+                <div class="mb-3 col-sm-12">
+                  <label for="exampleFormControlInput1" class="form-label"
+                    >Ticket Name
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="name@example.com"
+                  />
+                </div>
+
+                <div class="mb-3 col-sm-12">
+                  <label for="exampleFormControlTextarea1" class="form-label"
+                    >Example textarea</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary col-sm-6 ml-4 mt-4"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>

@@ -63,39 +63,34 @@
                                         data-animation="scaleIn">
                                         <div class="multisteps-form__content">
                                             <div class="row">
-                                                <div class="col-md-5 m-auto">
-                                                    <div class="btn-container">
-                                                        <!--the three icons: default, ok file (img), error file (not an img)-->
-                                                        <div class="all__holder">
-                                                            <h1 class="imgupload">
-                                                                <img src="./web/images/icon _File Upload_.png" alt=""
-                                                                    class="m-auto d-block" />
-                                                            </h1>
-                                                            <h1 class="imgupload ok">
-                                                                <i class="fa fa-check"></i>
-                                                            </h1>
-                                                            <h1 class="imgupload stop">
-                                                                <i class="fa fa-times"></i>
-                                                            </h1>
-
-                                                            <h6>Upload Design</h6>
-                                                        </div>
-                                                        <p id="namefile">
-                                                            (Support document Word or Pdf)
-                                                            <span>
-                                                                <a href="#" data-toggle="tooltip" title="Hooray!"><i
-                                                                        class="fa-solid fa-circle-info"></i></a>
-                                                            </span>
+                                                <div class="col-sm-6">
+                                                    <div class="panel-body">
+                                                    <div class="dropzone"></div>
+                                                    <p id="namefile">
+                                                        (Support document Word or Pdf)
+                                                        <span>
+                                                            <a href="#" data-toggle="tooltip" title="Hooray!"><i class="fa-solid fa-circle-info"></i></a>
+                                                        </span>
                                                         </p>
-                                                        <!--our custom btn which which stays under the actual one-->
-                                                        <button type="button" id="btnup" class="btn btn-lg">
-                                                            Browse for your file!
-                                                        </button>
-                                                        <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                        <input type="file" value="" name="file" id="file"
-                                                            class="fileup" />
-                                                        <p class="conv">
-                                                            Convert Word to Pdf click on this Link
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="panel-body">
+                                                    <div class="dropzone">
+                                                    <h1 class="imgupload">
+                                                            <img
+                                                            src="./web/images/icon _File Upload_.png"
+                                                            alt=""
+                                                            class="m-auto d-block"
+                                                            />
+                                                        </h1>
+                                                    </div>
+                                                    <p id="namefile">
+                                                        (Support document Word or Pdf)
+                                                        <span>
+                                                            <a href="#" data-toggle="tooltip" title="Hooray!"><i class="fa-solid fa-circle-info"></i></a>
+                                                        </span>
                                                         </p>
                                                     </div>
                                                 </div>

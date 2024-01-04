@@ -204,6 +204,8 @@ $permission = session('permission');
 	<script src="{{url('web/js/swiper.min.js')}}"></script>
 	<script src="{{url('web/js/core.js')}}"></script>
 	<script src="{{url('web/js/multistep.js')}}"></script>
+	<script type="text/javascript" src="{{url('web/js/dropzone.js')}}"></script>
+ 	<script type="text/javascript" src="{{url('web/js/mainone.js')}}"></script>
 	<script>
 		$(document).ready(function () {
 			// jQuery code
