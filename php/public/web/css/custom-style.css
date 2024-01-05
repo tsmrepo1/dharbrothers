@@ -1210,7 +1210,6 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
     .panel-body .dropzone {
       width: 100% !important;
       padding: 15px;
-      background: url(web/images/icon_FileUpload_.png) no-repeat center;
     }
   
     .modal-dialog {

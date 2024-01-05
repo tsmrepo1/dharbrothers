@@ -64,8 +64,10 @@
                                         <div class="multisteps-form__content">
                                             <div class="row">
                                                 <div class="col-sm-6">
+                                                    <input type="file" class="form-control" name="thesis" id="thesis" />
+                                                    <p id="namefile"></p>
                                                     <div class="panel-body">
-                                                    <div class="dropzone"></div>
+                                                    <div class="dropzone" style="background: url('./web/images/icon _File Upload_.png') no-repeat center; height: 70px; width: 70px;"></div>
                                                     <p id="namefile">
                                                         (Support document Word or Pdf)
                                                         <span>
@@ -76,16 +78,10 @@
                                                 </div>
 
                                                 <div class="col-sm-6">
+                                                    <input type="file" class="form-control" name="synopsis" id="synopsis" />
+                                                    <p id="namefile"></p>
                                                     <div class="panel-body">
-                                                    <div class="dropzone">
-                                                    <h1 class="imgupload">
-                                                            <img
-                                                            src="./web/images/icon _File Upload_.png"
-                                                            alt=""
-                                                            class="m-auto d-block"
-                                                            />
-                                                        </h1>
-                                                    </div>
+                                                    <div class="dropzone" style="background: url('./web/images/icon _File Upload_.png') no-repeat center; height: 70px; width: 70px;"></div>
                                                     <p id="namefile">
                                                         (Support document Word or Pdf)
                                                         <span>
@@ -148,7 +144,7 @@
                                                                     for="customCheckbox1">Soft Binding</label>
                                                             </div>
                                                         </div>
-                                                        <div class="check__holder">
+                                                        <div class="check__holder d-none">
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" id="customCheckbox2"
                                                                     name="synopsis_binding"
@@ -1831,6 +1827,7 @@ var synopsis_binding_copies = 0
 var order_summery = {}
 
 var thesis_file = null
+var synopsis_file = null
 var hard_binding_cover_design = null
 var soft_binding_cover_design = null
 </script>
@@ -1840,7 +1837,8 @@ var apiUrl = "{{route('web.upload_file')}}";
 
 $(document).ready(function(event) {
 
-    $('#file').on('change', function () {
+    // Upload Thesis File
+    $('#thesis').on('change', function () {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
 
@@ -1863,6 +1861,59 @@ $(document).ready(function(event) {
         });
     });
 
+    // Upload Synopsis File
+    $('#synopsis').on('change', function () {
+        var formData = new FormData();
+        formData.append("file", this.files[0]); // Append the file
+
+        if($('#synopsis')[0].files.length === 0)
+        {
+            // Deduct Cover Price
+            synopsis_binding_total_price -= SYNOPSIS_BINDING_COVER_PRICE;
+
+            // Hide Tab Link
+            synopsis_binding_selected = false;
+            $("#step-5-link").addClass("d-none");
+        }  
+        else 
+        {
+            // Add Cover Price
+            synopsis_binding_total_price += SYNOPSIS_BINDING_COVER_PRICE;
+
+            // Display Tab Link
+            synopsis_binding_selected = true;
+            $("#step-5-link").removeClass("d-none");
+        }
+        if (
+            hard_binding_selected ||
+            soft_binding_selected ||
+            synopsis_binding_selected
+        ) {
+            $("#step-6-link").removeClass("d-none");
+        } else {
+            $("#step-6-link").addClass("d-none");
+        }
+
+        // Call the upload function
+        fetch(apiUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            window.synopsis_file = data.file_name
+            // Handle the server response here
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+
+    // Upload Hardbinding Cover Image Design
     $('#hard_binding_cover_design').on('change', function () {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
@@ -1886,6 +1937,7 @@ $(document).ready(function(event) {
         });
     });
 
+    // Upload Softbinding Cover Image Design
     $('#soft_binding_cover_design').on('change', function () {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
@@ -1907,14 +1959,6 @@ $(document).ready(function(event) {
         .catch((error) => {
             console.error('Error:', error);
         });
-    });
-    
-    $("input[name='file']").on("change", function(event) {
-        $("#file_name").text(event.target.files[0].name);
-
-        $("#total_page").text(color_page + bw_page)
-        $("#color_page").text(color_page)
-        $("#bw_page").text(bw_page)
     });
     
     // If User click on hard binding
