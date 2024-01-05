@@ -65,7 +65,7 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <input type="file" class="form-control" name="thesis" id="thesis" />
-                                                    <p id="namefile"></p>
+                                                    <p id="namefile">Thesis File</p>
                                                     <div class="panel-body">
                                                     <div class="dropzone" style="background: url('./web/images/icon _File Upload_.png') no-repeat center; height: 70px; width: 70px;"></div>
                                                     <p id="namefile">
@@ -79,7 +79,7 @@
 
                                                 <div class="col-sm-6">
                                                     <input type="file" class="form-control" name="synopsis" id="synopsis" />
-                                                    <p id="namefile"></p>
+                                                    <p id="namefile">Synopsis File</p>
                                                     <div class="panel-body">
                                                     <div class="dropzone" style="background: url('./web/images/icon _File Upload_.png') no-repeat center; height: 70px; width: 70px;"></div>
                                                     <p id="namefile">
@@ -106,25 +106,7 @@
                                     <div class="multisteps-form__content">
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <div class="document__details mb-4">
-                                                    <h3>File Name : <span id="file_name"></span></h3>
-                                                    <table class="table table-striped">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="pl-4">Total page</td>
-                                                                <td class="pr-4 text-right" id="total_page">0</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pl-4">Color page</td>
-                                                                <td class="pr-4 text-right" id="color_page">0</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pl-4">BW page</td>
-                                                                <td class="pr-4 text-right" id="bw_page">0</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                <div id="file_upload_details"></div>
                                                 <div class="document__detailsone mb-4">
                                                     <h3>Select type of Binding</h3>
                                                     <div class="Select_type">
@@ -243,15 +225,12 @@
                                                                                         name="hard_binding_paper_size[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="A0">A0</option>
-                                                                                        <option value="A1">A1</option>
-                                                                                        <option value="A2">A2</option>
-                                                                                        <option value="A3">A3</option>
-                                                                                        <option value="A4">A4</option>
-                                                                                        <option value="A5">A5</option>
-                                                                                        <option value="A6">A6</option>
-                                                                                        <option value="A7">A7</option>
-                                                                                        <option value="A8">A8</option>
+                                                                                        <option value="A4 - Full">A4 - Full</option>
+                                                                                        <option value="A4 - 95% Reduction">A4 - 95% Reduction</option>
+                                                                                        <option value="A4 - 90%">A4 - 90%</option>
+                                                                                        <option value="A4 - 85%">A4 - 85%</option>
+                                                                                        <option value="A4 - 80%">A4 - 80%</option>
+                                                                                        <option value="A4 - 70%">A4 - 70%</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -328,18 +307,15 @@
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
                                                                                         <option
-                                                                                            value="Normal - Black & White">
-                                                                                            Normal - Black & White
+                                                                                            value="All Black & White">
+                                                                                            All Black & White
                                                                                         </option>
-                                                                                        <option value="Normal - Color">
-                                                                                            Normal - Color
+                                                                                        <option value="Black & White & Color">
+                                                                                            Black & White & Color
                                                                                         </option>
                                                                                         <option
-                                                                                            value="Royal - Black & White">
-                                                                                            Royal - Black & White
-                                                                                        </option>
-                                                                                        <option value="Royal - Color">
-                                                                                            Royal - Color
+                                                                                            value="Royal Print">
+                                                                                            Royal Print
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -362,32 +338,57 @@
                                                                                         <option value="Single Side">
                                                                                             Single Side
                                                                                         </option>
-                                                                                        <option value="Both Sidet">
-                                                                                            Both Side
+                                                                                        <option value="Double Side">
+                                                                                            Double Side
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
-                                                                                <div class="searche__wrapp">
+                                                                                <div class="searche__wrapp" style="display: none;">
                                                                                     <p>A4 Pockets (in copies) <a
                                                                                             href="#"
                                                                                             data-toggle="tooltip"
                                                                                             title="Hooray!">
                                                                                             <i class=" fa-solid fa-circle-info"
                                                                                                 aria-hidden="true"></i>
-                                                                                        </a></p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        name="hard_binding_a4_pockets[]" />
+                                                                                        </a>
+                                                                                    </p>
+                                                                                    <div class="qty-container">
+                                                                                        <button
+                                                                                            class="qty-btn-minus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-minus"></i>
+                                                                                        </button>
+                                                                                        <input type="text" value="0"
+                                                                                            class="input-qty"
+                                                                                            name="hard_binding_a4_pockets[]" />
+                                                                                        <button
+                                                                                            class="qty-btn-plus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
-                                                                                <div class="searche__wrapp">
+                                                                                <div class="searche__wrapp" style="display: none;">
                                                                                     <p>CD Pockets (in copies)</p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        name="hard_binding_cd_pockets[]" />
+                                                                                    <div class="qty-container">
+                                                                                        <button
+                                                                                            class="qty-btn-minus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-minus"></i>
+                                                                                        </button>
+                                                                                        <input type="text" value="0"
+                                                                                            class="input-qty"
+                                                                                            name="hard_binding_cd_pockets[]" />
+                                                                                        <button
+                                                                                            class="qty-btn-plus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6"></div>
@@ -849,15 +850,12 @@
                                                                                         name="soft_binding_paper_size[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="A0">A0</option>
-                                                                                        <option value="A1">A1</option>
-                                                                                        <option value="A2">A2</option>
-                                                                                        <option value="A3">A3</option>
-                                                                                        <option value="A4">A4</option>
-                                                                                        <option value="A5">A5</option>
-                                                                                        <option value="A6">A6</option>
-                                                                                        <option value="A7">A7</option>
-                                                                                        <option value="A8">A8</option>
+                                                                                        <option value="A4 - Full">A4 - Full</option>
+                                                                                        <option value="A4 - 95% Reduction">A4 - 95% Reduction</option>
+                                                                                        <option value="A4 - 90%">A4 - 90%</option>
+                                                                                        <option value="A4 - 85%">A4 - 85%</option>
+                                                                                        <option value="A4 - 80%">A4 - 80%</option>
+                                                                                        <option value="A4 - 70%">A4 - 70%</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -934,18 +932,15 @@
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
                                                                                         <option
-                                                                                            value="Normal - Black & White">
-                                                                                            Normal - Black & White
+                                                                                            value="All Black & White">
+                                                                                            All Black & White
                                                                                         </option>
-                                                                                        <option value="Normal - Color">
-                                                                                            Normal - Color
+                                                                                        <option value="Black & White & Color">
+                                                                                            Black & White & Color
                                                                                         </option>
                                                                                         <option
-                                                                                            value="Royal - Black & White">
-                                                                                            Royal - Black & White
-                                                                                        </option>
-                                                                                        <option value="Royal - Color">
-                                                                                            Royal - Color
+                                                                                            value="Royal Print">
+                                                                                            Royal Print
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -968,14 +963,14 @@
                                                                                         <option value="Single Side">
                                                                                             Single Side
                                                                                         </option>
-                                                                                        <option value="Both Sidet">
-                                                                                            Both Side
+                                                                                        <option value="Double Side">
+                                                                                            Double Side
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
-                                                                                <div class="searche__wrapp">
+                                                                                <div class="searche__wrapp" style="display: none;">
                                                                                     <p>A4 Pockets (in copies) <a
                                                                                             href="#"
                                                                                             data-toggle="tooltip"
@@ -983,23 +978,48 @@
                                                                                             <i class=" fa-solid fa-circle-info"
                                                                                                 aria-hidden="true"></i>
                                                                                         </a></p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        name="soft_binding_a4_pockets[]" />
+                                                                                    <div class="qty-container">
+                                                                                        <button
+                                                                                            class="qty-btn-minus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-minus"></i>
+                                                                                        </button>
+                                                                                        <input type="text" value="0"
+                                                                                            class="input-qty"
+                                                                                            name="soft_binding_a4_pockets[]" />
+                                                                                        <button
+                                                                                            class="qty-btn-plus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6 mb-4">
-                                                                                <div class="searche__wrapp">
+                                                                                <div class="searche__wrapp" style="display: none;">
                                                                                     <p>CD Pockets (in copies) <a
                                                                                             href="#"
                                                                                             data-toggle="tooltip"
                                                                                             title="Hooray!">
                                                                                             <i class=" fa-solid fa-circle-info"
                                                                                                 aria-hidden="true"></i>
-                                                                                        </a></p>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        name="soft_binding_cd_pockets[]" />
+                                                                                        </a>
+                                                                                    </p>
+                                                                                    <div class="qty-container">
+                                                                                        <button
+                                                                                            class="qty-btn-minus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-minus"></i>
+                                                                                        </button>
+                                                                                        <input type="text" value="0"
+                                                                                            class="input-qty"
+                                                                                            name="soft_binding_cd_pockets[]" />
+                                                                                        <button
+                                                                                            class="qty-btn-plus btn-light"
+                                                                                            type="button">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6"></div>
@@ -1445,15 +1465,12 @@
                                                                                         name="synopsis_binding_paper_size[]">
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
-                                                                                        <option value="A0">A0</option>
-                                                                                        <option value="A1">A1</option>
-                                                                                        <option value="A2">A2</option>
-                                                                                        <option value="A3">A3</option>
-                                                                                        <option value="A4">A4</option>
-                                                                                        <option value="A5">A5</option>
-                                                                                        <option value="A6">A6</option>
-                                                                                        <option value="A7">A7</option>
-                                                                                        <option value="A8">A8</option>
+                                                                                        <option value="A4 - Full">A4 - Full</option>
+                                                                                        <option value="A4 - 95% Reduction">A4 - 95% Reduction</option>
+                                                                                        <option value="A4 - 90%">A4 - 90%</option>
+                                                                                        <option value="A4 - 85%">A4 - 85%</option>
+                                                                                        <option value="A4 - 80%">A4 - 80%</option>
+                                                                                        <option value="A4 - 70%">A4 - 70%</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -1530,18 +1547,15 @@
                                                                                         <!-- options -->
                                                                                         <option value="">Select</option>
                                                                                         <option
-                                                                                            value="Normal - Black & White">
-                                                                                            Normal - Black & White
+                                                                                            value="All Black & White">
+                                                                                            All Black & White
                                                                                         </option>
-                                                                                        <option value="Normal - Color">
-                                                                                            Normal - Color
+                                                                                        <option value="Black & White & Color">
+                                                                                            Black & White & Color
                                                                                         </option>
                                                                                         <option
-                                                                                            value="Royal - Black & White">
-                                                                                            Royal - Black & White
-                                                                                        </option>
-                                                                                        <option value="Royal - Color">
-                                                                                            Royal - Color
+                                                                                            value="Royal Print">
+                                                                                            Royal Print
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -1564,8 +1578,8 @@
                                                                                         <option value="Single Side">
                                                                                             Single Side
                                                                                         </option>
-                                                                                        <option value="Both Sidet">
-                                                                                            Both Side
+                                                                                        <option value="Double Side">
+                                                                                            Double Side
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -1792,6 +1806,7 @@ $(".fileup").change(function() {
 $(document).on("click", ".qty-btn-plus", function() {
     var $n = $(this).parent(".qty-container").find(".input-qty");
     $n.val(Number($n.val()) + 1);
+    $n.trigger('change')
 });
 
 $(document).on("click", ".qty-btn-minus", function() {
@@ -1800,12 +1815,16 @@ $(document).on("click", ".qty-btn-minus", function() {
     if (amount > 0) {
         $n.val(amount - 1);
     }
+    $n.trigger('change')
 });
 </script>
 
 <script>
-const color_page = 200;
-const bw_page = 200;
+const thesis_color_page = 200;
+const thesis_bw_page = 200;
+
+const synopsis_color_page = 50;
+const synopsis_bw_page = 50;
 
 const HARD_BINDING_COVER_BELOW_3_PRICE = 300;
 const HARD_BINDING_COVER_PRICE = 270;
@@ -1842,6 +1861,37 @@ $(document).ready(function(event) {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
 
+        if($('#thesis')[0].files.length === 0)
+        {
+            $("#thesis_file_details").remove()
+        }
+        else
+        {
+            $("#file_upload_details").append(`
+            <div id="thesis_file_details">
+                <div class="document__details mb-4">
+                    <h3>Thesis File Name : <span id="file_name"></span></h3>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td class="pl-4">Total page</td>
+                                <td class="pr-4 text-right" id="total_page">${thesis_color_page + thesis_bw_page}</td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4">Color page</td>
+                                <td class="pr-4 text-right" id="thesis_color_page">${thesis_color_page}</td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4">BW page</td>
+                                <td class="pr-4 text-right" id="thesis_bw_page">${thesis_bw_page}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            `)
+        }
+
         // Call the upload function
         fetch(apiUrl, {
         method: 'POST',
@@ -1874,6 +1924,8 @@ $(document).ready(function(event) {
             // Hide Tab Link
             synopsis_binding_selected = false;
             $("#step-5-link").addClass("d-none");
+
+            $("#synopsis_file_details").remove()
         }  
         else 
         {
@@ -1883,6 +1935,30 @@ $(document).ready(function(event) {
             // Display Tab Link
             synopsis_binding_selected = true;
             $("#step-5-link").removeClass("d-none");
+
+            $("#file_upload_details").append(`
+            <div id="synopsis_file_details">
+                <div class="document__details mb-4">
+                    <h3>Synopsis File Name : <span id="file_name"></span></h3>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td class="pl-4">Total page</td>
+                                <td class="pr-4 text-right" id="total_page">${synopsis_color_page + synopsis_bw_page}</td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4">Color page</td>
+                                <td class="pr-4 text-right" id="thesis_color_page">${synopsis_color_page}</td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4">BW page</td>
+                                <td class="pr-4 text-right" id="thesis_bw_page">${synopsis_bw_page}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            `)
         }
         if (
             hard_binding_selected ||
@@ -2054,439 +2130,629 @@ $(document).ready(function(event) {
 
         $("#hard_binding_accordion").append(`
           <div class="card hard_binding_card">
-            <div class="card-header" data-toggle="collapse" data-target="#collapse_${time}"
-              aria-expanded="false">
-              <span class="title w-50">Papers Size :</span>
-              <span class="title w-50">No Of Copies :</span>
-              <span class="accicon">
-                <i class="fas fa-angle-down rotate-icon"></i>
-              </span>
-               
+            <div class="card-header" data-toggle="collapse"
+                data-target="#collapse_${time}" aria-expanded="true">
+                <span class="title w-50">Papers Size : </span>
+                <span class="title w-50">No Of Copies : </span>
+                <span class="accicon">
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                </span>
+                
             </div>
-            <span class="accicononere">
-                                                                        <a href="#" class="btn-trash"><i
-                                                                            class="fa-solid fa-trash"></i></a>
-                                                                    </span>
-            <div id="collapse_${time}" class="collapse" data-parent="#hard_binding_accordion">
-              <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Papers Size <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select"
-                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_size[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="A0"> A0 </option>
-                            <option value="A1"> A1 </option>
-                            <option value="A2"> A2 </option>
-                            <option value="A3"> A3 </option>
-                            <option value="A4"> A4 </option>
-                            <option value="A5"> A5 </option>
-                            <option value="A6"> A6 </option>
-                            <option value="A7"> A7 </option>
-                            <option value="A8"> A8 </option>
-                        </select>
+                <span class="accicononere">
+                    <a href="#" class="btn-trash"><i
+                        class="fa-solid fa-trash"></i></a>
+                </span>
+            <div id="collapse_${time}" class="collapse"
+                data-parent="#hard_binding_accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Papers Size <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="hard_binding_paper_size[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option value="A4 - Full">A4 - Full</option>
+                                    <option value="A4 - 95% Reduction">A4 - 95% Reduction</option>
+                                    <option value="A4 - 90%">A4 - 90%</option>
+                                    <option value="A4 - 85%">A4 - 85%</option>
+                                    <option value="A4 - 80%">A4 - 80%</option>
+                                    <option value="A4 - 70%">A4 - 70%</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>No Of Copies <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <div class="qty-container">
-                            <button class="qty-btn-minus btn-light" type="button">
-                            <i class="fa fa-minus"></i>
-                            </button>
-                            <input type="text" value="0" class="input-qty" name="hard_binding_qty[]" />
-                            <button class="qty-btn-plus btn-light" type="button">
-                            <i class="fa fa-plus"></i>
-                            </button>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>No Of Copies <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="hard_binding_qty[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Papers <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="hard_binding_paper_type[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option
+                                        value="Paper One 100 GSM or Equivalent">
+                                        Paper One 100 GSM or
+                                        Equivalent
+                                    </option>
+                                    <option
+                                        value="Bond Paper 85 GSM or Equivalent">
+                                        Bond Paper 85 GSM or
+                                        Equivalent
+                                    </option>
+                                    <option
+                                        value="JK Easy 70 GSM or equivalent">
+                                        JK Easy 70 GSM or equivalent
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Papers <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select"
-                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_type[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
-                            <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
-                            <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
-                        </select>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Color <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="hard_binding_paper_color[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option
+                                        value="All Black & White">
+                                        All Black & White
+                                    </option>
+                                    <option value="Black & White & Color">
+                                        Black & White & Color
+                                    </option>
+                                    <option
+                                        value="Royal Print">
+                                        Royal Print
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Color <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select"
-                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_paper_color[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="Normal - Black & White">
-                                Normal - Black & White
-                            </option>
-                            <option value="Normal - Color">
-                                Normal - Color
-                            </option>
-                            <option value="Royal - Black & White">
-                                Royal - Black & White
-                            </option>
-                            <option value="Royal - Color">
-                                Royal - Color
-                            </option>
-                        </select>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Printing Type <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="hard_binding_printing_type[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option value="Single Side">
+                                        Single Side
+                                    </option>
+                                    <option value="Double Side">
+                                        Double Side
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Printing Type <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select"
-                            data-role="select-dropdown" data-profile="minimal" name="hard_binding_printing_type[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="Single Side"> Single Side</option>
-                            <option value="Both Sidet"> Both Side </option>
-                        </select>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp" style="display: none;">
+                                <p>A4 Pockets (in copies) <a
+                                        href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a>
+                                </p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="hard_binding_a4_pockets[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                            <p>A4 Pockets (in copies) <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                            <input type="text" class="form-control" name="hard_binding_a4_pockets[]" />
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp" style="display: none;">
+                                <p>CD Pockets (in copies)</p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="hard_binding_cd_pockets[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                            <p>CD Pockets (in copies) <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                            <input type="text" class="form-control" name="hard_binding_cd_pockets[]" />
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-12">
+                            <p>Additional Information <a href="#"
+                                    data-toggle="tooltip"
+                                    title="Hooray!">
+                                    <i class=" fa-solid fa-circle-info"
+                                        aria-hidden="true"></i>
+                                </a></p>
+                            <textarea class="form-control"
+                                name="hard_binding_information[]"></textarea>
                         </div>
-                    </div>
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-12">
-                        <p>Additional Information <a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <textarea class="form-control" name="hard_binding_information[]"></textarea>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
         `);
+
+        // Hard Binding A4, CD and Total Quantity Validation Logic
+        $('.hard_binding_card').each(function() {
+            var card = $(this);
+            card.find('[name="hard_binding_qty[]"], [name="hard_binding_a4_pockets[]"], [name="hard_binding_cd_pockets[]"], [name="hard_binding_paper_size[]"]').on('change', function() {
+                validateHardBinding(card, $(this));
+            });
+        });
     });
 
+    // Soft Binding Create Button
     $(".add_btn_soft_binding").on("click", function(event) {
         let time = new Date().valueOf();
 
         $(this).parent().parent().find(".accordion").append(`
           <div class="card soft_binding_card">
-            <div class="card-header" data-toggle="collapse" data-target="#collapse_${time}" aria-expanded="false">
-              <span class="title w-50">Papers Size :</span>
-              <span class="title w-50">No Of Copies :</span>
-              <span class="accicon">
-                <i class="fas fa-angle-down rotate-icon"></i>
-              </span>
-               
+            <div class="card-header" data-toggle="collapse"
+                data-target="#collapse_${time}" aria-expanded="true">
+                <span class="title w-50">Papers Size :
+                </span>
+                <span class="title w-50">No Of Copies : </span>
+                <span class="accicon">
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                </span>
+                    
             </div>
-            <span class="accicononere">
-                                                                        <a href="#" class="btn-trash"><i
-                                                                            class="fa-solid fa-trash"></i></a>
-                                                                    </span>
-            <div id="collapse_${time}" class="collapse show" data-parent="#soft_binding_accordion">
-              <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Papers Size<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                            data-profile="minimal" name="soft_binding_paper_size[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="A0"> A0 </option>
-                            <option value="A1"> A1 </option>
-                            <option value="A2"> A2 </option>
-                            <option value="A3"> A3 </option>
-                            <option value="A4"> A4 </option>
-                            <option value="A5"> A5 </option>
-                            <option value="A6"> A6 </option>
-                            <option value="A7"> A7 </option>
-                            <option value="A8"> A8 </option>
-                        </select>
+                <span class="accicononere">
+                    <a href="#" class="btn-trash"><i
+                        class="fa-solid fa-trash"></i></a>
+                </span>
+            <div id="collapse_${time}" class="collapse"
+                data-parent="#soft_binding_accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Papers Size <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="soft_binding_paper_size[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option value="A4 - Full">A4 - Full</option>
+                                    <option value="A4 - 95% Reduction">A4 - 95% Reduction</option>
+                                    <option value="A4 - 90%">A4 - 90%</option>
+                                    <option value="A4 - 85%">A4 - 85%</option>
+                                    <option value="A4 - 80%">A4 - 80%</option>
+                                    <option value="A4 - 70%">A4 - 70%</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>No Of Copies<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <div class="qty-container">
-                            <button class="qty-btn-minus btn-light" type="button">
-                            <i class="fa fa-minus"></i>
-                            </button>
-                            <input type="text" value="0" class="input-qty" name="soft_binding_qty[]" />
-                            <button class="qty-btn-plus btn-light" type="button">
-                            <i class="fa fa-plus"></i>
-                            </button>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>No Of Copies <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="soft_binding_qty[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Papers <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="soft_binding_paper_type[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option
+                                        value="Paper One 100 GSM or Equivalent">
+                                        Paper One 100 GSM or
+                                        Equivalent
+                                    </option>
+                                    <option
+                                        value="Bond Paper 85 GSM or Equivalent">
+                                        Bond Paper 85 GSM or
+                                        Equivalent
+                                    </option>
+                                    <option
+                                        value="JK Easy 70 GSM or equivalent">
+                                        JK Easy 70 GSM or equivalent
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Papers<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                            data-profile="minimal" name="soft_binding_paper_type[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
-                            <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
-                            <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
-                        </select>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Color <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="soft_binding_paper_color[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option
+                                        value="All Black & White">
+                                        All Black & White
+                                    </option>
+                                    <option value="Black & White & Color">
+                                        Black & White & Color
+                                    </option>
+                                    <option
+                                        value="Royal Print">
+                                        Royal Print
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Color<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                            data-profile="minimal" name="soft_binding_paper_color[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="Normal - Black & White">
-                                Normal - Black & White
-                            </option>
-                            <option value="Normal - Color">
-                                Normal - Color
-                            </option>
-                            <option value="Royal - Black & White">
-                                Royal - Black & White
-                            </option>
-                            <option value="Royal - Color">
-                                Royal - Color
-                            </option>
-                        </select>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Printing Type <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="soft_binding_printing_type[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option value="Single Side">
+                                        Single Side
+                                    </option>
+                                    <option value="Double Side">
+                                        Double Side
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                        <p>Printing Type<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                            data-profile="minimal" name="soft_binding_printing_type[]">
-                            <!-- options -->
-                            <option value="">Select</option>
-                            <option value="Single Side"> Single Side</option>
-                            <option value="Both Sidet"> Both Side </option>
-                        </select>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp" style="display: none;">
+                                <p>A4 Pockets (in copies) <a
+                                        href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="soft_binding_a4_pockets[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                            <p>A4 Pockets (in copies)<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                            <input type="text" class="form-control" name="soft_binding_a4_pockets[]" />
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp" style="display: none;">
+                                <p>CD Pockets (in copies) <a
+                                        href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a>
+                                </p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="soft_binding_cd_pockets[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 mb-4">
-                        <div class="searche__wrapp">
-                            <p>CD Pockets (in copies)<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                            <input type="text" class="form-control" name="soft_binding_cd_pockets[]" />
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-12">
+                            <p>Additional Information <a href="#"
+                                    data-toggle="tooltip"
+                                    title="Hooray!">
+                                    <i class=" fa-solid fa-circle-info"
+                                        aria-hidden="true"></i>
+                                </a></p>
+                            <textarea class="form-control"
+                                name="soft_binding_information[]"></textarea>
                         </div>
-                    </div>
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-12">
-                        <p>Additional Information<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                        <textarea class="form-control" name="soft_binding_information[]"></textarea>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
         `);
     });
 
+    // Synopsis Binding Create Button
     $(".add_btn_synopsis_binding").on("click", function(event) {
         let time = new Date().valueOf();
 
         $(this).parent().parent().find(".accordion").append(`
-          <div class="card synopsis_binding_card">
-            <div class="card-header" data-toggle="collapse" data-target="#collapse_${time}" aria-expanded="true">
-              <span class="title w-50">Papers Size :</span>
-              <span class="title w-50">No Of Copies :</span>
-              <span class="accicon">
-                <i class="fas fa-angle-down rotate-icon"></i>
-              </span>
-               
+           <div class="card synopsis_binding_card">
+            <div class="card-header" data-toggle="collapse"
+                data-target="#collapse_${time}" aria-expanded="true">
+                <span class="title w-50">Papers Size :</span>
+                <span class="title w-50">No Of Copies :</span>
+                <span class="accicon">
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                </span>
+                
             </div>
-             <span class="accicononere">
-                                                                        <a href="#" class="btn-trash"><i
-                                                                            class="fa-solid fa-trash"></i></a>
-                                                                    </span>
-            <div id="collapse_${time}" class="collapse show" data-parent="#synopsis_binding_accordion">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Papers Size<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="synopsis_binding_paper_size[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="A0"> A0 </option>
-                        <option value="A1"> A1 </option>
-                        <option value="A2"> A2 </option>
-                        <option value="A3"> A3 </option>
-                        <option value="A4"> A4 </option>
-                        <option value="A5"> A5 </option>
-                        <option value="A6"> A6 </option>
-                        <option value="A7"> A7 </option>
-                        <option value="A8"> A8 </option>
-                      </select>
+            <span class="accicononere">
+                    <a href="#" class="btn-trash"><i
+                        class="fa-solid fa-trash"></i></a>
+                </span>
+            <div id="collapse_${time}" class="collapse"
+                data-parent="#synopsis_binding_accordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Papers Size <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="synopsis_binding_paper_size[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option value="A4 - Full">A4 - Full</option>
+                                    <option value="A4 - 95% Reduction">A4 - 95% Reduction</option>
+                                    <option value="A4 - 90%">A4 - 90%</option>
+                                    <option value="A4 - 85%">A4 - 85%</option>
+                                    <option value="A4 - 80%">A4 - 80%</option>
+                                    <option value="A4 - 70%">A4 - 70%</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>No Of Copies <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <div class="qty-container">
+                                    <button
+                                        class="qty-btn-minus btn-light"
+                                        type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input type="text" value="0"
+                                        class="input-qty"
+                                        name="synopsis_binding_qty[]" />
+                                    <button
+                                        class="qty-btn-plus btn-light"
+                                        type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Papers <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="synopsis_binding_paper_type[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option
+                                        value="Paper One 100 GSM or Equivalent">
+                                        Paper One 100 GSM or
+                                        Equivalent
+                                    </option>
+                                    <option
+                                        value="Bond Paper 85 GSM or Equivalent">
+                                        Bond Paper 85 GSM or
+                                        Equivalent
+                                    </option>
+                                    <option
+                                        value="JK Easy 70 GSM or equivalent">
+                                        JK Easy 70 GSM or equivalent
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Color <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="synopsis_binding_paper_color[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option
+                                        value="All Black & White">
+                                        All Black & White
+                                    </option>
+                                    <option value="Black & White & Color">
+                                        Black & White & Color
+                                    </option>
+                                    <option
+                                        value="Royal Print">
+                                        Royal Print
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-4">
+                            <div class="searche__wrapp">
+                                <p>Printing Type <a href="#"
+                                        data-toggle="tooltip"
+                                        title="Hooray!">
+                                        <i class=" fa-solid fa-circle-info"
+                                            aria-hidden="true"></i>
+                                    </a></p>
+                                <select id="inlineFormCustomSelect"
+                                    class="form-control custom-select"
+                                    data-role="select-dropdown"
+                                    data-profile="minimal"
+                                    name="synopsis_binding_printing_type[]">
+                                    <!-- options -->
+                                    <option value="">Select</option>
+                                    <option value="Single Side">
+                                        Single Side
+                                    </option>
+                                    <option value="Double Side">
+                                        Double Side
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>No Of Copies<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                      <div class="qty-container">
-                        <button class="qty-btn-minus btn-light" type="button">
-                          <i class="fa fa-minus"></i>
-                        </button>
-                        <input type="text" value="0" class="input-qty" name="synopsis_binding_qty[]" />
-                        <button class="qty-btn-plus btn-light" type="button">
-                          <i class="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Papers<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="synopsis_binding_paper_type[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Paper One 100 GSM or Equivalent"> Paper One 100 GSM or Equivalent</option>
-                        <option value="Bond Paper 85 GSM or Equivalent"> Bond Paper 85 GSM or Equivalent </option>
-                        <option value="JK Easy 70 GSM or equivalent"> JK Easy 70 GSM or equivalent </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Color<a href="#"
-                                                                            data-toggle="tooltip" title="Hooray!">
-                                                                            <i class=" fa-solid fa-circle-info"
-                                                                                aria-hidden="true"></i>
-                                                                        </a></p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="synopsis_binding_paper_color[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Normal - Black & White">
-                            Normal - Black & White
-                        </option>
-                        <option value="Normal - Color">
-                            Normal - Color
-                        </option>
-                        <option value="Royal - Black & White">
-                            Royal - Black & White
-                        </option>
-                        <option value="Royal - Color">
-                            Royal - Color
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 mb-4">
-                    <div class="searche__wrapp">
-                      <p>Printing Type<a href="#"
-                                                data-toggle="tooltip" title="Hooray!">
-                                                <i class=" fa-solid fa-circle-info"
-                                                    aria-hidden="true"></i>
-                                            </a></p>
-                      <select id="inlineFormCustomSelect" class="form-control custom-select" data-role="select-dropdown"
-                        data-profile="minimal" name="synopsis_binding_printing_type[]">
-                        <!-- options -->
-                        <option value="">Select</option>
-                        <option value="Single Side"> Single Side</option>
-                        <option value="Both Sidet"> Both Side </option>
-                      </select>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
         `);
+    });
+
+    // Hard Binding A4, CD and Total Quantity Validation Logic
+    $('.hard_binding_card').each(function() {
+        var card = $(this);
+        card.find('[name="hard_binding_qty[]"], [name="hard_binding_a4_pockets[]"], [name="hard_binding_cd_pockets[]"], [name="hard_binding_paper_size[]"]').on('change', function() {
+            validateHardBinding(card, $(this));
+        });
     });
 
     setInterval(function() {
@@ -2514,19 +2780,44 @@ $(document).ready(function(event) {
     }, 500);
 });
 
+// Hard Binding Validate Logic
+function validateHardBinding(card, target) {
+    console.log(target)
+    var totalQty = parseInt(card.find('[name="hard_binding_qty[]"]').val()) || 0;
+    var a4Pockets = parseInt(card.find('[name="hard_binding_a4_pockets[]"]').val()) || 0;
+    var cdPockets = parseInt(card.find('[name="hard_binding_cd_pockets[]"]').val()) || 0;
+    var paperSize = card.find('[name="hard_binding_paper_size[]"]').val();
+
+    console.log({totalQty, a4Pockets, cdPockets, paperSize})
+    // Validate quantities
+    if ((a4Pockets + cdPockets) > totalQty) {
+        target.val(target.val() - 1)
+        alert("The sum of A4 pockets and CD pockets must be less than or equal to the total number of copies.");
+        return false;
+    }
+
+    // Update visibility of pockets fields based on paper size
+    var pocketsFields = card.find('.searche__wrapp').has('[name="hard_binding_a4_pockets[]"], [name="hard_binding_cd_pockets[]"]');
+    if (paperSize === "A4 - Full") {
+        pocketsFields.show();
+    } else {
+        pocketsFields.hide();
+    }
+}
+
 function get_rate(paper_type, color) {
     if (paper_type == "Paper One 100 GSM or Equivalent") {
-        if (color == "Normal - Black & White") {
+        if (color == "All Black & White") {
             return {
                 first_page: 6,
                 other_page: 2
             }
-        } else if (color == "Normal - Color") {
+        } else if (color == "Black & White & Color") {
             return {
                 first_page: 10,
                 other_page: 8
             }
-        } else if (color == "Royal - Black & White") {
+        } else if (color == "Royal Print") {
             return {
                 first_page: 8,
                 other_page: 5
@@ -2543,17 +2834,17 @@ function get_rate(paper_type, color) {
             }
         }
     } else if (paper_type == "Bond Paper 85 GSM or Equivalent") {
-        if (color == "Normal - Black & White") {
+        if (color == "All Black & White") {
             return {
                 first_page: 6,
                 other_page: 2
             }
-        } else if (color == "Normal - Color") {
+        } else if (color == "Black & White & Color") {
             return {
                 first_page: 10,
                 other_page: 8
             }
-        } else if (color == "Royal - Black & White") {
+        } else if (color == "Royal Print") {
             return {
                 first_page: 8,
                 other_page: 5
@@ -2570,17 +2861,17 @@ function get_rate(paper_type, color) {
             }
         }
     } else {
-        if (color == "Normal - Black & White") {
+        if (color == "All Black & White") {
             return {
                 first_page: 5,
                 other_page: 1.5
             }
-        } else if (color == "Normal - Color") {
+        } else if (color == "Black & White & Color") {
             return {
                 first_page: 10,
                 other_page: 8
             }
-        } else if (color == "Royal - Black & White") {
+        } else if (color == "Royal Print") {
             return {
                 first_page: 6,
                 other_page: 4
@@ -2741,8 +3032,8 @@ function generate_order_summery() {
         soft_binding_other_details,
         synopsis_bindings_orders,
         soft_binding_other_details,
-        color_page,
-        bw_page
+        thesis_color_page,
+        thesis_bw_page
     }
 
     // Hard Binding Order Summary DOM
@@ -2751,19 +3042,19 @@ function generate_order_summery() {
         let rate = get_rate(order.hard_binding_paper_type, order.hard_binding_paper_color)
         let total = 0
 
-        let number_of_color_page = color_page
-        let number_of_bw_page = bw_page
+        let number_of_thesis_color_page = thesis_color_page
+        let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
 
-        if (order.hard_binding_paper_color == "Normal - Black & White" || order.hard_binding_paper_color ==
-            "Royal - Black & White") {
-            number_of_bw_page = number_of_bw_page + number_of_color_page
-            number_of_color_page = 0
-            number_of_total_page = number_of_bw_page
+        if (order.hard_binding_paper_color == "All Black & White" || order.hard_binding_paper_color ==
+            "Royal Print") {
+            number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
+            number_of_thesis_color_page = 0
+            number_of_total_page = number_of_thesis_bw_page
         } else {
-            number_of_color_page = number_of_color_page + number_of_bw_page
-            number_of_bw_page = 0
-            number_of_total_page = number_of_color_page
+            number_of_thesis_color_page = number_of_thesis_color_page + number_of_thesis_bw_page
+            number_of_thesis_bw_page = 0
+            number_of_total_page = number_of_thesis_color_page
         }
 
         // Calculate Page Printing Price
@@ -2871,19 +3162,19 @@ function generate_order_summery() {
         let rate = get_rate(order.soft_binding_paper_type, order.soft_binding_paper_color)
         let total = 0
 
-        let number_of_color_page = color_page
-        let number_of_bw_page = bw_page
+        let number_of_thesis_color_page = thesis_color_page
+        let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
 
-        if (order.soft_binding_paper_color == "Normal - Black & White" || order.soft_binding_paper_color ==
-            "Royal - Black & White") {
-            number_of_bw_page = number_of_bw_page + number_of_color_page
-            number_of_color_page = 0
-            number_of_total_page = number_of_bw_page
+        if (order.soft_binding_paper_color == "All Black & White" || order.soft_binding_paper_color ==
+            "Royal Print") {
+            number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
+            number_of_thesis_color_page = 0
+            number_of_total_page = number_of_thesis_bw_page
         } else {
-            number_of_color_page = number_of_color_page + number_of_bw_page
-            number_of_bw_page = 0
-            number_of_total_page = number_of_color_page
+            number_of_thesis_color_page = number_of_thesis_color_page + number_of_thesis_bw_page
+            number_of_thesis_bw_page = 0
+            number_of_total_page = number_of_thesis_color_page
         }
 
         // Calculate Page Printing Price
@@ -2985,19 +3276,19 @@ function generate_order_summery() {
         let rate = get_rate(order.synopsis_binding_paper_type, order.synopsis_binding_paper_color)
         let total = 0
 
-        let number_of_color_page = color_page
-        let number_of_bw_page = bw_page
+        let number_of_thesis_color_page = thesis_color_page
+        let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
 
-        if (order.synopsis_binding_paper_color == "Normal - Black & White" || order.synopsis_binding_paper_color ==
-            "Royal - Black & White") {
-            number_of_bw_page = number_of_bw_page + number_of_color_page
-            number_of_color_page = 0
-            number_of_total_page = number_of_bw_page
+        if (order.synopsis_binding_paper_color == "All Black & White" || order.synopsis_binding_paper_color ==
+            "Royal Print") {
+            number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
+            number_of_thesis_color_page = 0
+            number_of_total_page = number_of_thesis_bw_page
         } else {
-            number_of_color_page = number_of_color_page + number_of_bw_page
-            number_of_bw_page = 0
-            number_of_total_page = number_of_color_page
+            number_of_thesis_color_page = number_of_thesis_color_page + number_of_thesis_bw_page
+            number_of_thesis_bw_page = 0
+            number_of_total_page = number_of_thesis_color_page
         }
 
         // Calculate Page Printing Price
