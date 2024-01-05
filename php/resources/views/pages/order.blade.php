@@ -2581,6 +2581,14 @@ $(document).ready(function(event) {
             </div>
         </div>
         `);
+        
+        // Soft Binding A4, CD and Total Quantity Validation Logic
+        $('.soft_binding_card').each(function() {
+            var card = $(this);
+            card.find('[name="soft_binding_qty[]"], [name="soft_binding_a4_pockets[]"], [name="soft_binding_cd_pockets[]"], [name="soft_binding_paper_size[]"]').on('change', function() {
+                validateSoftBinding(card, $(this));
+            });
+        });
     });
 
     // Synopsis Binding Create Button
@@ -2755,6 +2763,14 @@ $(document).ready(function(event) {
         });
     });
 
+    // Soft Binding A4, CD and Total Quantity Validation Logic
+    $('.soft_binding_card').each(function() {
+        var card = $(this);
+        card.find('[name="soft_binding_qty[]"], [name="soft_binding_a4_pockets[]"], [name="soft_binding_cd_pockets[]"], [name="soft_binding_paper_size[]"]').on('change', function() {
+            validateSoftBinding(card, $(this));
+        });
+    });
+
     setInterval(function() {
         $(".hard_binding_price").each(function() {
             $(this).text(hard_binding_total_price);
@@ -2798,6 +2814,31 @@ function validateHardBinding(card, target) {
 
     // Update visibility of pockets fields based on paper size
     var pocketsFields = card.find('.searche__wrapp').has('[name="hard_binding_a4_pockets[]"], [name="hard_binding_cd_pockets[]"]');
+    if (paperSize === "A4 - Full") {
+        pocketsFields.show();
+    } else {
+        pocketsFields.hide();
+    }
+}
+
+// Hard Binding Validate Logic
+function validateSoftBinding(card, target) {
+    console.log(target)
+    var totalQty = parseInt(card.find('[name="soft_binding_qty[]"]').val()) || 0;
+    var a4Pockets = parseInt(card.find('[name="soft_binding_a4_pockets[]"]').val()) || 0;
+    var cdPockets = parseInt(card.find('[name="soft_binding_cd_pockets[]"]').val()) || 0;
+    var paperSize = card.find('[name="soft_binding_paper_size[]"]').val();
+
+    console.log({totalQty, a4Pockets, cdPockets, paperSize})
+    // Validate quantities
+    if ((a4Pockets + cdPockets) > totalQty) {
+        target.val(target.val() - 1)
+        alert("The sum of A4 pockets and CD pockets must be less than or equal to the total number of copies.");
+        return false;
+    }
+
+    // Update visibility of pockets fields based on paper size
+    var pocketsFields = card.find('.searche__wrapp').has('[name="soft_binding_a4_pockets[]"], [name="soft_binding_cd_pockets[]"]');
     if (paperSize === "A4 - Full") {
         pocketsFields.show();
     } else {
