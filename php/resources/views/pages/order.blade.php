@@ -107,36 +107,7 @@
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <div id="file_upload_details"></div>
-                                                <div class="document__detailsone mb-4">
-                                                    <h3>Select type of Binding</h3>
-                                                    <div class="Select_type">
-                                                        <div class="check__holder">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" id="customCheckbox"
-                                                                    name="hard_binding" class="custom-control-input" />
-                                                                <label class="custom-control-label"
-                                                                    for="customCheckbox">Hard Binding</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="check__holder">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" id="customCheckbox1"
-                                                                    name="soft_binding" class="custom-control-input" />
-                                                                <label class="custom-control-label"
-                                                                    for="customCheckbox1">Soft Binding</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="check__holder d-none">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" id="customCheckbox2"
-                                                                    name="synopsis_binding"
-                                                                    class="custom-control-input" />
-                                                                <label class="custom-control-label"
-                                                                    for="customCheckbox2">Synopsis</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="ordersummary__wrapp">
@@ -629,7 +600,7 @@
 
                                                         </div>
                                                         <div class="col-md-5 p-0 mt-5">
-                                                            <div class="searche__wrapp">
+                                                            {{-- <div class="searche__wrapp">
                                                                 <p>Covering Text Colour <a href="#"
                                                                         data-toggle="tooltip" title="Hooray!">
                                                                         <i class=" fa-solid fa-circle-info"
@@ -644,7 +615,7 @@
                                                                     <option value="Silver">Silver</option>
                                                                     <option value="Golden">Golden</option>
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="btn-container">
                                                                 <p>Cover Page Design <a href="#" data-toggle="tooltip"
                                                                         title="Hooray!">
@@ -1259,7 +1230,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 p-0 mt-5">
-                                                            <div class="searche__wrapp">
+                                                            {{-- <div class="searche__wrapp">
                                                                 <p>Covering Text Colour <a href="#"
                                                                         data-toggle="tooltip" title="Hooray!">
                                                                         <i class=" fa-solid fa-circle-info"
@@ -1274,7 +1245,7 @@
                                                                     <option value="Silver">Silver</option>
                                                                     <option value="Golden">Golden</option>
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="btn-container">
                                                                 <p>Cover Page Design <a href="#" data-toggle="tooltip"
                                                                         title="Hooray!">
@@ -1601,12 +1572,26 @@
                                                 <div>
                                                     <div class="binding__details">
                                                         <div class="spine__holder">
+                                                            <div class="form-group form-check">
+                                                                <input type="radio" class="form-check-input"
+                                                                    id="exampleCheck1" name="synopsis_binding_cover_design"
+                                                                    value="Custom" />
+                                                                <label class="form-check-label"
+                                                                    for="exampleCheck1">Upload</label>
+                                                            </div>
                                                             <div class="form-group form-check mr-3">
                                                                 <input type="radio" class="form-check-input"
                                                                     id="exampleCheck1" name="synopsis_binding_cover_design"
-                                                                    value="Same as Hard/ Soft Binding Cover" />
+                                                                    value="Same as Hard Binding Cover" />
                                                                 <label class="form-check-label"
-                                                                    for="exampleCheck1">Same as Hard/ Soft Binding Cover</label>
+                                                                    for="exampleCheck1">Same as Hard Binding Cover</label>
+                                                            </div>
+                                                            <div class="form-group form-check mr-3">
+                                                                <input type="radio" class="form-check-input"
+                                                                    id="exampleCheck1" name="synopsis_binding_cover_design"
+                                                                    value="Same as Soft Binding Cover" />
+                                                                <label class="form-check-label"
+                                                                    for="exampleCheck1">Same as Soft Binding Cover</label>
                                                             </div>
                                                             <div class="form-group form-check">
                                                                 <input type="radio" class="form-check-input"
@@ -1616,6 +1601,49 @@
                                                                     for="exampleCheck1">Don't Need Cover Printing</label>
                                                             </div>
                                                         </div>
+                                                        <div class="btn-container" id="synopsis_upload">
+                                                                <p>Cover Page Design <a href="#" data-toggle="tooltip"
+                                                                        title="Hooray!">
+                                                                        <i class=" fa-solid fa-circle-info"
+                                                                            aria-hidden="true"></i>
+                                                                    </a></p>
+                                                                <!--the three icons: default, ok file (img), error file (not an img)-->
+                                                                <div class="all__holder">
+                                                                    <h1 class="imgupload">
+                                                                        <img src="./web/images/icon _File Upload_.png"
+                                                                            alt="" class="m-auto d-block" />
+                                                                    </h1>
+                                                                    <h1 class="imgupload ok">
+                                                                        <i class="fa fa-check"></i>
+                                                                    </h1>
+                                                                    <h1 class="imgupload stop">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </h1>
+                                                                    <!--this field changes dinamically displaying the filename we are trying to upload-->
+                                                                    <h6>Upload Design</h6>
+                                                                </div>
+                                                                <p id="namefile1">
+                                                                    (Support document Word or Pdf)
+                                                                    <a href="#" data-toggle="tooltip" title="Hooray!">
+                                                                        <i class=" fa-solid fa-circle-info"
+                                                                            aria-hidden="true"></i>
+                                                                    </a>
+                                                                </p>
+                                                                <!--our custom btn which which stays under the actual one-->
+                                                                <button type="button" id="btnup" class="btn btn-lg">
+                                                                    Browse for your file!
+                                                                </button>
+                                                                <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
+                                                                <input type="file" class="fileup" value="" name="fileup"
+                                                                    id="hard_binding_cover_design" name="hard_binding_cover_design" />
+                                                                <div class="form-group form-check mt-3 d-none">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="exampleCheck1"
+                                                                        name="hard_binding_same_as_cover" />
+                                                                    <label class="form-check-label"
+                                                                        for="exampleCheck1">Same as thesis cover</label>
+                                                                </div>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1870,7 +1898,7 @@ $(document).ready(function(event) {
             $("#file_upload_details").append(`
             <div id="thesis_file_details">
                 <div class="document__details mb-4">
-                    <h3>Thesis File Name : <span id="file_name"></span></h3>
+                    <h3>Thesis File Name : <span id="file_name">${$('#thesis')[0].files[0].name}</span></h3>
                     <table class="table table-striped">
                         <tbody>
                             <tr>
@@ -1887,6 +1915,37 @@ $(document).ready(function(event) {
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            
+            <div class="document__detailsone mb-4">
+                <h3>Select type of Binding</h3>
+                <div class="Select_type">
+                    <div class="check__holder">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="customCheckbox"
+                                name="hard_binding" class="custom-control-input" />
+                            <label class="custom-control-label"
+                                for="customCheckbox">Hard Binding</label>
+                        </div>
+                    </div>
+                    <div class="check__holder">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="customCheckbox1"
+                                name="soft_binding" class="custom-control-input" />
+                            <label class="custom-control-label"
+                                for="customCheckbox1">Soft Binding</label>
+                        </div>
+                    </div>
+                    <div class="check__holder d-none">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="customCheckbox2"
+                                name="synopsis_binding"
+                                class="custom-control-input" />
+                            <label class="custom-control-label"
+                                for="customCheckbox2">Synopsis</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             `)
@@ -1939,7 +1998,7 @@ $(document).ready(function(event) {
             $("#file_upload_details").append(`
             <div id="synopsis_file_details">
                 <div class="document__details mb-4">
-                    <h3>Synopsis File Name : <span id="file_name"></span></h3>
+                    <h3>Synopsis File Name : <span id="file_name">${$('#synopsis')[0].files[0].name}</span></h3>
                     <table class="table table-striped">
                         <tbody>
                             <tr>
@@ -2038,7 +2097,7 @@ $(document).ready(function(event) {
     });
     
     // If User click on hard binding
-    $("input[name='hard_binding']").on("change", function() {
+    $(document).on("change", "input[name='hard_binding']", function() {
         // If hard binding is checked
         if (this.checked) {
             // Add Cover Price
@@ -2067,7 +2126,7 @@ $(document).ready(function(event) {
     });
 
     // If User click on soft binding
-    $("input[name='soft_binding']").on("change", function() {
+    $(document).on("change", "input[name='soft_binding']", function() {
         // If soft binding is checked
         if (this.checked) {
             // Add Cover Price
@@ -2096,7 +2155,7 @@ $(document).ready(function(event) {
     });
 
     // If User click on synopsis binding
-    $("input[name='synopsis_binding']").on("change", function() {
+    $(document).on("change", "input[name='synopsis_binding']", function() {
         // If synopsis binding is checked
         if (this.checked) {
             // Add Cover Price
@@ -3138,29 +3197,6 @@ function generate_order_summery() {
                         <div class="printing__wrapp p-4 bg-white mt-5 hard_binding_order_summery">
                         <h3 class="mb-4">Hard Binding & Printing</h3>
                         <div class="printing__Details table-responsive">
-                            <p>Binding Details <a href="#"
-                                data-toggle="tooltip" title="Hooray!">
-                                <i class=" fa-solid fa-circle-info"
-                                    aria-hidden="true"></i>
-                            </a></p>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Copies</th>
-                                        <th scope="col" class="text-right">Cost</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Hard Bind</td>
-                                        <td>${hard_binding_copies}</td>
-                                        <td class="text-right">₹ ${hard_binding_total_price}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="printing__Details table-responsive">
                             <p>Print Details<a href="#"
                                 data-toggle="tooltip" title="Hooray!">
                                 <i class=" fa-solid fa-circle-info"
@@ -3185,6 +3221,29 @@ function generate_order_summery() {
                                 <h4>Sub Total</h4>
                                 <h5>₹ ${hard_binding_total_price}</h5>
                             </div>
+                        </div>
+                        <div class="printing__Details table-responsive">
+                            <p>Binding Details <a href="#"
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hard Bind</td>
+                                        <td>${hard_binding_copies}</td>
+                                        <td class="text-right">₹ ${hard_binding_total_price}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="edit__wrapp" id="#step-3-link">
                             <h6>
@@ -3250,30 +3309,7 @@ function generate_order_summery() {
             `<div class="multisteps-form__content">
                     <div>
                         <div class="printing__wrapp p-4 bg-white mt-5 soft_binding_order_summery">
-                        <h3 class="mb-4">soft Binding & Printing</h3>
-                        <div class="printing__Details table-responsive">
-                            <p>Binding Details<a href="#"
-                                data-toggle="tooltip" title="Hooray!">
-                                <i class=" fa-solid fa-circle-info"
-                                    aria-hidden="true"></i>
-                            </a></p>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Copies</th>
-                                        <th scope="col" class="text-right">Cost</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>soft Bind</td>
-                                        <td>${soft_binding_copies}</td>
-                                        <td class="text-right">₹ ${soft_binding_total_price}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <h3 class="mb-4">Soft Binding & Printing</h3>
                         <div class="printing__Details table-responsive">
                             <p>Print Details<a href="#"
                                 data-toggle="tooltip" title="Hooray!">
@@ -3300,6 +3336,29 @@ function generate_order_summery() {
                                 <h5>₹ ${soft_binding_total_price}</h5>
                             </div>
                         </div>
+                        <div class="printing__Details table-responsive">
+                            <p>Binding Details<a href="#"
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>soft Bind</td>
+                                        <td>${soft_binding_copies}</td>
+                                        <td class="text-right">₹ ${soft_binding_total_price}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="edit__wrapp">
                             <h6>
                             <i class="fa-solid fa-pen-to-square"></i> Edit Order
@@ -3310,7 +3369,7 @@ function generate_order_summery() {
                 </div>`
         )
     }
-
+    
     // Synopsis Binding Order Summery DOm
     var synopsis_binding_order_html = ""
     synopsis_bindings_orders.forEach(order => {
@@ -3366,29 +3425,6 @@ function generate_order_summery() {
                         <div class="printing__wrapp p-4 bg-white mt-5 synopsis_binding_order_summery">
                         <h3 class="mb-4">Synopsis Binding & Printing</h3>
                         <div class="printing__Details table-responsive">
-                            <p>Binding Details<a href="#"
-                                data-toggle="tooltip" title="Hooray!">
-                                <i class=" fa-solid fa-circle-info"
-                                    aria-hidden="true"></i>
-                            </a></p>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Copies</th>
-                                        <th scope="col" class="text-right">Cost</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Synopsis Bind</td>
-                                        <td>${synopsis_binding_copies}</td>
-                                        <td class="text-right">₹ ${synopsis_binding_total_price}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="printing__Details table-responsive">
                             <p>Print Details<a href="#"
                                 data-toggle="tooltip" title="Hooray!">
                                 <i class=" fa-solid fa-circle-info"
@@ -3414,6 +3450,29 @@ function generate_order_summery() {
                                 <h5>₹ ${synopsis_binding_total_price}</h5>
                             </div>
                         </div>
+                        <div class="printing__Details table-responsive">
+                            <p>Binding Details<a href="#"
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Synopsis Bind</td>
+                                        <td>${synopsis_binding_copies}</td>
+                                        <td class="text-right">₹ ${synopsis_binding_total_price}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="edit__wrapp">
                             <h6>
                             <i class="fa-solid fa-pen-to-square"></i> Edit Order
@@ -3425,9 +3484,39 @@ function generate_order_summery() {
         )
     }
 
+    let sub_amount = hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price
+    let cgst = 17
+    let sgst = 17
+    let total_amount = sub_amount + ((sub_amount * (cgst + sgst)) / 100)
+
+    $("#order_summery").append(`
+        <div class="table-responsive">
+           <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Sub Total</td>
+                        <td>${sub_amount} INR</td>    
+                    </tr>  
+                    <tr>
+                        <td>CGST</td>
+                        <td>${cgst} INR</td>    
+                    </tr>  
+                    <tr>
+                        <td>SGST</td>
+                        <td>${sgst} INR</td>    
+                    </tr>  
+                    <tr>
+                        <td>Total</td>
+                        <td>${total_amount} INR</td>    
+                    </tr>    
+                </tbody>
+            </table>
+        </div>
+    `)
+
     let order_summery_json = JSON.stringify(order_summery)
     $("#order_summery").append(`
-        <div class="button-row d-flex mt-4">
+        <div class="button-row mt-4">
             <form action="{{ route('web.checkout') }}" method="POST">
             @csrf
                 <input type="text" class="d-none" name="order" value='${order_summery_json}' />
@@ -3437,7 +3526,7 @@ function generate_order_summery() {
                 <input type="text" class="d-none" name="soft_binding_total_price" value="${soft_binding_total_price}" />
                 <input type="text" class="d-none" name="synopsis_binding_total_price" value="${synopsis_binding_total_price}" />
                 
-                <button class="btn ml-auto next__button" type="submit" title="Send">Confrom Order</button>
+                <button class="btn ml-auto next__buttonone" type="submit" title="Send">Confrom Order</button>
             </form>
         </div>
     `)

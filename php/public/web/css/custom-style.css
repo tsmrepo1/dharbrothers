@@ -1712,3 +1712,8 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
         border-bottom-left-radius: 6px;
       }
     }
+
+
+    .next__buttonone{padding: 10px 30px;
+      background: #FAEDAE;
+      border: none;display: flex;}
