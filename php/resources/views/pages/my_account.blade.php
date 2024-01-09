@@ -321,7 +321,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </div>
     @endif
 
-    <div class="main-card mb-3 card d-none">
+    <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">User Timeline</h5>
             <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">

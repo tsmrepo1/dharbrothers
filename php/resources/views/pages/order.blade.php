@@ -1572,7 +1572,7 @@
                                                 <div>
                                                     <div class="binding__details">
                                                         <div class="spine__holder">
-                                                            <div class="form-group form-check">
+                                                            <div class="form-group form-check mr-3">
                                                                 <input type="radio" class="form-check-input"
                                                                     id="exampleCheck1" name="synopsis_binding_cover_design"
                                                                     value="Custom" />
