@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\UploadfileController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\TestimonialPageController;
@@ -60,6 +61,8 @@ Route::middleware([
     Route::resource("banners", BannerController::class);
     Route::get('/admin/orders', [DashboardController::class, "orders"])->name('admin.orders');
     Route::get('/admin/order-detail/{order_id}', [DashboardController::class, "single_order"])->name('admin.single_order');
-
+    Route::post('/upload-documents', [UploadfileController::class, 'upload'])->name('doc.uploading');
     Route::get('/my-account', [UserDashboard::class, "myaccount"])->name('user.myaccount');
+    Route::post('/submit-comment', [UserDashboard::class, "submitcmmnt"])->name('submit-comment');
+    Route::post('/design-approval', [UserDashboard::class, "apprv"])->name('approval');
 });

@@ -84,8 +84,9 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     <header class="p-4">
         <button class="btn  btn-close"> &times Close </button>
     </header>
-    
-    @if($hard_binding_qty > 0)
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
+             @if($hard_binding_qty > 0)
     <div class="printing__wrapp p-4 bg-white mt-5">
         <h3 class="mb-4">Hard Binding &amp; Printing</h3>
         <div class="printing__Details table-responsive">
@@ -544,6 +545,45 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
             <!-- Status Upload  -->
         </div>
     </div>
+
+        </div>
+        <div class="offcanvas-body" id="offcanvas-content">
+        
+    </div>
+        <!-- <div class="col-sm-4 mt-5">
+      <h3 class="mb-4">It is a long established</h3>
+      <div class="approve__wrapp p-4">
+        <div class="preview__holder">
+          <div class="ulaa">
+           <div id="pdfPreview"></div>
+           <div class="button_wrapp">
+            <button type="button" class="btn btn-secondary">Preview</button>
+           <a href="#"><i class="fa-solid fa-circle-down"></i></a>
+           </div>
+        
+          </div>
+        <div class="app__text">
+          <h3>It is a long established</h3>
+          <button type="button" class="btn btn-success">Approve</button>
+          <button type="button" class="btn btn-danger" id="formButton">Reject</button>
+          <form id="form1">
+
+   
+
+ 
+  <textarea name="comment" placeholder=" Enter your comment here">
+  
+  </textarea>
+   
+  <button type="submit" id="submit">Submit</button>
+  </form>
+        </div>
+        
+        </div>
+      </div> -->
+    </div>
+    </div>
+   
 </aside>
 
 
@@ -785,7 +825,23 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                             <td>{{date('d-m-Y', strtotime($order->created_at))}}</td>
                                             <td>{{$order->payment_status}}</td>
                                             <td>
-                                                <button data-trigger="#my_offcanvas2" class="btn" type="button" data-toggle="tooltip" data-placement="top" title="Details"> <i class="fa-solid fa-chevron-right"></i> </button>
+                                                <!-- <button data-trigger="#my_offcanvas2" class="btn" type="button" data-toggle="tooltip" data-placement="top" title="Details"> <i class="fa-solid fa-chevron-right"></i> </button> -->
+                                                <button 
+    class="btn details-button" 
+    type="button" 
+    data-toggle="tooltip" 
+    data-placement="top" 
+    title="Details" 
+    data-trigger="#my_offcanvas2"
+    data-order-id="{{ $order->order_id }}"
+    data-info1="{{ $order->thesis_main }}" 
+    data-info2="{{ $order->thesis_hard_cover }}" 
+    data-info3="{{ $order->thesis_soft_cover }}" 
+    data-info4="{{ $order->synopsis_main }}" 
+    data-info5="{{ $order->synopsis_cover }}">
+    <i class="fa-solid fa-chevron-right"></i>
+</button>
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -958,8 +1014,181 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         </div>
       </div>
     </div>
-
+   
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    var laravelBaseUrl = "{{ url('/') }}";
+    document.querySelectorAll('.details-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var orderId = this.getAttribute('data-order-id');
+            var info1 = this.getAttribute('data-info1');
+            var info2 = this.getAttribute('data-info2');
+            var info3 = this.getAttribute('data-info3');
+            var info4 = this.getAttribute('data-info4');
+            var info5 = this.getAttribute('data-info5');
+
+            var container = document.getElementById('offcanvas-content');
+            container.innerHTML = ''; // Clear previous content
+
+            var infos = [info1, info2, info3, info4, info5].filter(info => info !== "");
+
+            infos.forEach((info, index) => {
+                var div = createDivStructure(info, index, orderId);
+                container.appendChild(div);
+            });
+
+            var offcanvas = new bootstrap.Offcanvas(document.getElementById('my_offcanvas2'));
+            offcanvas.show();
+        });
+    });
+
+    function createDivStructure(info, index, orderId) {
+    var basePath = laravelBaseUrl + '/storage/';
+    var fileUrl = info ? basePath + info : '';
+    var content;
+    var uniqueId = 'form-' + index;
+    var approveButtonId = 'approveButton-' + index; // Unique ID for each approve button
+    var rejectButtonId = 'rejectButton-' + index; // Unique ID for each reject button
+
+    if (info) {
+        var fileExtension = info.split('.').pop().toLowerCase();
+        if (fileExtension === 'pdf') {
+            content = `<iframe src="${fileUrl}" style="width:100px; height:200px;" frameborder="0"></iframe>`;
+        } else {
+            content = `<img src="${fileUrl}" style="width:100px; height:200px;" alt="Preview" />`;
+        }
+    } else {
+        content = '';
+    }
+
+    var div = document.createElement('div');
+    div.className = 'approve__wrapp p-4';
+    div.innerHTML = `
+        <div class="preview__holder">
+            <div class="ulaa">
+                <div id="pdfPreview-${index}">
+                    ${content}
+                </div>
+                <div class="button_wrapp">
+                    <button type="button" class="btn btn-secondary">Preview</button>
+                    <a href="${fileUrl}" target="_blank"><i class="fa-solid fa-circle-down"></i> Download</a>
+                </div>
+            </div>
+            <div class="app__text">
+                <h3>File: ${info}</h3>
+                <button type="button" class="btn btn-success" id="${approveButtonId}">Approve</button>
+                <button type="button" class="btn btn-danger" id="${rejectButtonId}">Reject</button>
+                <form id="${uniqueId}" style="display:none;" data-order-id="${orderId}">
+                    <textarea name="comment" placeholder="Enter your comment here"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>`;
+
+    // Event listener for the reject button
+    div.querySelector(`#${rejectButtonId}`).addEventListener('click', function() {
+        var form = div.querySelector(`#${uniqueId}`);
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Event listener for the approve button
+    div.querySelector(`#${approveButtonId}`).addEventListener('click', function() {
+        fetch('{{ route("approval") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': $('input[name="_token"]').val() // CSRF token
+            },
+            body: JSON.stringify({
+                orderId: orderId,
+                slabId: index,
+                fileUrl: fileUrl
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); 
+        })
+        .then(data => {
+            console.log('Approval successful', data);
+            // Hide both Approve and Reject buttons upon successful approval
+            document.getElementById(approveButtonId).style.display = 'none';
+            document.getElementById(rejectButtonId).style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Approval failed', error);
+        });
+    });
+
+    // Existing form submission event
+    var form = div.querySelector(`#${uniqueId}`);
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var comment = form.querySelector('textarea[name="comment"]').value;
+
+        // AJAX call for form submission
+        fetch('{{ route("submit-comment") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': $('input[name="_token"]').val() // CSRF token
+            },
+            body: JSON.stringify({
+                orderId: orderId,
+                slabId: index,
+                fileUrl: fileUrl,
+                comment: comment
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Comment submission successful', data);
+            // Optionally, also hide the buttons upon successful comment submission
+            document.getElementById(approveButtonId).style.display = 'none';
+            document.getElementById(rejectButtonId).style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Comment submission failed', error);
+        });
+    });
+
+    return div;
+}
+
+
+
+
+
+
+
+
+           var pdfUrl = "https://d2xe8shibzpjog.cloudfront.net/Notice/makaut1/2905_1702468867.pdf";
+        if (pdfUrl) {
+            var pdfPreviewContainer = document.getElementById('pdfPreview');
+
+            // Create an iframe to display the PDF
+            var iframe = document.createElement('iframe');
+            iframe.src = pdfUrl + "#toolbar=0"; // Append "#toolbar=0" to the URL to remove the toolbar
+            iframe.style.width = '600px'; // Set a larger width to load the PDF properly
+            iframe.style.height = '600px'; // Set a larger height to load the PDF properly
+            iframe.style.overflow = 'hidden'; // Hide the overflow
+            iframe.scrolling = 'no'; // Disable scrolling
+
+            // Clear previous content and append the iframe
+            pdfPreviewContainer.innerHTML = '';
+            pdfPreviewContainer.appendChild(iframe);
+        } else {
+            alert("Please enter a URL.");
+        }
+    </script>
 <script>
     $(document).ready(function(){
         $('textarea[name="message"]').change(function(){
@@ -969,4 +1198,11 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         });
     });
 </script>
+ <script>
+      $(document).ready(function(){
+    $("#formButton").click(function(){
+        $("#form1").toggle();
+    });
+});
+    </script>
 @stop

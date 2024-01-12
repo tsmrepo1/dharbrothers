@@ -90,6 +90,7 @@
                                     <p>Billing State: {{$billing_address->billing_state}}</p>
                                     <p>Billing PIN: {{$billing_address->billing_pin}}</p>
                                 </div>
+                                @if($shipping_address)
                                 <div class="col-md-3">
                                     <p>Shipping Street: {{$shipping_address->shipping_street}}</p>
                                     <p>Shipping Apartment: {{$shipping_address->shipping_apartment}}</p>
@@ -98,6 +99,7 @@
                                     <p>Shipping State:{{$shipping_address->shipping_state}} </p>
                                     <p>Shipping PIN: {{$shipping_address->shipping_pin}}</p>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -107,8 +109,8 @@
                             <h4>Printing and Binding Details</h4>
                                 @php
                                 $order_detail = json_decode($order->order_detail);
-                                $color_page = $order_detail->color_page;
-                                $bw_page = $order_detail->bw_page;
+                                $color_page = property_exists($order_detail, 'color_page') ? $order_detail->color_page : "0";
+                                $bw_page = property_exists($order_detail, 'bw_page') ? $order_detail->bw_page : "0";
 
                                 $hard_binding_qty = 0;
                                 $soft_binding_qty = 0;
@@ -137,7 +139,9 @@
                                 @endphp
                                 @endforeach
 
-                                <p>Thesis File: <a class="btn btn-sm btn-info" target="_blank" href="{{url('storage')}}/{{$order_detail->thesis_file}}">View</a></p>
+                                @if(!empty($order_detail->thesis_file))
+    <p>Thesis File: <a class="btn btn-sm btn-info" target="_blank" href="{{ url('storage/' . $order_detail->thesis_file) }}">View</a></p>
+@endif @if (property_exists($order_detail, 'hard_bindings_orders'))
                                 @if($hard_binding_qty > 0)
                                     <div>
                                         <div class="table-responsive">
@@ -159,6 +163,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                
+                                               
+                                               
                                                     @foreach($order_detail->hard_bindings_orders as $hard_order)
                                                     @php
                                                     $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
@@ -213,17 +220,34 @@
                                                     $hard_binding_price = $hard_binding_price + $total;
                                                     @endphp
                                                     <tr>
+                                                    @if(isset($hard_order->hard_binding_paper_type))
                                                         <td>{{ $hard_order->hard_binding_paper_type }}</td>
+                                                        @endif
+                                                        @if(isset($hard_order->hard_binding_paper_size))
                                                         <td>{{ $hard_order->hard_binding_paper_size }}</td>
+                                                        @endif
+                                                        @if(isset($hard_order->hard_binding_paper_color))
                                                         <td>{{ $hard_order->hard_binding_paper_color }}</td>
+                                                        @endif
+                                                        @if(isset($hard_order->hard_binding_printing_type))
                                                         <td>{{ $hard_order->hard_binding_printing_type }}</td>
+                                                        @endif
+                                                        @if(isset($hard_order->hard_binding_a4_pockets))
                                                         <td>{{ $hard_order->hard_binding_a4_pockets }}</td>
+                                                        @endif
+                                                         @if(isset($hard_order->hard_binding_cd_pockets))
                                                         <td>{{ $hard_order->hard_binding_cd_pockets }}</td>
+                                                        @endif
+                                                        @if(isset($hard_order->hard_binding_information))
                                                         <td>{{ $hard_order->hard_binding_information }}</td>
+                                                        @endif
+                                                        @if(isset($hard_order->hard_binding_qty))
                                                         <td>{{ $hard_order->hard_binding_qty }}</td>
+                                                        @endif
                                                         <td class="text-right">₹ {{$total}}</td>
                                                     </tr>
                                                     @endforeach
+                                                    
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -242,10 +266,12 @@
                                             <p>Spine Top Content: {{ $order_detail->hard_binding_other_details->hard_binding_spine_top_content ?? ""}}</p>
                                             <p>Spine Middle Content: {{ $order_detail->hard_binding_other_details->hard_binding_spine_middle_content ?? "" }}</p>
                                             <p>Spine Bottom Content: {{ $order_detail->hard_binding_other_details->hard_binding_spine_bottom_content ?? ""}}</p>
+                                            
                                         </div>
                                     </div>
                                 @endif
-                            
+                                @endif
+                                @if (property_exists($order_detail, 'soft_bindings_orders'))
                                 @if($soft_binding_qty > 0)
                                     <div>
                                         <div class="table-responsive">
@@ -267,6 +293,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                               
                                                     @foreach($order_detail->soft_bindings_orders as $soft_order)
                                                     @php
                                                     $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
@@ -310,17 +337,34 @@
                                                     $soft_binding_price = $soft_binding_price + $total;
                                                     @endphp
                                                     <tr>
+                                                    @if(isset($soft_order->soft_binding_paper_type))
                                                         <td>{{ $soft_order->soft_binding_paper_type }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_paper_size))
                                                         <td>{{ $soft_order->soft_binding_paper_size }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_paper_color))
                                                         <td>{{ $soft_order->soft_binding_paper_color }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_printing_type))
                                                         <td>{{ $soft_order->soft_binding_printing_type }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_a4_pockets))
                                                         <td>{{ $soft_order->soft_binding_a4_pockets }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_cd_pockets))
                                                         <td>{{ $soft_order->soft_binding_cd_pockets }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_information))
                                                         <td>{{ $soft_order->soft_binding_information }}</td>
+                                                        @endif
+                                                        @if(isset($soft_order->soft_binding_qty))
                                                         <td>{{ $soft_order->soft_binding_qty }}</td>
+                                                        @endif
                                                         <td class="text-right">₹ {{$total}}</td>
                                                     </tr>
                                                     @endforeach
+                                                    
                                                     <tfoot>
                                                         <tr>
                                                             <td colspan="8">Total</td>
@@ -339,10 +383,12 @@
                                             <p>Spine Top Content: {{ $order_detail->soft_binding_other_details->soft_binding_spine_top_content ?? ""}}</p>
                                             <p>Spine Middle Content: {{ $order_detail->soft_binding_other_details->soft_binding_spine_middle_content ?? "" }}</p>
                                             <p>Spine Bottom Content: {{ $order_detail->soft_binding_other_details->soft_binding_spine_bottom_content ?? ""}}</p>
+                                            
                                         </div>
                                     </div>
                                 @endif
-                            
+                                @endif
+                                @if (property_exists($order_detail, 'synopsis_bindings_orders'))
                                 @if($synopsis_binding_qty > 0)
                                 <div>
                                     <div class="table-responsive">
@@ -404,14 +450,25 @@
                                                 $synopsis_binding_price = $synopsis_binding_price + $total;
                                                 @endphp
                                                 <tr>
+                                                @if(isset($synopsis_order->synopsis_binding_paper_type))
                                                     <td>{{ $synopsis_order->synopsis_binding_paper_type }}</td>
+                                                    @endif
+                                                    @if(isset($synopsis_order->synopsis_binding_paper_size))
                                                     <td>{{ $synopsis_order->synopsis_binding_paper_size }}</td>
+                                                    @endif
+                                                    @if(isset($synopsis_order->synopsis_binding_paper_color))
                                                     <td>{{ $synopsis_order->synopsis_binding_paper_color }}</td>
+                                                    @endif
+                                                    @if(isset($synopsis_order->synopsis_binding_printing_type))
                                                     <td>{{ $synopsis_order->synopsis_binding_printing_type }}</td>
+                                                    @endif
+                                                    @if(isset($synopsis_order->synopsis_binding_qty))
                                                     <td>{{ $synopsis_order->synopsis_binding_qty }}</td>
+                                                    @endif
                                                     <td class="text-right">₹ {{$total}}</td>
                                                 </tr>
                                                 @endforeach
+                                                
                                                 <tfoot>
                                                     <tr>
                                                         <td colspan="5">Total</td>
@@ -423,11 +480,53 @@
                                     </div>
 
                                     <div class="my-3">
-                                        <p>Cover Design: {{$order_detail->synopsis_binding_other_details->synopsis_binding_cover_design ?? ""}}</p>
+                                               
                                     </div>
                                 </div>
                                 @endif
+                                @endif
                         </div>
+                        <div class="documents-for-approval">
+    <h3>Documents for Approval</h3>
+@php
+$firstElement = $picsdet[0];
+$allColumnNames = array_keys($firstElement);
+$selectedColumnNames = array_slice($allColumnNames, 2, 5);
+@endphp
+    <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="file-upload-wrapper">
+        <input type="hidden" name="order_id" value="{{$order->order_id}}">
+
+        @if(($hard_binding_qty > 0) || ($soft_binding_qty > 0))
+                        <p>Upload thesis Document:</p>
+                                               <input type="file" name="thesis_main_doc" accept="image/*">
+                                               @if(($hard_binding_qty > 0))
+                                               <p>Upload Hard Copy cover Design:</p>
+                                               <input type="file" name="hard_cover_design" accept="image/*">
+                                               @endif
+                                               @if(($soft_binding_qty > 0))
+                                               <p>Upload Soft Copy cover Design:</p>
+                                               <input type="file" name="soft_cover_design" accept="image/*">
+                                               @endif
+                                               @endif
+                                               @if($synopsis_binding_qty > 0)
+                                               <p>Upload Synopsis Cover Design:</p>
+                                               <input type="file" name="synopsis_cover_design" accept="image/*">
+                                               <p>Upload Synopsis:</p>
+                                               <input type="file" name="synopsis_main_doc" accept="image/*">
+                                               @endif
+                                              
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="padding-top: 10px; padding-bottom: 10px;">Upload Files</button>
+    </form>
+    @foreach($selectedColumnNames as $columnName)
+      
+    @endforeach
+</div>
+
+                        
                     </div>
                 </div>
             </div>

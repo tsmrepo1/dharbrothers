@@ -2906,85 +2906,96 @@ function validateSoftBinding(card, target) {
 }
 
 function get_rate(paper_type, color) {
-    if (paper_type == "Paper One 100 GSM or Equivalent") {
-        if (color == "All Black & White") {
+    if (paper_type == "Paper One 100 GSM or Equivalent") 
+    {
+        if (color == "All Black & White") 
+        {
             return {
-                first_page: 6,
-                other_page: 2
+               bw:      {first_page: 6, other_page: 2},
+               color:   {first_page: 0, ther_page: 0}
             }
-        } else if (color == "Black & White & Color") {
+        } 
+        else if (color == "Black & White & Color") 
+        {
             return {
-                first_page: 10,
-                other_page: 8
+               bw:      {first_page: 6, other_page: 2},
+               color:   {first_page: 10, other_page: 8}
             }
-        } else if (color == "Royal Print") {
+        } 
+        else if (color == "Royal Print") 
+        {
             return {
-                first_page: 8,
-                other_page: 5
-            }
-        } else if (color == "Royal - Color") {
-            return {
-                first_page: 10,
-                other_page: 8
-            }
-        } else {
-            return {
-                first_page: 0,
-                other_page: 0
+               bw:      {first_page: 8, other_page: 5},
+               color:   {first_page: 10, other_page: 8}
             }
         }
-    } else if (paper_type == "Bond Paper 85 GSM or Equivalent") {
-        if (color == "All Black & White") {
+        else 
+        {
             return {
-                first_page: 6,
-                other_page: 2
-            }
-        } else if (color == "Black & White & Color") {
-            return {
-                first_page: 10,
-                other_page: 8
-            }
-        } else if (color == "Royal Print") {
-            return {
-                first_page: 8,
-                other_page: 5
-            }
-        } else if (color == "Royal - Color") {
-            return {
-                first_page: 10,
-                other_page: 8
-            }
-        } else {
-            return {
-                first_page: 0,
-                other_page: 0
+               bw:      {first_page: 0, other_page: 0},
+               color:   {first_page: 0, other_page: 0}
             }
         }
-    } else {
-        if (color == "All Black & White") {
+    } 
+    else if (paper_type == "Bond Paper 85 GSM or Equivalent") 
+    {
+        if (color == "All Black & White") 
+        {
             return {
-                first_page: 5,
-                other_page: 1.5
+               bw:      {first_page: 6, other_page: 2},
+               color:   {first_page: 0, ther_page: 0}
             }
-        } else if (color == "Black & White & Color") {
+        } 
+        else if (color == "Black & White & Color") 
+        {
             return {
-                first_page: 10,
-                other_page: 8
+               bw:      {first_page: 6, other_page: 2},
+               color:   {first_page: 10, other_page: 8}
             }
-        } else if (color == "Royal Print") {
+        } 
+        else if (color == "Royal Print") 
+        {
             return {
-                first_page: 6,
-                other_page: 4
+               bw:      {first_page: 8, other_page: 5},
+               color:   {first_page: 10, other_page: 8}
             }
-        } else if (color == "Royal - Color") {
+        }
+        else 
+        {
             return {
-                first_page: 10,
-                other_page: 8
+               bw:      {first_page: 0, other_page: 0},
+               color:   {first_page: 0, other_page: 0}
             }
-        } else {
+        }
+    } 
+    else 
+    {
+        if (color == "All Black & White") 
+        {
             return {
-                first_page: 0,
-                other_page: 0
+               bw:      {first_page: 5, other_page: 1.5},
+               color:   {first_page: 0, ther_page: 0}
+            }
+        } 
+        else if (color == "Black & White & Color") 
+        {
+            return {
+               bw:      {first_page: 5, other_page: 1.5},
+               color:   {first_page: 10, other_page: 8}
+            }
+        } 
+        else if (color == "Royal Print") 
+        {
+            return {
+               bw:      {first_page: 6, other_page: 4},
+               color:   {first_page: 10, other_page: 8}
+            }
+        }
+        else 
+        {
+            return {
+               bw:      {first_page: 0, other_page: 0},
+               color:   {first_page: 0, other_page: 0}
             }
         }
     }
