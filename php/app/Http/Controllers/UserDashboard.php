@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserdesignModel;
+use App\Models\UploadfileModel;
 
 class UserDashboard extends Controller
 {
@@ -25,8 +26,25 @@ class UserDashboard extends Controller
     {
         // Retrieve data from the request
         $orderId = $request->input('orderId');
-        $slabId = $request->input('slabId');
+        $slabId = $request->input('title');
         $fileUrl = $request->input('fileUrl');
+
+
+       if($slabId=="Thesis Main File"){
+          $xx = "tmain_stat";
+       }elseif($slabId=="Thesis Hard Cover Design"){
+$xx = "thard_stat";
+       }elseif($slabId=="Thesis Soft Cover Design"){
+        $xx = "tsoft_stat";
+               }
+               elseif($slabId=="Synopsis Main File"){
+                $xx = "smain_stat";
+                       }
+                       elseif($slabId=="Synopsis Design"){
+                        $xx = "scover_stat";
+                               }
+
+                               UploadfileModel::where('orderid', $orderId)->update([$xx => 1]);
         
 
         $design = new UserdesignModel();
@@ -60,9 +78,25 @@ class UserDashboard extends Controller
     {
         // Retrieve data from the request
         $orderId = $request->input('orderId');
-        $slabId = $request->input('slabId');
+        $slabId = $request->input('title');
         $fileUrl = $request->input('fileUrl');
         $comment = $request->input('comment');
+
+        if($slabId=="Thesis Main File"){
+            $xx = "tmain_stat";
+         }elseif($slabId=="Thesis Hard Cover Design"){
+  $xx = "thard_stat";
+         }elseif($slabId=="Thesis Soft Cover Design"){
+          $xx = "tsoft_stat";
+                 }
+                 elseif($slabId=="Synopsis Main File"){
+                  $xx = "smain_stat";
+                         }
+                         elseif($slabId=="Synopsis Design"){
+                          $xx = "scover_stat";
+                                 }
+  
+                                 UploadfileModel::where('orderid', $orderId)->update([$xx => 1]);
 
         $design = new UserdesignModel();
 

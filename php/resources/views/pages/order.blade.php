@@ -1579,14 +1579,14 @@
                                                                 <label class="form-check-label"
                                                                     for="exampleCheck1">Upload</label>
                                                             </div>
-                                                            <div class="form-group form-check mr-3">
+                                                            <div class="form-group form-check mr-3" style="display: none;" id="synopsis_binding_hard_cover_design">
                                                                 <input type="radio" class="form-check-input"
                                                                     id="exampleCheck1" name="synopsis_binding_cover_design"
                                                                     value="Same as Hard Binding Cover" />
                                                                 <label class="form-check-label"
                                                                     for="exampleCheck1">Same as Hard Binding Cover</label>
                                                             </div>
-                                                            <div class="form-group form-check mr-3">
+                                                            <div class="form-group form-check mr-3" style="display: none;" id="synopsis_binding_soft_cover_design">
                                                                 <input type="radio" class="form-check-input"
                                                                     id="exampleCheck1" name="synopsis_binding_cover_design"
                                                                     value="Same as Soft Binding Cover" />
@@ -1601,49 +1601,43 @@
                                                                     for="exampleCheck1">Don't Need Cover Printing</label>
                                                             </div>
                                                         </div>
-                                                        <div class="btn-container" id="synopsis_upload">
-                                                                <p>Cover Page Design <a href="#" data-toggle="tooltip"
-                                                                        title="Hooray!">
-                                                                        <i class=" fa-solid fa-circle-info"
-                                                                            aria-hidden="true"></i>
-                                                                    </a></p>
-                                                                <!--the three icons: default, ok file (img), error file (not an img)-->
-                                                                <div class="all__holder">
-                                                                    <h1 class="imgupload">
-                                                                        <img src="./web/images/icon _File Upload_.png"
-                                                                            alt="" class="m-auto d-block" />
-                                                                    </h1>
-                                                                    <h1 class="imgupload ok">
-                                                                        <i class="fa fa-check"></i>
-                                                                    </h1>
-                                                                    <h1 class="imgupload stop">
-                                                                        <i class="fa fa-times"></i>
-                                                                    </h1>
-                                                                    <!--this field changes dinamically displaying the filename we are trying to upload-->
-                                                                    <h6>Upload Design</h6>
-                                                                </div>
-                                                                <p id="namefile1">
-                                                                    (Support document Word or Pdf)
-                                                                    <a href="#" data-toggle="tooltip" title="Hooray!">
-                                                                        <i class=" fa-solid fa-circle-info"
-                                                                            aria-hidden="true"></i>
-                                                                    </a>
-                                                                </p>
-                                                                <!--our custom btn which which stays under the actual one-->
-                                                                <button type="button" id="btnup" class="btn btn-lg">
-                                                                    Browse for your file!
-                                                                </button>
-                                                                <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                                <input type="file" class="fileup" value="" name="fileup"
-                                                                    id="hard_binding_cover_design" name="hard_binding_cover_design" />
-                                                                <div class="form-group form-check mt-3 d-none">
-                                                                    <input type="checkbox" class="form-check-input"
-                                                                        id="exampleCheck1"
-                                                                        name="hard_binding_same_as_cover" />
-                                                                    <label class="form-check-label"
-                                                                        for="exampleCheck1">Same as thesis cover</label>
-                                                                </div>
+                                                        <div class="btn-container" id="synopsis_upload" style="display: none;">
+                                                            <p>Cover Page Design <a href="#" data-toggle="tooltip"
+                                                                    title="Hooray!">
+                                                                    <i class=" fa-solid fa-circle-info"
+                                                                        aria-hidden="true"></i>
+                                                                </a></p>
+                                                            <!--the three icons: default, ok file (img), error file (not an img)-->
+                                                            <div class="all__holder">
+                                                                <h1 class="imgupload">
+                                                                    <img src="./web/images/icon _File Upload_.png"
+                                                                        alt="" class="m-auto d-block" />
+                                                                </h1>
+                                                                <h1 class="imgupload ok">
+                                                                    <i class="fa fa-check"></i>
+                                                                </h1>
+                                                                <h1 class="imgupload stop">
+                                                                    <i class="fa fa-times"></i>
+                                                                </h1>
+                                                                <!--this field changes dinamically displaying the filename we are trying to upload-->
+                                                                <h6>Upload Design</h6>
                                                             </div>
+                                                            <p id="namefile1">
+                                                                (Support document Word or Pdf)
+                                                                <a href="#" data-toggle="tooltip" title="Hooray!">
+                                                                    <i class=" fa-solid fa-circle-info"
+                                                                        aria-hidden="true"></i>
+                                                                </a>
+                                                            </p>
+                                                            <!--our custom btn which which stays under the actual one-->
+                                                            <button type="button" id="btnup" class="btn btn-lg">
+                                                                Browse for your file!
+                                                            </button>
+                                                            <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
+                                                            <input type="file" class="fileup" value="" name="fileup"
+                                                                id="synopsis_binding_cover_design" name="synopsis_binding_cover_design" />
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1847,7 +1841,10 @@ $(document).on("click", ".qty-btn-minus", function() {
 });
 </script>
 
+{{-- <script src="{{url('web/js/orderprocessing.js')}}"></script> --}}
+
 <script>
+    
 const thesis_color_page = 200;
 const thesis_bw_page = 200;
 
@@ -1877,9 +1874,9 @@ var thesis_file = null
 var synopsis_file = null
 var hard_binding_cover_design = null
 var soft_binding_cover_design = null
-</script>
+var synopsis_binding_cover_design = null
 
-<script>
+
 var apiUrl = "{{route('web.upload_file')}}";
 
 $(document).ready(function(event) {
@@ -2048,7 +2045,7 @@ $(document).ready(function(event) {
         });
     });
 
-    // Upload Hardbinding Cover Image Design
+    // Upload Hard binding Cover Image Design
     $('#hard_binding_cover_design').on('change', function () {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
@@ -2072,7 +2069,7 @@ $(document).ready(function(event) {
         });
     });
 
-    // Upload Softbinding Cover Image Design
+    // Upload Soft binding Cover Image Design
     $('#soft_binding_cover_design').on('change', function () {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
@@ -2095,6 +2092,30 @@ $(document).ready(function(event) {
             console.error('Error:', error);
         });
     });
+
+    // Upload Soft binding Cover Image Design
+    $('#synopsis_binding_cover_design').on('change', function () {
+        var formData = new FormData();
+        formData.append("file", this.files[0]); // Append the file
+
+        // Call the upload function
+        fetch(apiUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                window.soft_binding_cover_design = data.file_name
+                // Handle the server response here
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
     
     // If User click on hard binding
     $(document).on("change", "input[name='hard_binding']", function() {
@@ -2106,12 +2127,14 @@ $(document).ready(function(event) {
             // Display Tab Link
             hard_binding_selected = true;
             $("#step-3-link").removeClass("d-none");
+            $("#synopsis_binding_hard_cover_design").show()
         } else {
             // Deduct Cover Price
             hard_binding_total_price -= HARD_BINDING_COVER_BELOW_3_PRICE;
 
             // Hide Tab Link
             hard_binding_selected = false;
+            $("#synopsis_binding_hard_cover_design").hide()
             $("#step-3-link").addClass("d-none");
         }
         if (
@@ -2134,6 +2157,7 @@ $(document).ready(function(event) {
 
             // Display Tab Link
             soft_binding_selected = true;
+            $("#synopsis_binding_soft_cover_design").show()
             $("#step-4-link").removeClass("d-none");
         } else {
             // Deduct Cover Price
@@ -2141,6 +2165,7 @@ $(document).ready(function(event) {
 
             // Hide Tab Link
             soft_binding_selected = false;
+            $("#synopsis_binding_soft_cover_design").hide()
             $("#step-4-link").addClass("d-none");
         }
         if (
@@ -2180,6 +2205,14 @@ $(document).ready(function(event) {
             $("#step-6-link").removeClass("d-none");
         } else {
             $("#step-6-link").addClass("d-none");
+        }
+    });
+    
+    $('input[name="synopsis_binding_cover_design"]').change(function () {
+        if ($(this).val() === "Custom") {
+            $('#synopsis_upload').show();
+        } else {
+            $('#synopsis_upload').hide();
         }
     });
 
@@ -3157,39 +3190,27 @@ function generate_order_summery() {
         let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
 
-        if (order.hard_binding_paper_color == "All Black & White" || order.hard_binding_paper_color ==
-            "Royal Print") {
+
+        if (order.hard_binding_paper_color == "All Black & White") {
             number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
             number_of_thesis_color_page = 0
             number_of_total_page = number_of_thesis_bw_page
-        } else {
-            number_of_thesis_color_page = number_of_thesis_color_page + number_of_thesis_bw_page
-            number_of_thesis_bw_page = 0
-            number_of_total_page = number_of_thesis_color_page
-        }
+        } 
 
         // Calculate Page Printing Price
         if (order.hard_binding_qty == 1) {
-            total += number_of_total_page * rate.first_page
+            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
         } else if (order.hard_binding_qty > 1) {
-            total += number_of_total_page * rate.first_page
+            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
 
-            total += ((order.hard_binding_qty - 1) * number_of_total_page) * rate.other_page
-        } else {
-            total += 0
-        }
-
-        // Calculate Binding Price
-        if (order.hard_binding_qty < 3) {
-            total += order.hard_binding_qty * 300
-        } else if (order.hard_binding_qty >= 3) {
-            total += order.hard_binding_qty * 270
+            total += ((number_of_thesis_bw_page - 1) * rate.bw.other_page) + ((number_of_thesis_color_page - 1) * rate.color.other_page)
         } else {
             total += 0
         }
 
         hard_binding_copies = Number(hard_binding_copies) + Number(order.hard_binding_qty)
         hard_binding_total_price = hard_binding_total_price + total
+        console.log({hard_binding_total_price, total})
 
         hard_binding_order_html = hard_binding_order_html + `<tr>
                                                                     <td>${order.hard_binding_paper_type}</td>
@@ -3277,24 +3298,19 @@ function generate_order_summery() {
         let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
 
-        if (order.soft_binding_paper_color == "All Black & White" || order.soft_binding_paper_color ==
-            "Royal Print") {
+        if (order.soft_binding_paper_color == "All Black & White") {
             number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
             number_of_thesis_color_page = 0
             number_of_total_page = number_of_thesis_bw_page
-        } else {
-            number_of_thesis_color_page = number_of_thesis_color_page + number_of_thesis_bw_page
-            number_of_thesis_bw_page = 0
-            number_of_total_page = number_of_thesis_color_page
-        }
+        } 
 
         // Calculate Page Printing Price
         if (order.soft_binding_qty == 1) {
-            total += number_of_total_page * rate.first_page
+            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
         } else if (order.soft_binding_qty > 1) {
-            total += number_of_total_page * rate.first_page
+            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
 
-            total += ((order.soft_binding_qty - 1) * number_of_total_page) * rate.other_page
+            total += ((number_of_thesis_bw_page - 1) * rate.bw.other_page) + ((number_of_thesis_color_page - 1) * rate.color.other_page)
         } else {
             total += 0
         }
@@ -3304,6 +3320,8 @@ function generate_order_summery() {
 
         soft_binding_copies = Number(soft_binding_copies) + Number(order.soft_binding_qty)
         soft_binding_total_price = soft_binding_total_price + total
+        console.log({soft_binding_total_price, total})
+
 
         soft_binding_order_html = soft_binding_order_html + `<tr>
                                                                     <td>${order.soft_binding_paper_type}</td>
@@ -3391,24 +3409,19 @@ function generate_order_summery() {
         let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
 
-        if (order.synopsis_binding_paper_color == "All Black & White" || order.synopsis_binding_paper_color ==
-            "Royal Print") {
+        if (order.synopsis_binding_paper_color == "All Black & White") {
             number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
             number_of_thesis_color_page = 0
             number_of_total_page = number_of_thesis_bw_page
-        } else {
-            number_of_thesis_color_page = number_of_thesis_color_page + number_of_thesis_bw_page
-            number_of_thesis_bw_page = 0
-            number_of_total_page = number_of_thesis_color_page
-        }
+        } 
 
         // Calculate Page Printing Price
         if (order.synopsis_binding_qty == 1) {
-            total += number_of_total_page * rate.first_page
+            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
         } else if (order.synopsis_binding_qty > 1) {
-            total += number_of_total_page * rate.first_page
+            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
 
-            total += ((order.synopsis_binding_qty - 1) * number_of_total_page) * rate.other_page
+            total += ((number_of_thesis_bw_page - 1) * rate.bw.other_page) + ((number_of_thesis_color_page - 1) * rate.color.other_page)
         } else {
             total += 0
         }
@@ -3531,13 +3544,13 @@ function generate_order_summery() {
             <form action="{{ route('web.checkout') }}" method="POST">
             @csrf
                 <input type="text" class="d-none" name="order" value='${order_summery_json}' />
-                <input type="text" class="d-none" name="order_amount" value="${hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price}" />
+                <input type="text" class="d-none" name="order_amount" value="${300}" />
                 
-                <input type="text" class="d-none" name="hard_binding_total_price" value="${hard_binding_total_price}" />
-                <input type="text" class="d-none" name="soft_binding_total_price" value="${soft_binding_total_price}" />
-                <input type="text" class="d-none" name="synopsis_binding_total_price" value="${synopsis_binding_total_price}" />
+                <input type="text" class="d-none" name="hard_binding_total_price" value="${100}" />
+                <input type="text" class="d-none" name="soft_binding_total_price" value="${100}" />
+                <input type="text" class="d-none" name="synopsis_binding_total_price" value="${100}" />
                 
-                <button class="btn ml-auto next__buttonone" type="submit" title="Send">Confrom Order</button>
+                <button class="btn ml-auto next__buttonone" type="submit" title="Send">Confirm Order</button>
             </form>
         </div>
     `)
@@ -3556,5 +3569,6 @@ function calculate_hard_binding() {}
 function calculate_soft_binding() {}
 
 function calculate_synopsis_binding() {}
+
 </script>
 @stop

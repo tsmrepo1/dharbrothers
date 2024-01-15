@@ -495,7 +495,7 @@ $selectedColumnNames = array_slice($allColumnNames, 2, 5);
 @endphp
     <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="file-upload-wrapper">
+        <div class="file-upload-wrapper" style="display:flex">
         <input type="hidden" name="order_id" value="{{$order->order_id}}">
 
         @if(($hard_binding_qty > 0) || ($soft_binding_qty > 0))
@@ -521,9 +521,59 @@ $selectedColumnNames = array_slice($allColumnNames, 2, 5);
         
         <button type="submit" class="btn btn-primary" style="padding-top: 10px; padding-bottom: 10px;">Upload Files</button>
     </form>
-    @foreach($selectedColumnNames as $columnName)
-      
-    @endforeach
+    
+</div>
+<div class="documents-for-approval">
+    <h3>Uploaded for Approval</h3>
+
+    @php
+    $firstElement = $picsdet[0];
+    $allColumnNames = array_keys($firstElement);
+    $selectedColumnNames = array_slice($allColumnNames, 2, 5);
+    $modelInstance = new \App\Models\UserdesignModel;
+@endphp
+
+@foreach ($selectedColumnNames as $columnName) 
+
+    @php
+        $value = isset($firstElement[$columnName]) ? $firstElement[$columnName] : 'N/A';
+        $imageUrl = asset('storage/' . $value);
+        $result = $modelInstance::where('url', $imageUrl)->first();
+        
+        $fileParts = explode('.', $value);
+        $fileExtension = end($fileParts);
+        $fileExtension = strtolower($fileExtension);
+    @endphp
+
+    @if ($columnName == "thesis_main")
+        <span>Thesis Main Document</span>
+    @elseif ($columnName == "thesis_hard_cover")
+        <span>Thesis Hard Cover Design</span>
+    @elseif ($columnName == "thesis_soft_cover")
+        <span>Thesis Soft Cover Design</span>
+    @elseif ($columnName == "synopsis_main")
+        <span>Synopsis Main Documents</span>
+    @else
+        <span>Synopsis Cover</span>
+    @endif
+
+    @if ($fileExtension === 'pdf')
+        <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;" frameborder="0"></iframe>
+    @else
+        <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;" alt="Preview" />
+    @endif
+
+    {{-- Display status and reason --}}
+    @if ($result)
+        @if ($result->status == 'Accepted')
+            <div style="color: green;">Accept</div>
+        @elseif ($result->status == 'Rejected')
+            <div style="color: red;">Reject</div>
+            <div>Reason: {{ $result->reason }}</div>
+        @endif
+    @endif
+
+@endforeach
 </div>
 
                         

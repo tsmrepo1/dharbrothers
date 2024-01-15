@@ -18,9 +18,14 @@ class UploadfileModel extends Model
     protected $fillable = [
         'orderid', 
         'thesis_main', 
+        'tmain_stat',
         'thesis_hard_cover',
+        'thard_stat',
         'thesis_soft_cover',
+        'tsoft_stat',
         'synopsis_main',
-        'synopsis_cover'
+        'smain_stat',
+        'synopsis_cover',
+        'scover_stat'
     ];
 }

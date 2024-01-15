@@ -86,6 +86,7 @@ class HomeController extends Controller
         $request->session()->put('order', $request->order);
         $request->session()->put('order_amount', $request->order_amount);
 
+        
         return view("pages.checkout", [
             "hard_binding_total_price"      => $request->hard_binding_total_price,
             "soft_binding_total_price"      => $request->soft_binding_total_price,

@@ -35,11 +35,17 @@ class DashboardController extends Controller
 
 foreach ($pics as $user) {
     $picdata = [];
+
     foreach ($user->getAttributes() as $columnName => $value) {
-        if ($value !== '') {
-            $picdata[$columnName] = $value;
+        // Exclude 'created_at' and 'updated_at' columns
+        if ($columnName !== 'created_at' && $columnName !== 'updated_at') {
+            if ($value !== '') {
+                $picdata[$columnName] = $value;
+                
+            }
         }
     }
+
     if (!empty($picdata)) {
         $allpics[] = $picdata;
     }

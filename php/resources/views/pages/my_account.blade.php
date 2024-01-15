@@ -835,10 +835,15 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     data-trigger="#my_offcanvas2"
     data-order-id="{{ $order->order_id }}"
     data-info1="{{ $order->thesis_main }}" 
+    data-stat1="{{ $order->tmain_stat }}"
     data-info2="{{ $order->thesis_hard_cover }}" 
+    data-stat2="{{ $order->thard_stat }}"
     data-info3="{{ $order->thesis_soft_cover }}" 
+    data-stat3="{{ $order->tsoft_stat }}"
     data-info4="{{ $order->synopsis_main }}" 
-    data-info5="{{ $order->synopsis_cover }}">
+    data-stat4="{{ $order->smain_stat }}"
+    data-info5="{{ $order->synopsis_cover }}"
+    data-stat5="{{ $order->scover_stat }}">
     <i class="fa-solid fa-chevron-right"></i>
 </button>
 
@@ -1018,31 +1023,71 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
     var laravelBaseUrl = "{{ url('/') }}";
-    document.querySelectorAll('.details-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            var orderId = this.getAttribute('data-order-id');
-            var info1 = this.getAttribute('data-info1');
-            var info2 = this.getAttribute('data-info2');
-            var info3 = this.getAttribute('data-info3');
-            var info4 = this.getAttribute('data-info4');
-            var info5 = this.getAttribute('data-info5');
+    document.querySelectorAll('.details-button').forEach(function (button) {
+    button.addEventListener('click', function () {
+        var orderId = this.getAttribute('data-order-id');
+        var info1 = this.getAttribute('data-info1');
+        var s1 = this.getAttribute('data-stat1');
+        var info2 = this.getAttribute('data-info2');
+        var s2 = this.getAttribute('data-stat2');
+        var info3 = this.getAttribute('data-info3');
+        var s3 = this.getAttribute('data-stat3');
+        var info4 = this.getAttribute('data-info4');
+        var s4 = this.getAttribute('data-stat4');
+        var info5 = this.getAttribute('data-info5');
+        var s5 = this.getAttribute('data-stat5');
 
-            var container = document.getElementById('offcanvas-content');
-            container.innerHTML = ''; // Clear previous content
+        var container = document.getElementById('offcanvas-content');
+        container.innerHTML = ''; // Clear previous content
 
-            var infos = [info1, info2, info3, info4, info5].filter(info => info !== "");
+        var infos = [info1, info2, info3, info4, info5].filter(info => info !== "");
 
-            infos.forEach((info, index) => {
-                var div = createDivStructure(info, index, orderId);
-                container.appendChild(div);
-            });
+        infos.forEach((info, index) => {
+            var additionalText = '';
 
-            var offcanvas = new bootstrap.Offcanvas(document.getElementById('my_offcanvas2'));
-            offcanvas.show();
+            if (info === info1) {
+                additionalText = "Thesis Main File";
+
+                // Check if s1 is equal to 1, then don't show the buttons
+                if (s1 === '1') {
+                    return; // Skip to the next iteration of the loop
+                }
+            } else if (info === info2) {
+                additionalText = "Thesis Hard Cover Design";
+                if (s2 === '1') {
+                    return;
+                }
+            } else if (info === info3) {
+                additionalText = "Thesis Soft Cover Design";
+                if (s3 === '1') {
+                    return;
+                }
+            } else if (info === info4) {
+                additionalText = "Synopsis Main File";
+                if (s4 === '1') {
+                    return;
+                }
+            } else if (info === info5) {
+                additionalText = "Synopsis Design";
+                if (s5 === '1') {
+                    return;
+                }
+            }
+
+            var title = additionalText;
+            var div = createDivStructure(info, index, orderId, title);
+            container.appendChild(div);
         });
-    });
 
-    function createDivStructure(info, index, orderId) {
+        var offcanvas = new bootstrap.Offcanvas(document.getElementById('my_offcanvas2'));
+        offcanvas.show();
+    });
+});
+
+
+
+
+function createDivStructure(info, index, orderId, tit) {
     var basePath = laravelBaseUrl + '/storage/';
     var fileUrl = info ? basePath + info : '';
     var content;
@@ -1070,12 +1115,12 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     ${content}
                 </div>
                 <div class="button_wrapp">
-                    <button type="button" class="btn btn-secondary">Preview</button>
-                    <a href="${fileUrl}" target="_blank"><i class="fa-solid fa-circle-down"></i> Download</a>
+                    <button type="button" class="btn btn-secondary preview-button" data-file-url="${fileUrl}">Preview</button>
+                    <a href="${fileUrl}" download="filename" class="btn btn-primary">Download</a>
                 </div>
             </div>
             <div class="app__text">
-                <h3>File: ${info}</h3>
+                <h3>${tit}</h3>
                 <button type="button" class="btn btn-success" id="${approveButtonId}">Approve</button>
                 <button type="button" class="btn btn-danger" id="${rejectButtonId}">Reject</button>
                 <form id="${uniqueId}" style="display:none;" data-order-id="${orderId}">
@@ -1086,13 +1131,13 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         </div>`;
 
     // Event listener for the reject button
-    div.querySelector(`#${rejectButtonId}`).addEventListener('click', function() {
+    div.querySelector(`#${rejectButtonId}`).addEventListener('click', function () {
         var form = div.querySelector(`#${uniqueId}`);
         form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
 
     // Event listener for the approve button
-    div.querySelector(`#${approveButtonId}`).addEventListener('click', function() {
+    div.querySelector(`#${approveButtonId}`).addEventListener('click', function () {
         fetch('{{ route("approval") }}', {
             method: 'POST',
             headers: {
@@ -1101,30 +1146,35 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
             },
             body: JSON.stringify({
                 orderId: orderId,
-                slabId: index,
+                title: tit,
                 fileUrl: fileUrl
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); 
-        })
-        .then(data => {
-            console.log('Approval successful', data);
-            // Hide both Approve and Reject buttons upon successful approval
-            document.getElementById(approveButtonId).style.display = 'none';
-            document.getElementById(rejectButtonId).style.display = 'none';
-        })
-        .catch(error => {
-            console.error('Approval failed', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Approval successful', data);
+                // Hide both Approve and Reject buttons upon successful approval
+                document.getElementById(approveButtonId).style.display = 'none';
+                document.getElementById(rejectButtonId).style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Approval failed', error);
+            });
+    });
+
+    // Event listener for the preview button
+    div.querySelector('.preview-button').addEventListener('click', function () {
+        window.open(fileUrl, '_blank');
     });
 
     // Existing form submission event
     var form = div.querySelector(`#${uniqueId}`);
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
 
         var comment = form.querySelector('textarea[name="comment"]').value;
@@ -1138,30 +1188,31 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
             },
             body: JSON.stringify({
                 orderId: orderId,
-                slabId: index,
+                title: tit,
                 fileUrl: fileUrl,
                 comment: comment
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Comment submission successful', data);
-            // Optionally, also hide the buttons upon successful comment submission
-            document.getElementById(approveButtonId).style.display = 'none';
-            document.getElementById(rejectButtonId).style.display = 'none';
-        })
-        .catch(error => {
-            console.error('Comment submission failed', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Comment submission successful', data);
+                // Optionally, also hide the buttons upon successful comment submission
+                document.getElementById(approveButtonId).style.display = 'none';
+                document.getElementById(rejectButtonId).style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Comment submission failed', error);
+            });
     });
 
     return div;
 }
+
 
 
 
