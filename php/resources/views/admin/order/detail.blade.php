@@ -496,21 +496,21 @@
 
         @if(($hard_binding_qty > 0) || ($soft_binding_qty > 0))
                         <p>Upload thesis Document:</p>
-                                               <input type="file" name="thesis_main_doc" accept="image/*">
+                                               <input type="file" name="thesis_main_doc" accept="image/*" required>
                                                @if(($hard_binding_qty > 0))
                                                <p>Upload Hard Copy cover Design:</p>
-                                               <input type="file" name="hard_cover_design" accept="image/*">
+                                               <input type="file" name="hard_cover_design" accept="image/*" required>
                                                @endif
                                                @if(($soft_binding_qty > 0))
                                                <p>Upload Soft Copy cover Design:</p>
-                                               <input type="file" name="soft_cover_design" accept="image/*">
+                                               <input type="file" name="soft_cover_design" accept="image/*" required>
                                                @endif
                                                @endif
                                                @if($synopsis_binding_qty > 0)
                                                <p>Upload Synopsis Cover Design:</p>
-                                               <input type="file" name="synopsis_cover_design" accept="image/*">
+                                               <input type="file" name="synopsis_cover_design" accept="image/*" required>
                                                <p>Upload Synopsis:</p>
-                                               <input type="file" name="synopsis_main_doc" accept="image/*">
+                                               <input type="file" name="synopsis_main_doc" accept="image/*" required>
                                                @endif
                                               
         </div>
@@ -527,6 +527,7 @@
     $firstElement = $picsdet[0];
     $allColumnNames = array_keys($firstElement);
     $selectedColumnNames = array_slice($allColumnNames, 2, 5);
+    dd($selectedColumnNames);
     $modelInstance = new \App\Models\UserdesignModel;
 @endphp
 
