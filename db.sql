@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2024 at 12:11 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Jan 16, 2024 at 03:34 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dharbrothers`
+-- Database: `dhar`
 --
 
 -- --------------------------------------------------------
@@ -53,10 +53,10 @@ CREATE TABLE `articles` (
 
 CREATE TABLE `banners` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title1` varchar(255) NOT NULL,
+  `title2` varchar(255) NOT NULL,
+  `title3` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -79,11 +79,11 @@ INSERT INTO `banners` (`id`, `title1`, `title2`, `title3`, `image`, `created_at`
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -96,8 +96,8 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `faqs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `faq_id` bigint(20) UNSIGNED NOT NULL,
-  `question` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `answer` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,7 +120,7 @@ INSERT INTO `faqs` (`id`, `faq_id`, `question`, `answer`, `created_at`, `updated
 
 CREATE TABLE `faq_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -154,10 +154,10 @@ CREATE TABLE `home_pages` (
 
 CREATE TABLE `leads` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -177,7 +177,7 @@ INSERT INTO `leads` (`id`, `name`, `phone`, `email`, `message`, `created_at`, `u
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -209,12 +209,22 @@ CREATE TABLE `orders` (
   `shipping_address` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `order_detail` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `order_amount` float(11,2) NOT NULL,
+  `total_amount` float(11,2) DEFAULT NULL,
+  `cgst` float(11,2) DEFAULT NULL,
+  `sgst` float(11,2) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'PENDING',
   `payment_status` varchar(255) NOT NULL DEFAULT 'PENDING',
   `transaction_id` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `order_id`, `user_id`, `pickup`, `billing_address`, `shipping_address`, `order_detail`, `order_amount`, `total_amount`, `cgst`, `sgst`, `status`, `payment_status`, `transaction_id`, `created_at`, `updated_at`) VALUES
+(14, '7275791662', 28, 1, '{\"billing_street\":\"Rammohan Mukherjee Lane\",\"billing_apartment\":\"29E\\/1\",\"billing_country\":\"India\",\"billing_city\":\"Howrah\",\"billing_state\":\"West Bengal\",\"billing_pin\":\"711102\"}', NULL, '{\"thesis_file\":\"uploads/8uOtxOFObS1T1Y0Rakdy7ZxPdAzeFYUhGlPwofaS.pdf\",\"synopsis_file\":null,\"hard_bindings_orders\":[{\"hard_binding_paper_size\":\"A4 - Full\",\"hard_binding_qty\":\"2\",\"hard_binding_paper_type\":\"Paper One 100 GSM or Equivalent\",\"hard_binding_paper_color\":\"Black & White & Color\",\"hard_binding_printing_type\":\"Single Side\",\"hard_binding_a4_pockets\":\"0\",\"hard_binding_cd_pockets\":\"0\",\"hard_binding_information\":\"\"}],\"hard_binding_other_details\":{\"hard_binding_cover_color_db\":\"DB 7\",\"hard_binding_cover_design\":null,\"hard_binding_spine\":\"Print Not Required\"},\"soft_bindings_orders\":[{\"soft_binding_paper_size\":\"\",\"soft_binding_qty\":\"0\",\"soft_binding_paper_type\":\"\",\"soft_binding_paper_color\":\"\",\"soft_binding_printing_type\":\"\",\"soft_binding_a4_pockets\":\"0\",\"soft_binding_cd_pockets\":\"0\",\"soft_binding_information\":\"\"}],\"soft_binding_other_details\":{\"soft_binding_cover_design\":null},\"synopsis_bindings_orders\":[{\"synopsis_binding_paper_size\":\"\",\"synopsis_binding_qty\":\"0\",\"synopsis_binding_paper_type\":\"\",\"synopsis_binding_paper_color\":\"\",\"synopsis_binding_printing_type\":\"\"}],\"synopsis_binding_other_details\":{\"synopsis_binding_cover_design_file\":{\"jQuery321091211901940640421\":{\"events\":{\"change\":[{\"type\":\"change\",\"origType\":\"change\",\"data\":null,\"guid\":2,\"namespace\":\"\"}]}},\"jQuery341052044257841006241\":{\"events\":{\"change\":[{\"type\":\"change\",\"origType\":\"change\",\"guid\":195,\"namespace\":\"\"}]}}}},\"thesis_color_page\":200,\"thesis_bw_page\":200,\"synopsis_color_page\":50,\"synopsis_bw_page\":50}', 5800.00, 7772.00, 17.00, 17.00, 'PENDING', 'PENDING', NULL, '2024-01-15 21:01:49', '2024-01-15 21:01:49');
 
 -- --------------------------------------------------------
 
@@ -223,8 +233,8 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -236,11 +246,11 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -255,12 +265,12 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `thumbnail` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail` text DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `publish_at` date DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('DRAFT','PUBLISH') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
+  `content` longtext DEFAULT NULL,
+  `status` enum('DRAFT','PUBLISH') NOT NULL DEFAULT 'DRAFT',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -283,10 +293,10 @@ INSERT INTO `posts` (`id`, `thumbnail`, `title`, `slug`, `publish_at`, `content`
 
 CREATE TABLE `services` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `images` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` varchar(255) DEFAULT NULL,
+  `slug` longtext NOT NULL,
+  `title` longtext NOT NULL,
+  `content` longtext NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -308,11 +318,11 @@ INSERT INTO `services` (`id`, `images`, `slug`, `title`, `content`, `created_at`
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) NOT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -321,8 +331,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fuLb87jicsPl0Iokzno9XyfgYm8RVO7yfXyBiDjZ', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQlVnYmxUNnFuY1hPY0tUTzVPSnh2dmhROVBldlNXUFFRNjVmOTFpYyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly9sb2NhbGhvc3QvZGhhcl9tYWluL3BocC9wdWJsaWMvb3JkZXIiO31zOjU6Im9yZGVyIjtzOjExMDU6InsidGhlc2lzX2ZpbGUiOiJ1cGxvYWRzL2dqRDRXS3cyRHh0T1dUT2xPRXRHaERWQzY1d21qVUlHQzM2NlRIQ1EucGRmIiwiaGFyZF9iaW5kaW5nc19vcmRlcnMiOlt7ImhhcmRfYmluZGluZ19wYXBlcl9zaXplIjoiQTQgLSBGdWxsIiwiaGFyZF9iaW5kaW5nX3F0eSI6IjIiLCJoYXJkX2JpbmRpbmdfcGFwZXJfdHlwZSI6IlBhcGVyIE9uZSAxMDAgR1NNIG9yIEVxdWl2YWxlbnQiLCJoYXJkX2JpbmRpbmdfcGFwZXJfY29sb3IiOiJBbGwgQmxhY2sgJiBXaGl0ZSIsImhhcmRfYmluZGluZ19wcmludGluZ190eXBlIjoiU2luZ2xlIFNpZGUiLCJoYXJkX2JpbmRpbmdfYTRfcG9ja2V0cyI6IjAiLCJoYXJkX2JpbmRpbmdfY2RfcG9ja2V0cyI6IjAiLCJoYXJkX2JpbmRpbmdfaW5mb3JtYXRpb24iOiIifV0sImhhcmRfYmluZGluZ19vdGhlcl9kZXRhaWxzIjp7ImhhcmRfYmluZGluZ19jb3Zlcl9jb2xvcl9kYiI6IkRCIDEwIiwiaGFyZF9iaW5kaW5nX2NvdmVyX2Rlc2lnbiI6bnVsbCwiaGFyZF9iaW5kaW5nX3NwaW5lIjoiUHJpbnQgTm90IFJlcXVpcmVkIn0sInNvZnRfYmluZGluZ3Nfb3JkZXJzIjpbeyJzb2Z0X2JpbmRpbmdfcGFwZXJfc2l6ZSI6IiIsInNvZnRfYmluZGluZ19xdHkiOiIwIiwic29mdF9iaW5kaW5nX3BhcGVyX3R5cGUiOiIiLCJzb2Z0X2JpbmRpbmdfcGFwZXJfY29sb3IiOiIiLCJzb2Z0X2JpbmRpbmdfcHJpbnRpbmdfdHlwZSI6IiIsInNvZnRfYmluZGluZ19hNF9wb2NrZXRzIjoiMCIsInNvZnRfYmluZGluZ19jZF9wb2NrZXRzIjoiMCIsInNvZnRfYmluZGluZ19pbmZvcm1hdGlvbiI6IiJ9XSwic29mdF9iaW5kaW5nX290aGVyX2RldGFpbHMiOnsic29mdF9iaW5kaW5nX2NvdmVyX2Rlc2lnbiI6bnVsbH0sInN5bm9wc2lzX2JpbmRpbmdzX29yZGVycyI6W3sic3lub3BzaXNfYmluZGluZ19wYXBlcl9zaXplIjoiIiwic3lub3BzaXNfYmluZGluZ19xdHkiOiIwIiwic3lub3BzaXNfYmluZGluZ19wYXBlcl90eXBlIjoiIiwic3lub3BzaXNfYmluZGluZ19wYXBlcl9jb2xvciI6IiIsInN5bm9wc2lzX2JpbmRpbmdfcHJpbnRpbmdfdHlwZSI6IiJ9XSwidGhlc2lzX2NvbG9yX3BhZ2UiOjIwMCwidGhlc2lzX2J3X3BhZ2UiOjIwMH0iO3M6MTI6Im9yZGVyX2Ftb3VudCI7czozOiJOYU4iO30=', 1705316635),
-('Y3KEGWqKEOfHZw0sy8NT57gN4SegUC96LiWqTvnq', 10, '192.168.1.126', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoieGpqWEVOMXp6cTJjZGNOUWR4TE1jN25sTDJraXR3aUg4eW5Xclp4ZyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjcwOiJodHRwOi8vMTkyLjE2OC4xLjkyL2RoYXJfbWFpbi9waHAvcHVibGljL2FkbWluL29yZGVyLWRldGFpbC85MjY1MTA2Mzc3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTA7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkMGJwSGQwOTAzT1pLVE4zT2UwUTZvT1dmNy51M29LSWowODNEWGlieDEudFM4Mmx0NTNEOFMiO30=', 1705312352);
+('vzBDOt2vUKggUvtppai53Sb95KnCKIClivUh6P4D', 28, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 'YToxMTp7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo1MToiaHR0cDovL2xvY2FsaG9zdC9kaGFyYnJvdGhlcnMvcGhwL3B1YmxpYy9teS1hY2NvdW50Ijt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9sb2NhbGhvc3QvZGhhcmJyb3RoZXJzL3BocC9wdWJsaWMvbXktYWNjb3VudCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NjoiX3Rva2VuIjtzOjQwOiJacUVwUlJIYmVkVTlZNlMyQnRMZWFFQUFzQm4xQ0syWUJQZzNTakgzIjtzOjU6Im9yZGVyIjtzOjE0OTY6InsidGhlc2lzX2ZpbGUiOiJ1cGxvYWRzLzh1T3R4T0ZPYlMxVDFZMFJha2R5N1p4UGRBemVGWVVoR2xQd29mYVMucGRmIiwic3lub3BzaXNfZmlsZSI6bnVsbCwiaGFyZF9iaW5kaW5nc19vcmRlcnMiOlt7ImhhcmRfYmluZGluZ19wYXBlcl9zaXplIjoiQTQgLSBGdWxsIiwiaGFyZF9iaW5kaW5nX3F0eSI6IjIiLCJoYXJkX2JpbmRpbmdfcGFwZXJfdHlwZSI6IlBhcGVyIE9uZSAxMDAgR1NNIG9yIEVxdWl2YWxlbnQiLCJoYXJkX2JpbmRpbmdfcGFwZXJfY29sb3IiOiJCbGFjayAmIFdoaXRlICYgQ29sb3IiLCJoYXJkX2JpbmRpbmdfcHJpbnRpbmdfdHlwZSI6IlNpbmdsZSBTaWRlIiwiaGFyZF9iaW5kaW5nX2E0X3BvY2tldHMiOiIwIiwiaGFyZF9iaW5kaW5nX2NkX3BvY2tldHMiOiIwIiwiaGFyZF9iaW5kaW5nX2luZm9ybWF0aW9uIjoiIn1dLCJoYXJkX2JpbmRpbmdfb3RoZXJfZGV0YWlscyI6eyJoYXJkX2JpbmRpbmdfY292ZXJfY29sb3JfZGIiOiJEQiA3IiwiaGFyZF9iaW5kaW5nX2NvdmVyX2Rlc2lnbiI6bnVsbCwiaGFyZF9iaW5kaW5nX3NwaW5lIjoiUHJpbnQgTm90IFJlcXVpcmVkIn0sInNvZnRfYmluZGluZ3Nfb3JkZXJzIjpbeyJzb2Z0X2JpbmRpbmdfcGFwZXJfc2l6ZSI6IiIsInNvZnRfYmluZGluZ19xdHkiOiIwIiwic29mdF9iaW5kaW5nX3BhcGVyX3R5cGUiOiIiLCJzb2Z0X2JpbmRpbmdfcGFwZXJfY29sb3IiOiIiLCJzb2Z0X2JpbmRpbmdfcHJpbnRpbmdfdHlwZSI6IiIsInNvZnRfYmluZGluZ19hNF9wb2NrZXRzIjoiMCIsInNvZnRfYmluZGluZ19jZF9wb2NrZXRzIjoiMCIsInNvZnRfYmluZGluZ19pbmZvcm1hdGlvbiI6IiJ9XSwic29mdF9iaW5kaW5nX290aGVyX2RldGFpbHMiOnsic29mdF9iaW5kaW5nX2NvdmVyX2Rlc2lnbiI6bnVsbH0sInN5bm9wc2lzX2JpbmRpbmdzX29yZGVycyI6W3sic3lub3BzaXNfYmluZGluZ19wYXBlcl9zaXplIjoiIiwic3lub3BzaXNfYmluZGluZ19xdHkiOiIwIiwic3lub3BzaXNfYmluZGluZ19wYXBlcl90eXBlIjoiIiwic3lub3BzaXNfYmluZGluZ19wYXBlcl9jb2xvciI6IiIsInN5bm9wc2lzX2JpbmRpbmdfcHJpbnRpbmdfdHlwZSI6IiJ9XSwic3lub3BzaXNfYmluZGluZ19vdGhlcl9kZXRhaWxzIjp7InN5bm9wc2lzX2JpbmRpbmdfY292ZXJfZGVzaWduX2ZpbGUiOnsialF1ZXJ5MzIxMDkxMjExOTAxOTQwNjQwNDIxIjp7ImV2ZW50cyI6eyJjaGFuZ2UiOlt7InR5cGUiOiJjaGFuZ2UiLCJvcmlnVHlwZSI6ImNoYW5nZSIsImRhdGEiOm51bGwsImd1aWQiOjIsIm5hbWVzcGFjZSI6IiJ9XX19LCJqUXVlcnkzNDEwNTIwNDQyNTc4NDEwMDYyNDEiOnsiZXZlbnRzIjp7ImNoYW5nZSI6W3sidHlwZSI6ImNoYW5nZSIsIm9yaWdUeXBlIjoiY2hhbmdlIiwiZ3VpZCI6MTk1LCJuYW1lc3BhY2UiOiIifV19fX19LCJ0aGVzaXNfY29sb3JfcGFnZSI6MjAwLCJ0aGVzaXNfYndfcGFnZSI6MjAwLCJzeW5vcHNpc19jb2xvcl9wYWdlIjo1MCwic3lub3BzaXNfYndfcGFnZSI6NTB9IjtzOjEyOiJvcmRlcl9hbW91bnQiO3M6NDoiNTgwMCI7czoxMjoidG90YWxfYW1vdW50IjtzOjQ6Ijc3NzIiO3M6NDoiY2dzdCI7czoyOiIxNyI7czo0OiJzZ3N0IjtzOjI6IjE3IjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyODtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRkRjIxcy5Xakk5TjZ1aC91Y1RHY3IuOUhkRTl3SnVTZmpweFRQSC4zTUk2cWJRRjhUdXd3dSI7fQ==', 1705372311);
 
 -- --------------------------------------------------------
 
@@ -332,11 +341,11 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 
 CREATE TABLE `testimonial_pages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `feedback` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `feedback` varchar(255) NOT NULL,
   `rating` int(11) NOT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -363,16 +372,16 @@ INSERT INTO `testimonial_pages` (`id`, `image`, `name`, `feedback`, `rating`, `l
 
 CREATE TABLE `uploadfile` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `orderid` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `thesis_main` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `orderid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `thesis_main` varchar(255) NOT NULL,
   `tmain_stat` int(11) NOT NULL DEFAULT 0,
-  `thesis_hard_cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thesis_hard_cover` varchar(255) NOT NULL,
   `thard_stat` int(11) NOT NULL DEFAULT 0,
-  `thesis_soft_cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thesis_soft_cover` varchar(255) NOT NULL,
   `tsoft_stat` int(11) NOT NULL DEFAULT 0,
-  `synopsis_main` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `synopsis_main` varchar(255) NOT NULL,
   `smain_stat` int(11) NOT NULL DEFAULT 0,
-  `synopsis_cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `synopsis_cover` varchar(255) NOT NULL,
   `scover_stat` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -393,16 +402,16 @@ INSERT INTO `uploadfile` (`id`, `orderid`, `thesis_main`, `tmain_stat`, `thesis_
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'USER',
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL DEFAULT 'USER',
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `two_factor_secret` text DEFAULT NULL,
+  `two_factor_recovery_codes` text DEFAULT NULL,
   `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -413,7 +422,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `role`, `email`, `phone`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`) VALUES
 (4, 'Raktim Banerjee', 'ADMIN', 'raktimbanerjee9@gmail.com', NULL, NULL, '$2y$10$RgVn8PPwfyDUwWrF10BInewlV79WPj/.lkofKvpdlrRcKHV9zZp.m', NULL, NULL, NULL, NULL, '2023-12-21 01:27:01', '2023-12-21 01:27:01'),
-(21, 'Raktim Banerjee', 'USER', 'braktim99@gmail.com', '9836739907', NULL, '$2y$10$WCZkSiNHhLqQ01wTaG9Z3eGWQfYZYRHbI75GFZc3I9BshEtkSuprC', NULL, NULL, NULL, NULL, '2024-01-15 05:32:53', '2024-01-15 05:32:53');
+(28, 'Raktim Banerjee', 'USER', 'braktim99@gmail.com', '9836739907', NULL, '$2y$10$dF21s.WjI9N6uh/ucTGcr.9HdE9wJuSfjpxTPH.3MI6qbQF8Tuwwu', NULL, NULL, NULL, NULL, '2024-01-15 21:01:49', '2024-01-15 21:01:49');
 
 -- --------------------------------------------------------
 
@@ -423,10 +432,10 @@ INSERT INTO `users` (`id`, `name`, `role`, `email`, `phone`, `email_verified_at`
 
 CREATE TABLE `userwisedesigns` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `orderid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `orderid` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -594,7 +603,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -612,7 +621,7 @@ ALTER TABLE `uploadfile`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `userwisedesigns`
