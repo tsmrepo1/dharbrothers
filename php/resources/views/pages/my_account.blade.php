@@ -770,19 +770,19 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
 @endforeach
 
 <div class="main__body__wrapp">
-    <div class="main__banner header__inner__banner">
+    <div class="main__banner header__inner__banner" style="height: 100px;">
         <div class="image__box__banner">
             <img src="images/innerbanner.jpg" alt="" />
         </div>
         <div class="banner__content">
             <div class="container">
                 <div class="banner__content__inner text-center">
-                    <h1>My Account</h1>
+                    <h1 class="text-dark">My Account</h1>
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb d-lg-inline-flex align-items-center">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">
+                            <li class="breadcrumb-item text-dark"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active text-dark" aria-current="page">
                                 My Account
                             </li>
                         </ol>

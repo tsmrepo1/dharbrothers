@@ -41,7 +41,7 @@ class UserDashboard extends Controller
 
     public function apprv(Request $request)
     {
-        $vab = "User has accepted image(s) of the order no, ".$request->input('orderId');
+        $vab = " has accepted against order ID: ".$request->input('orderId');
         $dyn = "";
         $orderId = $request->input('orderId');
         $slabId = $request->input('title');
@@ -76,7 +76,7 @@ class UserDashboard extends Controller
 
 
         if ($design->save()) {
-            $mes = $vab.$dyn.", Please check the site for details.";
+            $mes = $dyn.$vab.", Please check the site for details.";
             Mail::raw($mes, function ($message) {
                 $message->to("raktimbanerjee9@gmail.com")->subject('Acceptance By User');
             });
@@ -99,7 +99,7 @@ class UserDashboard extends Controller
     }
     public function submitcmmnt(Request $request)
     {
-        $vab = "User has rejected image(s) of the order no, ".$request->input('orderId');
+        $vab = " has rejected against order ID: ".$request->input('orderId');
         $dyn = "";
         $orderId = $request->input('orderId');
         $slabId = $request->input('title');
@@ -135,7 +135,7 @@ class UserDashboard extends Controller
         $design->reason = $comment;
 
         if ($design->save()) {
-            $mes = $vab.$dyn.", Please check the site for details.";
+            $mes = $dyn.$vab.", Please check the site for details.";
             Mail::raw($mes, function ($message) {
                 $message->to("raktimbanerjee9@gmail.com")->subject('Rejection By User');
             });

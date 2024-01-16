@@ -1635,7 +1635,6 @@
                                                             </button>
                                                             <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
                                                             <input type="file" value="" id="synopsis_binding_cover_design_file" name="synopsis_binding_cover_design_file" />
-                                                            
                                                         </div>
                                                     </div>
                                                 </div>
