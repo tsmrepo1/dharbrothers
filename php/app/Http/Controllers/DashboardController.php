@@ -52,6 +52,7 @@ class DashboardController extends Controller
                     }
                 }
             }
+            
         }
     
         return view("admin.order.detail", ["order" => $order, "picsdet" => $allpics]);

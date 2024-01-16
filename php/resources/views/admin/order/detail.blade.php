@@ -526,8 +526,8 @@
     @php
     $firstElement = $picsdet[0];
     $allColumnNames = array_keys($firstElement);
-    $selectedColumnNames = array_slice($allColumnNames, 2, 5);
-    dd($selectedColumnNames);
+    $selectedColumnNames = array_slice($allColumnNames, 2, 10);
+    
     $modelInstance = new \App\Models\UserdesignModel;
 @endphp
 
@@ -545,21 +545,42 @@
 
     @if ($columnName == "thesis_main")
         <span>Thesis Main Document</span>
-    @elseif ($columnName == "thesis_hard_cover")
-        <span>Thesis Hard Cover Design</span>
-    @elseif ($columnName == "thesis_soft_cover")
-        <span>Thesis Soft Cover Design</span>
-    @elseif ($columnName == "synopsis_main")
-        <span>Synopsis Main Documents</span>
-    @else
-        <span>Synopsis Cover</span>
-    @endif
-
-    @if ($fileExtension === 'pdf')
+        @if ($fileExtension === 'pdf')
         <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;" frameborder="0"></iframe>
     @else
         <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;" alt="Preview" />
     @endif
+    @elseif ($columnName == "thesis_hard_cover")
+        <span>Thesis Hard Cover Design</span>
+        @if ($fileExtension === 'pdf')
+        <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;" frameborder="0"></iframe>
+    @else
+        <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;" alt="Preview" />
+    @endif
+    @elseif ($columnName == "thesis_soft_cover")
+        <span>Thesis Soft Cover Design</span>
+        @if ($fileExtension === 'pdf')
+        <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;" frameborder="0"></iframe>
+    @else
+        <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;" alt="Preview" />
+    @endif
+    @elseif ($columnName == "synopsis_main")
+        <span>Synopsis Main Documents</span>
+        @if ($fileExtension === 'pdf')
+        <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;" frameborder="0"></iframe>
+    @else
+        <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;" alt="Preview" />
+    @endif
+    @elseif ($columnName == "synopsis_cover")
+        <span>Synopsis Cover</span>
+        @if ($fileExtension === 'pdf')
+        <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;" frameborder="0"></iframe>
+    @else
+        <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;" alt="Preview" />
+    @endif
+    @endif
+
+    
 
     {{-- Display status and reason --}}
     @if ($result)

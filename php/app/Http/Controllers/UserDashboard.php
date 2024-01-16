@@ -13,30 +13,30 @@ use App\Models\UploadfileModel;
 class UserDashboard extends Controller
 {
 
-    public function myaccount()
-    {
-        $avatar = $this->generateGravatarURL(Auth::user()->email);
-        $orders = DB::table('orders')
-            ->join('users', 'users.id', '=', 'orders.user_id')
-            ->where('users.id', Auth::user()->id)
-            ->select('orders.*') // Select columns as needed
-            ->get();
-        //dd($orders);
-        return view("pages.my_account", ["avatar" => $avatar, "orders" => $orders]);
-    }
-
-
     // public function myaccount()
     // {
     //     $avatar = $this->generateGravatarURL(Auth::user()->email);
     //     $orders = DB::table('orders')
-    //         ->join('uploadfile', 'orders.order_id', '=', 'uploadfile.orderid')
-    //         ->where('orders.user_id', Auth::user()->id)
-    //         ->select('orders.*', 'uploadfile.*') // Select columns as needed
+    //         ->join('users', 'users.id', '=', 'orders.user_id')
+    //         ->where('users.id', Auth::user()->id)
+    //         ->select('orders.*') // Select columns as needed
     //         ->get();
     //     //dd($orders);
     //     return view("pages.my_account", ["avatar" => $avatar, "orders" => $orders]);
     // }
+
+
+    public function myaccount()
+    {
+        $avatar = $this->generateGravatarURL(Auth::user()->email);
+        $orders = DB::table('orders')
+        ->leftJoin('uploadfile', 'orders.order_id', '=', 'uploadfile.orderid')
+        ->where('orders.user_id', Auth::user()->id)
+        ->select('orders.*', 'uploadfile.*') // Select columns as needed
+        ->get();
+        //dd($orders);
+        return view("pages.my_account", ["avatar" => $avatar, "orders" => $orders]);
+    }
 
 
     public function apprv(Request $request)

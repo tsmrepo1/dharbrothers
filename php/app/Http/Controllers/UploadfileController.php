@@ -113,19 +113,19 @@ class UploadfileController extends Controller
                                        $upload->save();  
         }
 
-        // $users = DB::table('users')
-        //     ->join('orders', 'users.id', '=', 'orders.user_id')
-        //     ->where('orders.order_id',$request->input('order_id'))
-        //     ->select('users.email')
-        //     ->get();
+        $users = DB::table('users')
+            ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->where('orders.order_id',$request->input('order_id'))
+            ->select('users.email')
+            ->get();
 
 
-        //     $mes = $vab.$dyn.", Please check the site for approval.";
+            $mes = $vab.$dyn.", Please check the site for approval.";
 
 
-        //     Mail::raw($mes, function ($message) use ($users) {
-        //         $message->to($users->email)->subject('Approval Sending');
-        //     });
+            Mail::raw($mes, function ($message) use ($users) {
+                $message->to($users->email)->subject('Approval Sending');
+            });
         
                                    
                                    
