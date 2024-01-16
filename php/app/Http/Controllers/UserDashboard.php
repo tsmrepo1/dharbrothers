@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserdesignModel;
+use Illuminate\Support\Facades\Mail;
 use App\Models\UploadfileModel;
 
 class UserDashboard extends Controller
@@ -40,7 +41,8 @@ class UserDashboard extends Controller
 
     public function apprv(Request $request)
     {
-        // Retrieve data from the request
+        $vab = "User has accepted image(s) of the order no, ".$request->input('orderId');
+        $dyn = "";
         $orderId = $request->input('orderId');
         $slabId = $request->input('title');
         $fileUrl = $request->input('fileUrl');
@@ -48,14 +50,19 @@ class UserDashboard extends Controller
 
         if ($slabId == "Thesis Main File") {
             $xx = "tmain_stat";
+            $dyn = $dyn."Thesis Main Document";
         } elseif ($slabId == "Thesis Hard Cover Design") {
             $xx = "thard_stat";
+            $dyn = $dyn." Thesis Hard Cover Design";
         } elseif ($slabId == "Thesis Soft Cover Design") {
             $xx = "tsoft_stat";
+            $dyn = $dyn." Thesis Soft Cover Design";
         } elseif ($slabId == "Synopsis Main File") {
             $xx = "smain_stat";
+            $dyn = $dyn." Synopsis Main Document";
         } elseif ($slabId == "Synopsis Design") {
             $xx = "scover_stat";
+            $dyn = $dyn." Synopsis Cover Design";
         }
 
         UploadfileModel::where('orderid', $orderId)->update([$xx => 1]);
@@ -69,7 +76,10 @@ class UserDashboard extends Controller
 
 
         if ($design->save()) {
-
+            $mes = $vab.$dyn.", Please check the site for details.";
+            Mail::raw($mes, function ($message) {
+                $message->to("raktimbanerjee9@gmail.com")->subject('Acceptance By User');
+            });
             $response = [
                 'status' => 'success',
 
@@ -89,22 +99,30 @@ class UserDashboard extends Controller
     }
     public function submitcmmnt(Request $request)
     {
-        // Retrieve data from the request
+        $vab = "User has rejected image(s) of the order no, ".$request->input('orderId');
+        $dyn = "";
         $orderId = $request->input('orderId');
         $slabId = $request->input('title');
         $fileUrl = $request->input('fileUrl');
         $comment = $request->input('comment');
 
         if ($slabId == "Thesis Main File") {
+
             $xx = "tmain_stat";
+            $dyn = $dyn."Thesis Main Document";
         } elseif ($slabId == "Thesis Hard Cover Design") {
             $xx = "thard_stat";
+            $dyn = $dyn." Thesis Hard Cover Design";
         } elseif ($slabId == "Thesis Soft Cover Design") {
             $xx = "tsoft_stat";
+            $dyn = $dyn." Thesis Soft Cover Design";
         } elseif ($slabId == "Synopsis Main File") {
             $xx = "smain_stat";
+            $dyn = $dyn." Synopsis Main Document";
         } elseif ($slabId == "Synopsis Design") {
             $xx = "scover_stat";
+            
+            $dyn = $dyn." Synopsis Cover Design";
         }
 
         UploadfileModel::where('orderid', $orderId)->update([$xx => 1]);
@@ -117,7 +135,10 @@ class UserDashboard extends Controller
         $design->reason = $comment;
 
         if ($design->save()) {
-
+            $mes = $vab.$dyn.", Please check the site for details.";
+            Mail::raw($mes, function ($message) {
+                $message->to("raktimbanerjee9@gmail.com")->subject('Rejection By User');
+            });
             $response = [
                 'status' => 'success',
                 'message' => 'Comment submitted successfully',
