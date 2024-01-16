@@ -2,42 +2,44 @@
 
 @section('content')
 @php
-    function get_binding_rate($paper_type, $color) {
-        if ($paper_type == "Paper One 100 GSM or Equivalent") {
-            if ($color == "Normal - Black & White") {
-                return ["first_page" => 6, "other_page" => 2];
-            } else if ($color == "Normal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else if ($color == "Royal - Black & White") {
-                return ["first_page" => 8, "other_page" => 5];
-            } else if ($color == "Royal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
+    if(!function_exists("get_binding_rate")) {
+        function get_binding_rate($paper_type, $color) {
+            if ($paper_type == "Paper One 100 GSM or Equivalent") {
+                if ($color == "Normal - Black & White") {
+                    return ["first_page" => 6, "other_page" => 2];
+                } else if ($color == "Normal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else if ($color == "Royal - Black & White") {
+                    return ["first_page" => 8, "other_page" => 5];
+                } else if ($color == "Royal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else {
+                    return ["first_page" => 0, "other_page" => 0];
+                }
+            } else if ($paper_type == "Bond Paper 85 GSM or Equivalent") {
+                if ($color == "Normal - Black & White") {
+                    return ["first_page" => 6, "other_page" => 2];
+                } else if ($color == "Normal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else if ($color == "Royal - Black & White") {
+                    return ["first_page" => 8, "other_page" => 5];
+                } else if ($color == "Royal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else {
+                    return ["first_page" => 0, "other_page" => 0];
+                }
             } else {
-                return ["first_page" => 0, "other_page" => 0];
-            }
-        } else if ($paper_type == "Bond Paper 85 GSM or Equivalent") {
-            if ($color == "Normal - Black & White") {
-                return ["first_page" => 6, "other_page" => 2];
-            } else if ($color == "Normal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else if ($color == "Royal - Black & White") {
-                return ["first_page" => 8, "other_page" => 5];
-            } else if ($color == "Royal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else {
-                return ["first_page" => 0, "other_page" => 0];
-            }
-        } else {
-            if ($color == "Normal - Black & White") {
-                return ["first_page" => 5, "other_page" => 1.5];
-            } else if ($color == "Normal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else if ($color == "Royal - Black & White") {
-                return ["first_page" => 6, "other_page" => 4];
-            } else if ($color == "Royal - Color") {
-                return ["first_page" => 10, "other_page" => 8];
-            } else {
-                return ["first_page" => 0, "other_page" => 0];
+                if ($color == "Normal - Black & White") {
+                    return ["first_page" => 5, "other_page" => 1.5];
+                } else if ($color == "Normal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else if ($color == "Royal - Black & White") {
+                    return ["first_page" => 6, "other_page" => 4];
+                } else if ($color == "Royal - Color") {
+                    return ["first_page" => 10, "other_page" => 8];
+                } else {
+                    return ["first_page" => 0, "other_page" => 0];
+                }
             }
         }
     }

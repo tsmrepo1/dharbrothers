@@ -190,50 +190,29 @@
                     <div class="col-lg-4">
                         <div class="ordersummary__wrapp">
                             <h3>Order Summary</h3>
-                            <table class="table border-solid mt-4">
-                                <tbody>
-                                    @isset($hard_binding_total_price)
-                                    <tr>
-                                        <th>Hard Binding</th>
-                                        <td class="text-right">₹ {{$hard_binding_total_price}}</td>
-                                    </tr>
-                                    @endisset
+                            <div class="table-responsive">
+                                <table class="table">
+                                     <tbody>
+                                         <tr>
+                                             <td>Sub Total</td>
+                                             <td>{{$order_amount}} INR</td>    
+                                         </tr>  
+                                         <tr>
+                                             <td>CGST</td>
+                                             <td>{{$cgst}} %</td>    
+                                         </tr>  
+                                         <tr>
+                                             <td>SGST</td>
+                                             <td>{{$sgst}} %</td>    
+                                         </tr>  
+                                     </tbody>
+                                 </table>
+                             </div>
 
-                                    @isset($soft_binding_total_price)
-                                    <tr>
-                                        <th>Soft Binding</th>
-                                        <td class="text-right">₹ {{$soft_binding_total_price}}</td>
-                                    </tr>
-                                    @endisset
-
-                                    @isset($synopsis_binding_total_price)
-                                    <tr>
-                                        <th>Synopsis Binding</th>
-                                        <td class="text-right">₹ {{$synopsis_binding_total_price}}</td>
-                                    </tr>
-                                    @endisset
-
-                                    @isset($cgst)
-                                    <tr>
-                                        <th>CGST</th>
-                                        <td class="text-right">₹ {{$cgst}}</td>
-                                    </tr>
-                                    @endisset
-
-                                    @isset($sgst)
-                                    <tr>
-                                        <th>SGST</th>
-                                        <td class="text-right">₹ {{$sgst}}</td>
-                                    </tr>
-                                    @endisset
-
-                                </tbody>
-                            </table>
-
-                            @isset($total)
+                            @isset($total_amount)
                             <div class="total__holder">
                                 <h3>Total</h3>
-                                <h3 class="ml-auto">₹ {{$total}}</h3>
+                                <h3 class="ml-auto">₹ {{$total_amount}} INR</h3>
                             </div>
                             @endisset
 

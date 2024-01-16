@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\UserPermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -84,14 +85,28 @@ class HomeController extends Controller
     public function checkout(Request $request)
     {
         $request->session()->put('order', $request->order);
+
         $request->session()->put('order_amount', $request->order_amount);
+        $request->session()->put('total_amount', $request->total_amount);
+
+        $request->session()->put('cgst', $request->cgst);
+        $request->session()->put('sgst', $request->sgst);
 
         
         return view("pages.checkout", [
+            "hard_printing_total_price"      => $request->hard_printing_total_price,
+            "soft_printing_total_price"      => $request->soft_printing_total_price,
+            "synopsis_printing_total_price"  => $request->synopsis_printing_total_price,
+
             "hard_binding_total_price"      => $request->hard_binding_total_price,
             "soft_binding_total_price"      => $request->soft_binding_total_price,
             "synopsis_binding_total_price"  => $request->synopsis_binding_total_price,
-            "total"                         => $request->hard_binding_total_price + $request->soft_binding_total_price + $request->synopsis_binding_total_price
+
+            "cgst"                          => $request->cgst,
+            "sgst"                          => $request->sgst,
+            
+            "order_amount"                  => $request->order_amount,
+            "total_amount"                  => $request->total_amount
         ]);
     }
 
@@ -107,7 +122,6 @@ class HomeController extends Controller
         $user->password = Hash::make($request->phone);
         $user->role =  "USER";
         $user->save();
-
 
         // Create New Order
         $order->order_id = mt_rand(1000000000, 9999999999);
@@ -140,11 +154,68 @@ class HomeController extends Controller
 
         $order->order_detail = $request->session()->get('order', json_encode([]));
         $order->order_amount = $request->session()->get('order_amount', 0);
+        $order->total_amount = $request->session()->get('total_amount', 0);
+        $order->cgst = $request->session()->get('cgst', 0);
+        $order->sgst = $request->session()->get('sgst', 0);
+
         $order->save();
 
+        $this->create_shiprocket_order($order);
         Auth::login($user);
         return redirect()->route("user.myaccount");
     }
+
+    public function get_token()
+    {
+    
+        $response = Http::post('https://apiv2.shiprocket.in/v1/external/auth/login', [
+            'header' => 'Content-Type: application/json',
+            'email' => "raktimbanerjee9@gmail.com",
+            'password' => "Raktim365249@2000",
+        ]);
+
+        $token = $response->json()['token'];
+    
+        return $token;
+    }
+
+    public function create_shiprocket_order($order)
+    {
+        // Get the Shiprocket token (you can use the getToken() function from the previous response)
+        $token = $this->get_token();
+
+        // Define order details (customize this according to your needs)
+        $orderData = [
+            "channel_id" => "4669360",
+            'order_id' => '12345', // Your unique order ID
+            'pickup_location' => 'Your Warehouse',
+            'shipping_address' => [
+                'name' => 'John Doe',
+                'address' => '123 Main St',
+                'city' => 'Your City',
+                'state' => 'Your State',
+                'country' => 'India',
+                'pincode' => '123456',
+                // Add other relevant fields
+            ],
+            // Add more order details (products, weight, etc.)
+        ];
+
+        // Make an API call to create the order
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Content-Type' => 'application/json',
+        ])->post('https://apiv2.shiprocket.in/v1/external/orders/create/', $orderData);
+
+        // Handle the response (you can log it or return it to the user)
+        if ($response->successful()) {
+            $orderResponse = $response->json();
+            return response()->json(['status' => true, 'data' => $orderResponse]);
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
+
     public function upload_file(Request $request)
     {
         $fileName = $request->file('file')->store('uploads', 'public');

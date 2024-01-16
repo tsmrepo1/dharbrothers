@@ -3571,11 +3571,11 @@ function generate_order_summery() {
                     </tr>  
                     <tr>
                         <td>CGST</td>
-                        <td>${cgst} INR</td>    
+                        <td>${cgst} %</td>    
                     </tr>  
                     <tr>
                         <td>SGST</td>
-                        <td>${sgst} INR</td>    
+                        <td>${sgst} %</td>    
                     </tr>  
                     <tr>
                         <td>Total</td>
@@ -3592,11 +3592,19 @@ function generate_order_summery() {
             <form action="{{ route('web.checkout') }}" method="POST">
             @csrf
                 <input type="text" class="d-none" name="order" value='${order_summery_json}' />
-                <input type="text" class="d-none" name="order_amount" value="${300}" />
+                <input type="text" class="d-none" name="order_amount" value="${sub_amount}" />
+                <input type="text" class="d-none" name="total_amount" value="${total_amount}" />
+
+                <input type="text" class="d-none" name="cgst" value="${cgst}" />
+                <input type="text" class="d-none" name="sgst" value="${sgst}" />
+
+                <input type="text" class="d-none" name="hard_printing_total_price" value="${hard_printing_total_price}" />
+                <input type="text" class="d-none" name="soft_printing_total_price" value="${soft_printing_total_price}" />
+                <input type="text" class="d-none" name="synopsis_printing_total_price" value="${synopsis_printing_total_price}" />
                 
-                <input type="text" class="d-none" name="hard_binding_total_price" value="${100}" />
-                <input type="text" class="d-none" name="soft_binding_total_price" value="${100}" />
-                <input type="text" class="d-none" name="synopsis_binding_total_price" value="${100}" />
+                <input type="text" class="d-none" name="hard_binding_total_price" value="${hard_binding_total_price}" />
+                <input type="text" class="d-none" name="soft_binding_total_price" value="${soft_binding_total_price}" />
+                <input type="text" class="d-none" name="synopsis_binding_total_price" value="${synopsis_binding_total_price}" />
                 
                 <button class="btn ml-auto next__buttonone" type="submit" title="Send">Confirm Order</button>
             </form>
@@ -3611,12 +3619,6 @@ $("#next_step_6").on("click", function() {
 $("#step-6-link").on("click", function() {
     generate_order_summery();
 });
-
-function calculate_hard_binding() {}
-
-function calculate_soft_binding() {}
-
-function calculate_synopsis_binding() {}
 
 </script>
 @stop
