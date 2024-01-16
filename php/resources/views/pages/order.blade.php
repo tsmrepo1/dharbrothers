@@ -1634,8 +1634,7 @@
                                                                 Browse for your file!
                                                             </button>
                                                             <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
-                                                            <input type="file" class="fileup" value="" name="fileup"
-                                                                id="synopsis_binding_cover_design_file" name="synopsis_binding_cover_design_file" />
+                                                            <input type="file" value="" id="synopsis_binding_cover_design_file" name="synopsis_binding_cover_design_file" />
                                                             
                                                         </div>
                                                     </div>
@@ -3176,27 +3175,6 @@ function generate_order_summery() {
         synopsis_binding_cover_design_file: window.synopsis_binding_cover_design_file
     }
 
-
-    order_summery = {
-        thesis_file: window.thesis_file,
-        synopsis_file:  window.synopsis_file,
-
-        hard_bindings_orders,
-        hard_binding_other_details, 
-        
-        soft_bindings_orders,
-        soft_binding_other_details,
-        
-        synopsis_bindings_orders,
-        synopsis_binding_other_details,
-
-        thesis_color_page,
-        thesis_bw_page,
-        
-        synopsis_color_page,
-        synopsis_bw_page
-    }
-
     // Hard Binding Order Summary DOM
     var hard_binding_order_html = ""
     hard_bindings_orders.forEach(order => {
@@ -3585,6 +3563,27 @@ function generate_order_summery() {
             </table>
         </div>
     `)
+
+    order_summery = {
+        thesis_file: window.thesis_file,
+        synopsis_file:  window.synopsis_file,
+
+        hard_bindings_orders,
+        hard_binding_other_details, 
+        
+        soft_bindings_orders,
+        soft_binding_other_details,
+        
+        synopsis_bindings_orders,
+        synopsis_binding_other_details,
+
+        thesis_color_page,
+        thesis_bw_page,
+        
+        synopsis_color_page,
+        synopsis_bw_page
+    }
+    console.log(order_summery)
 
     let order_summery_json = JSON.stringify(order_summery)
     $("#order_summery").append(`
