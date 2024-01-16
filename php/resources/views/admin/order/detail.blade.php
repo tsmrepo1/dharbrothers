@@ -488,11 +488,7 @@
                         </div>
                         <div class="documents-for-approval">
     <h3>Documents for Approval</h3>
-@php
-$firstElement = $picsdet[0];
-$allColumnNames = array_keys($firstElement);
-$selectedColumnNames = array_slice($allColumnNames, 2, 5);
-@endphp
+
     <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="file-upload-wrapper" style="display:flex">
@@ -523,6 +519,7 @@ $selectedColumnNames = array_slice($allColumnNames, 2, 5);
     </form>
     
 </div>
+@if(!empty($picsdet))
 <div class="documents-for-approval">
     <h3>Uploaded for Approval</h3>
 
@@ -575,6 +572,7 @@ $selectedColumnNames = array_slice($allColumnNames, 2, 5);
 
 @endforeach
 </div>
+@endif
 
                         
                     </div>

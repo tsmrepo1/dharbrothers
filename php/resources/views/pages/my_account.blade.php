@@ -4,47 +4,102 @@
 @php
     if(!function_exists("get_binding_rate")) {
         function get_binding_rate($paper_type, $color) {
-            if ($paper_type == "Paper One 100 GSM or Equivalent") {
-                if ($color == "Normal - Black & White") {
-                    return ["first_page" => 6, "other_page" => 2];
-                } else if ($color == "Normal - Color") {
-                    return ["first_page" => 10, "other_page" => 8];
-                } else if ($color == "Royal - Black & White") {
-                    return ["first_page" => 8, "other_page" => 5];
-                } else if ($color == "Royal - Color") {
-                    return ["first_page" => 10, "other_page" => 8];
-                } else {
-                    return ["first_page" => 0, "other_page" => 0];
+            if ($paper_type == "Paper One 100 GSM or Equivalent") 
+            {
+                if ($color == "All Black & White") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 6, 'other_page'=> 2),
+                    'color'=>   array('first_page'=> 0, 'other_page'=> 0)
+                );
+                } 
+                else if ($color == "Black & White & Color") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 6, 'other_page'=> 2),
+                    'color'=>   array('first_page'=> 10, 'other_page'=> 8)
+                );
+                } 
+                else if ($color == "Royal Print") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 8, 'other_page'=> 5),
+                    'color'=>   array('first_page'=> 10, 'other_page'=> 8)
+                );
                 }
-            } else if ($paper_type == "Bond Paper 85 GSM or Equivalent") {
-                if ($color == "Normal - Black & White") {
-                    return ["first_page" => 6, "other_page" => 2];
-                } else if ($color == "Normal - Color") {
-                    return ["first_page" => 10, "other_page" => 8];
-                } else if ($color == "Royal - Black & White") {
-                    return ["first_page" => 8, "other_page" => 5];
-                } else if ($color == "Royal - Color") {
-                    return ["first_page" => 10, "other_page" => 8];
-                } else {
-                    return ["first_page" => 0, "other_page" => 0];
+                else 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 0, 'other_page'=> 0),
+                    'color'=>   array('first_page'=> 0, 'other_page'=> 0)
+                );
                 }
-            } else {
-                if ($color == "Normal - Black & White") {
-                    return ["first_page" => 5, "other_page" => 1.5];
-                } else if ($color == "Normal - Color") {
-                    return ["first_page" => 10, "other_page" => 8];
-                } else if ($color == "Royal - Black & White") {
-                    return ["first_page" => 6, "other_page" => 4];
-                } else if ($color == "Royal - Color") {
-                    return ["first_page" => 10, "other_page" => 8];
-                } else {
-                    return ["first_page" => 0, "other_page" => 0];
+            } 
+            else if ($paper_type == "Bond Paper 85 GSM or Equivalent") 
+            {
+                if ($color == "All Black & White") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 6, 'other_page'=> 2),
+                    'color'=>   array('first_page'=> 0, 'other_page'=> 0)
+                );
+                } 
+                else if ($color == "Black & White & Color") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 6, 'other_page'=> 2),
+                    'color'=>   array('first_page'=> 10, 'other_page'=> 8)
+                );
+                } 
+                else if ($color == "Royal Print") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 8, 'other_page'=> 5),
+                    'color'=>   array('first_page'=> 10, 'other_page'=> 8)
+                );
+                }
+                else 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 0, 'other_page'=> 0),
+                    'color'=>   array('first_page'=> 0, 'other_page'=> 0)
+                );
+                }
+            } 
+            else 
+            {
+                if ($color == "All Black & White") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 5, 'other_page'=> 1.5),
+                    'color'=>   array('first_page'=> 0, 'other_page'=> 0)
+                );
+                } 
+                else if ($color == "Black & White & Color") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 5, 'other_page'=> 1.5),
+                    'color'=>   array('first_page'=> 10, 'other_page'=> 8)
+                );
+                } 
+                else if ($color == "Royal Print") 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 6, 'other_page'=> 4),
+                    'color'=>   array('first_page'=> 10, 'other_page'=> 8)
+                );
+                }
+                else 
+                {
+                    return array(
+                    'bw'=>      array('first_page'=> 0, 'other_page'=> 0),
+                    'color'=>   array('first_page'=> 0, 'other_page'=> 0)
+                );
                 }
             }
         }
     }
 @endphp
-
 
 @foreach($orders as $order)
 @php
@@ -54,12 +109,19 @@ $hard_binding_qty = 0;
 $soft_binding_qty = 0;
 $synopsis_binding_qty = 0;
 
+$hard_printing_price = 0;
+$soft_printing_price = 0;
+$synopsis_printing_price = 0;
+
 $hard_binding_price = 0;
 $soft_binding_price = 0;
 $synopsis_binding_price = 0;
 
-$color_page = $order_detail->color_page;
-$bw_page = $order_detail->bw_page;
+$thesis_color_page = $order_detail->thesis_color_page;
+$thesis_bw_page = $order_detail->thesis_bw_page;
+
+$synopsis_color_page = $order_detail->synopsis_color_page;
+$synopsis_bw_page = $order_detail->synopsis_bw_page;
 @endphp
 
 @foreach($order_detail->hard_bindings_orders as $hard_order)
@@ -84,473 +146,515 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
 <!-- offcanvas panel right -->
 <aside class="offcanvas offcanvas-right" id="my_offcanvas2">
     <header class="p-4">
+        <div class="row">
+            <div class="col-8">
+                <h5>Order ID #{{$order->id}}</h5>
+            </div>
+            <div class="col-4"></div>
+        </div>
         <button class="btn  btn-close"> &times Close </button>
     </header>
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-             @if($hard_binding_qty > 0)
-    <div class="printing__wrapp p-4 bg-white mt-5">
-        <h3 class="mb-4">Hard Binding &amp; Printing</h3>
-        <div class="printing__Details table-responsive">
-            <p>Print Details</p>
-            <table class="table table-striped">
-                <thead>
-                    <th scope="col">Description</th>
-                    <th scope="col">Colour/ BW</th>
-                    <th scope="col">Copies</th>
-                    <th scope="col">1st Copy Rate</th>
-                    <th scope="col">Additional Copy Rate</th>
-                    <th scope="col" class="text-right">Cost</th>
-                </thead>
-                <tbody>
-                    @foreach($order_detail->hard_bindings_orders as $hard_order)
-                    @php
-                    $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
-                    $total = 0;
+        <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
+            @if($hard_binding_qty > 0)
+                <div class="printing__wrapp p-4 bg-white mt-5">
+                    <h3 class="mb-4">Hard Binding &amp; Printing</h3>
+                    <div class="printing__Details table-responsive">
+                        <p>Print Details</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <th scope="col">Description</th>
+                                <th scope="col">Colour/ BW</th>
+                                <th scope="col">Copies</th>
+                                <th scope="col">1st Copy Rate</th>
+                                <th scope="col">Additional Copy Rate</th>
+                                <th scope="col" class="text-right">Cost</th>
+                            </thead>
+                            <tbody>
+                                @foreach($order_detail->hard_bindings_orders as $hard_order)
+                                @php
+                                $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
+                                $total = 0;
 
-                    $numberOfColorPage = $color_page;
-                    $numberOfBWPage = $bw_page;
-                    $numberOfTotalPage = 0;
+                                $number_of_thesis_color_page = $thesis_color_page;
+                                $number_of_thesis_bw_page = $thesis_bw_page;
+                                $number_of_total_page = 0;
 
-                    if ($hard_order->hard_binding_paper_color == "Normal - Black & White" || $hard_order->hard_binding_paper_color == "Royal - Black & White") {
-                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
-                        $numberOfColorPage = 0;
-                        $numberOfTotalPage = $numberOfBWPage;
-                    }
-                    else {
-                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
-                        $numberOfBWPage = 0;
-                        $numberOfTotalPage = $numberOfColorPage;
-                    }
+                                if ($hard_order->hard_binding_paper_color == "All Black & White") {
+                                    $number_of_thesis_bw_page = $number_of_thesis_bw_page + $number_of_thesis_color_page;
+                                    $number_of_thesis_color_page = 0;
+                                    $number_of_total_page = $number_of_thesis_bw_page;
+                                } 
 
-                    // Calculate Page Printing Price
-                    if ($hard_order->hard_binding_qty == 1) 
-                    {
-                        $total += $numberOfTotalPage * $rate['first_page'];
-                    } 
-                    elseif ($hard_order->hard_binding_qty > 1) 
-                    {
-                        $total += $numberOfTotalPage * $rate['first_page'];
+                                // Calculate Page Printing Price
+                                if ($hard_binding_qty == 1) {
+                                    $total += ($number_of_thesis_bw_page * $rate['bw']['first_page']) + ($number_of_thesis_color_page * $rate['color']['first_page']);
+                                } else if ($hard_binding_qty > 1) {
+                                    $total += ($number_of_thesis_bw_page * $rate['bw']['first_page']) + ($number_of_thesis_color_page * $rate['color']['first_page']);
 
-                        $total += (($hard_order->hard_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
-                    }
-                    else 
-                    {
-                        $total += 0;
-                    }
+                                    $total += ((($hard_binding_qty - 1) * $number_of_thesis_bw_page) * $rate['bw']['other_page']) + ((($hard_binding_qty - 1) * $number_of_thesis_color_page) * $rate['color']['other_page']);
+                                } else {
+                                    $total += 0;
+                                }
 
-                    // Calculate Binding Price
-                    if ($hard_order->hard_binding_qty < 3) 
-                    {
-                        $total += $hard_order->hard_binding_qty * 300;
-                    } 
-                    elseif ($hard_order->hard_binding_qty >= 3) 
-                    {
-                        $total += $hard_order->hard_binding_qty * 270;
-                    }
-                    else 
-                    {
-                        $total += 0;
-                    }
+                                $hard_printing_price = $hard_printing_price + $total;
 
-                    $hard_binding_price = $hard_binding_price + $total;
-                    @endphp
-                    <tr>
-                        <td>{{ $hard_order->hard_binding_paper_type }}</td>
-                        <td>{{ $hard_order->hard_binding_paper_color }}</td>
-                        <td>{{ $hard_order->hard_binding_qty }}</td>
-                        <td>{{ $rate["first_page"] }}</td>
-                        <td>{{ $rate["other_page"] }}</td>
-                        <td class="text-right">₹ {{$total}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="sub_total">
-                <h4>Sub Total</h4>
-                <h5>₹ {{$hard_binding_price}}</h5>
+                                @endphp
+                                <tr>
+                                    <td>{{ $hard_order->hard_binding_paper_type }}</td>
+                                    <td>{{ $hard_order->hard_binding_paper_color }}</td>
+                                    <td>{{ $hard_order->hard_binding_qty }}</td>
+                                    <td>Black & White: {{$rate['bw']['first_page']}}, Color: {{$rate['color']['first_page']}}</td>
+                                    <td>Black & White: {{$rate['bw']['other_page']}}, Color: {{$rate['color']['other_page']}}</td>
+                                    <td class="text-right">₹ {{$total}} INR</td>
+                                </tr>
+                                @endforeach
+                                @php
+                                    if($hard_binding_qty <= 3) {
+                                        $hard_binding_price = $hard_binding_qty * 300;
+                                    }
+                                    else {
+                                        $hard_binding_price = (3 * 300) + (($hard_binding_qty - 3) * 270); 
+                                    }
+                                @endphp
+                            </tbody>
+                        </table>
+                        <div class="sub_total">
+                            <h4>Sub Total</h4>
+                            <h5>₹ {{$hard_printing_price}} INR</h5>
+                        </div>
+                         <div class="printing__Details table-responsive">
+                            <p>Binding Details <a href="#"
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hard Bind</td>
+                                        <td>{{$hard_binding_qty}}</td>
+                                        <td class="text-right">₹ {{$hard_binding_price}} INR</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if($soft_binding_qty > 0)
+                <div class="printing__wrapp p-4 bg-white mt-5">
+                    <h3 class="mb-4">Soft Binding &amp; Printing</h3>
+                    <div class="printing__Details table-responsive">
+                        <p>Print Details</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <th scope="col">Description</th>
+                                <th scope="col">Colour/ BW</th>
+                                <th scope="col">Copies</th>
+                                <th scope="col">1st Copy Rate</th>
+                                <th scope="col">Additional Copy Rate</th>
+                                <th scope="col" class="text-right">Cost</th>
+                            </thead>
+                            <tbody>
+                                @foreach($order_detail->soft_bindings_orders as $soft_order)
+                                @php
+                                $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
+                                $total = 0;
+
+                                $number_of_thesis_color_page = $thesis_color_page;
+                                $number_of_thesis_bw_page = $thesis_bw_page;
+                                $number_of_total_page = 0;
+
+                                if ($soft_order->soft_binding_paper_color == "All Black & White") {
+                                    $number_of_thesis_bw_page = $number_of_thesis_bw_page + $number_of_thesis_color_page;
+                                    $number_of_thesis_color_page = 0;
+                                    $number_of_total_page = $number_of_thesis_bw_page;
+                                } 
+
+                                // Calculate Page Printing Price
+                                if ($soft_binding_qty == 1) {
+                                    $total += ($number_of_thesis_bw_page * $rate['bw']['first_page']) + ($number_of_thesis_color_page * $rate['color']['first_page']);
+                                } else if ($soft_binding_qty > 1) {
+                                    $total += ($number_of_thesis_bw_page * $rate['bw']['first_page']) + ($number_of_thesis_color_page * $rate['color']['first_page']);
+
+                                    $total += ((($soft_binding_qty - 1) * $number_of_thesis_bw_page) * $rate['bw']['other_page']) + ((($soft_binding_qty - 1) * $number_of_thesis_color_page) * $rate['color']['other_page']);
+                                } else {
+                                    $total += 0;
+                                }
+
+                                $soft_printing_price = $soft_printing_price + $total;
+
+                                @endphp
+                                <tr>
+                                    <td>{{ $soft_order->soft_binding_paper_type }}</td>
+                                    <td>{{ $soft_order->soft_binding_paper_color }}</td>
+                                    <td>{{ $soft_order->soft_binding_qty }}</td>
+                                    <td>Black & White: {{$rate['bw']['first_page']}}, Color: {{$rate['color']['first_page']}}</td>
+                                    <td>Black & White: {{$rate['bw']['other_page']}}, Color: {{$rate['color']['other_page']}}</td>
+                                    <td class="text-right">₹ {{$total}} INR</td>
+                                </tr>
+                                @endforeach
+                                @php
+                                    $soft_binding_price = $soft_binding_qty * 270;
+                                @endphp
+                            </tbody>
+                        </table>
+                        <div class="sub_total">
+                            <h4>Sub Total</h4>
+                            <h5>₹ {{$soft_printing_price}} INR</h5>
+                        </div>
+                         <div class="printing__Details table-responsive">
+                            <p>Binding Details <a href="#"
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Soft Bind</td>
+                                        <td>{{$soft_binding_qty}}</td>
+                                        <td class="text-right">₹ {{$soft_binding_price}} INR</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if($synopsis_binding_qty > 0)
+                <div class="printing__wrapp p-4 bg-white mt-5">
+                    <h3 class="mb-4">Synopsis Binding &amp; Printing</h3>
+                    <div class="printing__Details table-responsive">
+                        <p>Print Details</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <th scope="col">Description</th>
+                                <th scope="col">Colour/ BW</th>
+                                <th scope="col">Copies</th>
+                                <th scope="col">1st Copy Rate</th>
+                                <th scope="col">Additional Copy Rate</th>
+                                <th scope="col" class="text-right">Cost</th>
+                            </thead>
+                            <tbody>
+                                @foreach($order_detail->synopsis_bindings_orders as $synopsis_order)
+                                @php
+                                $rate = get_binding_rate($synopsis_order->synopsis_binding_paper_type, $synopsis_order->synopsis_binding_paper_color);
+                                $total = 0;
+
+                                $number_of_thesis_color_page = $thesis_color_page;
+                                $number_of_thesis_bw_page = $thesis_bw_page;
+                                $number_of_total_page = 0;
+
+                                if ($synopsis_order->synopsis_binding_paper_color == "All Black & White") {
+                                    $number_of_thesis_bw_page = $number_of_thesis_bw_page + $number_of_thesis_color_page;
+                                    $number_of_thesis_color_page = 0;
+                                    $number_of_total_page = $number_of_thesis_bw_page;
+                                } 
+
+                                // Calculate Page Printing Price
+                                if ($synopsis_binding_qty == 1) {
+                                    $total += ($number_of_thesis_bw_page * $rate['bw']['first_page']) + ($number_of_thesis_color_page * $rate['color']['first_page']);
+                                } else if ($synopsis_binding_qty > 1) {
+                                    $total += ($number_of_thesis_bw_page * $rate['bw']['first_page']) + ($number_of_thesis_color_page * $rate['color']['first_page']);
+
+                                    $total += ((($synopsis_binding_qty - 1) * $number_of_thesis_bw_page) * $rate['bw']['other_page']) + ((($synopsis_binding_qty - 1) * $number_of_thesis_color_page) * $rate['color']['other_page']);
+                                } else {
+                                    $total += 0;
+                                }
+
+                                $synopsis_printing_price = $synopsis_printing_price + $total;
+
+                                @endphp
+                                <tr>
+                                    <td>{{ $synopsis_order->synopsis_binding_paper_type }}</td>
+                                    <td>{{ $synopsis_order->synopsis_binding_paper_color }}</td>
+                                    <td>{{ $synopsis_order->synopsis_binding_qty }}</td>
+                                    <td>Black & White: {{$rate['bw']['first_page']}}, Color: {{$rate['color']['first_page']}}</td>
+                                    <td>Black & White: {{$rate['bw']['other_page']}}, Color: {{$rate['color']['other_page']}}</td>
+                                    <td class="text-right">₹ {{$total}} INR</td>
+                                </tr>
+                                @endforeach
+                                @php
+                                    $synopsis_binding_price = $synopsis_binding_qty * 30;
+                                @endphp
+                            </tbody>
+                        </table>
+                        <div class="sub_total">
+                            <h4>Sub Total</h4>
+                            <h5>₹ {{$synopsis_printing_price}} INR</h5>
+                        </div>
+                         <div class="printing__Details table-responsive">
+                            <p>Binding Details <a href="#"
+                                data-toggle="tooltip" title="Hooray!">
+                                <i class=" fa-solid fa-circle-info"
+                                    aria-hidden="true"></i>
+                            </a></p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Copies</th>
+                                        <th scope="col" class="text-right">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Synopsis Bind</td>
+                                        <td>{{$synopsis_binding_qty}}</td>
+                                        <td class="text-right">₹ {{$synopsis_binding_price}} INR</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">User Timeline</h5>
+                <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-success"></i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title">Meeting with client</h4>
+                                <p>
+                                    Meeting with USA Client, today at
+                                    <a href="javascript:void(0);" data-abc="true">12:00 PM</a>
+                                </p>
+                                <span class="vertical-timeline-element-date">9:30 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-warning">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <p>
+                                    Another meeting with UK client today, at
+                                    <b class="text-danger">3:00 PM</b>
+                                </p>
+                                <p>
+                                    Yet another one, at
+                                    <span class="text-success">5:00 PM</span>
+                                </p>
+                                <span class="vertical-timeline-element-date">12:25 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-danger">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title">
+                                    Discussion with team about new product launch
+                                </h4>
+                                <p>
+                                    meeting with team mates about the launch of new
+                                    product. and tell them about new features
+                                </p>
+                                <span class="vertical-timeline-element-date">6:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-primary">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title text-success">
+                                    Discussion with marketing team
+                                </h4>
+                                <p>
+                                    Discussion with marketing team about the popularity
+                                    of last product
+                                </p>
+                                <span class="vertical-timeline-element-date">9:00 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-success">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title">
+                                    Purchase new hosting plan
+                                </h4>
+                                <p>
+                                    Purchase new hosting plan as discussed with
+                                    development team, today at
+                                    <a href="javascript:void(0);" data-abc="true">10:00 AM</a>
+                                </p>
+                                <span class="vertical-timeline-element-date">10:30 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-warning">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <p>
+                                    Another conference call today, at
+                                    <b class="text-danger">11:00 AM</b>
+                                </p>
+                                <p>
+                                    Yet another one, at
+                                    <span class="text-success">1:00 PM</span>
+                                </p>
+                                <span class="vertical-timeline-element-date">12:25 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-warning">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <p>
+                                    Another meeting with UK client today, at
+                                    <b class="text-danger">3:00 PM</b>
+                                </p>
+                                <p>
+                                    Yet another one, at
+                                    <span class="text-success">5:00 PM</span>
+                                </p>
+                                <span class="vertical-timeline-element-date">12:25 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-danger">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title">
+                                    Discussion with team about new product launch
+                                </h4>
+                                <p>
+                                    meeting with team mates about the launch of new
+                                    product. and tell them about new features
+                                </p>
+                                <span class="vertical-timeline-element-date">6:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-primary">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title text-success">
+                                    Discussion with marketing team
+                                </h4>
+                                <p>
+                                    Discussion with marketing team about the popularity
+                                    of last product
+                                </p>
+                                <span class="vertical-timeline-element-date">9:00 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-success">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <h4 class="timeline-title">
+                                    Purchase new hosting plan
+                                </h4>
+                                <p>
+                                    Purchase new hosting plan as discussed with
+                                    development team, today at
+                                    <a href="javascript:void(0);" data-abc="true">10:00 AM</a>
+                                </p>
+                                <span class="vertical-timeline-element-date">10:30 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-timeline-item vertical-timeline-element">
+                        <div>
+                            <span class="vertical-timeline-element-icon bounce-in">
+                                <i class="badge badge-dot badge-dot-xl badge-warning">
+                                </i>
+                            </span>
+                            <div class="vertical-timeline-element-content bounce-in">
+                                <p>
+                                    Another conference call today, at
+                                    <b class="text-danger">11:00 AM</b>
+                                </p>
+                                <p>
+                                    Yet another one, at
+                                    <span class="text-success">1:00 PM</span>
+                                </p>
+                                <span class="vertical-timeline-element-date">12:25 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    @endif
 
-    @if($soft_binding_qty > 0)
-    <div class="printing__wrapp p-4 bg-white mt-5">
-        <h3 class="mb-4">Soft Binding &amp; Printing</h3>
-        <div class="printing__Details table-responsive">
-            <p>Print Details</p>
-            <table class="table table-striped">
-                <thead>
-                    <th scope="col">Description</th>
-                    <th scope="col">Copies</th>
-                    <th scope="col">Colour/ BW</th>
-                    <th scope="col">1st Copy Rate</th>
-                    <th scope="col">Additional Copy Rate</th>
-                    <th scope="col" class="text-right">Cost</th>
-                </thead>
-                <tbody>
-                    @foreach($order_detail->soft_bindings_orders as $soft_order)
-                    @php
-                    $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
-                    $total = 0;
-
-                    $numberOfColorPage = $color_page;
-                    $numberOfBWPage = $bw_page;
-                    $numberOfTotalPage = 0;
-
-                    if ($soft_order->soft_binding_paper_color == "Normal - Black & White" || $soft_order->soft_binding_paper_color == "Royal - Black & White") {
-                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
-                        $numberOfColorPage = 0;
-                        $numberOfTotalPage = $numberOfBWPage;
-                    }
-                    else {
-                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
-                        $numberOfBWPage = 0;
-                        $numberOfTotalPage = $numberOfColorPage;
-                    }
-
-                    // Calculate Page Printing Price
-                    if ($soft_order->soft_binding_qty == 1) 
-                    {
-                        $total += $numberOfTotalPage * $rate['first_page'];
-                    } 
-                    elseif ($soft_order->soft_binding_qty > 1) 
-                    {
-                        $total += $numberOfTotalPage * $rate['first_page'];
-
-                        $total += (($soft_order->soft_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
-                    }
-                    else 
-                    {
-                        $total += 0;
-                    }
-
-                    // Calculate Binding Price
-                    $total += $soft_order->soft_binding_qty * 270;
-
-                    $soft_binding_price = $soft_binding_price + $total;
-                    @endphp
-                    <tr>
-                        <td>{{ $soft_order->soft_binding_paper_type }}</td>
-                        <td>{{ $soft_order->soft_binding_paper_color }}</td>
-                        <td>{{ $soft_order->soft_binding_qty }}</td>
-                        <td>{{ $rate["first_page"] }}</td>
-                        <td>{{ $rate["other_page"] }}</td>
-                        <td class="text-right">₹ {{$total}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="sub_total">
-                <h4>Sub Total</h4>
-                <h5>₹ {{$soft_binding_price}}</h5>
+        <div class="one p-4 bg-white mt-5">
+            <div class="widget-area no-padding blank">
+                <div class="status-upload">
+                    <form>
+                        <textarea placeholder="Do You Have Any Query? Message Us..." name="message"></textarea>
+                        <a id="btn-submit" href="#" class="btn btn-success green">
+                            <i class="fa fa-share"></i>Post
+                        </a>
+                    </form>
+                </div>
+                <!-- Status Upload  -->
             </div>
         </div>
+
     </div>
-    @endif
-
-    @if($synopsis_binding_qty > 0)
-    <div class="printing__wrapp p-4 bg-white mt-5">
-        <h3 class="mb-4">Synopsis Binding &amp; Printing</h3>
-        <div class="printing__Details table-responsive">
-            <p>Print Details</p>
-            <table class="table table-striped">
-                <thead>
-                    <th scope="col">Description</th>
-                    <th scope="col">Copies</th>
-                    <th scope="col">Colour/ BW</th>
-                    <th scope="col">1st Copy Rate</th>
-                    <th scope="col">Additional Copy Rate</th>
-                    <th scope="col" class="text-right">Cost</th>
-                </thead>
-                <tbody>
-                    @foreach($order_detail->synopsis_bindings_orders as $synopsis_order)
-                    @php
-                    $rate = get_binding_rate($synopsis_order->synopsis_binding_paper_type, $synopsis_order->synopsis_binding_paper_color);
-                    $total = 0;
-
-                    $numberOfColorPage = $color_page;
-                    $numberOfBWPage = $bw_page;
-                    $numberOfTotalPage = 0;
-
-                    if ($synopsis_order->synopsis_binding_paper_color == "Normal - Black & White" || $synopsis_order->synopsis_binding_paper_color == "Royal - Black & White") {
-                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
-                        $numberOfColorPage = 0;
-                        $numberOfTotalPage = $numberOfBWPage;
-                    }
-                    else {
-                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
-                        $numberOfBWPage = 0;
-                        $numberOfTotalPage = $numberOfColorPage;
-                    }
-
-                    // Calculate Page Printing Price
-                    if ($synopsis_order->synopsis_binding_qty == 1) 
-                    {
-                        $total += $numberOfTotalPage * $rate['first_page'];
-                    } 
-                    elseif ($synopsis_order->synopsis_binding_qty > 1) 
-                    {
-                        $total += $numberOfTotalPage * $rate['first_page'];
-
-                        $total += (($synopsis_order->synopsis_binding_qty - 1) * $numberOfTotalPage) * $rate['other_page'];
-                    }
-                    else 
-                    {
-                        $total += 0;
-                    }
-
-                    // Calculate Binding Price
-                    $total += $synopsis_order->synopsis_binding_qty * 30;
-
-                    $synopsis_binding_price = $synopsis_binding_price + $total;
-                    @endphp
-                    <tr>
-                        <td>{{ $synopsis_order->synopsis_binding_paper_type }}</td>
-                        <td>{{ $synopsis_order->synopsis_binding_paper_color }}</td>
-                        <td>{{ $synopsis_order->synopsis_binding_qty }}</td>
-                        <td>{{ $rate["first_page"] }}</td>
-                        <td>{{ $rate["other_page"] }}</td>
-                        <td class="text-right">₹ {{$total}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="sub_total">
-                <h4>Sub Total</h4>
-                <h5>₹ {{$synopsis_binding_price}}</h5>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h5 class="card-title">User Timeline</h5>
-            <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-success"></i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title">Meeting with client</h4>
-                            <p>
-                                Meeting with USA Client, today at
-                                <a href="javascript:void(0);" data-abc="true">12:00 PM</a>
-                            </p>
-                            <span class="vertical-timeline-element-date">9:30 AM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-warning">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <p>
-                                Another meeting with UK client today, at
-                                <b class="text-danger">3:00 PM</b>
-                            </p>
-                            <p>
-                                Yet another one, at
-                                <span class="text-success">5:00 PM</span>
-                            </p>
-                            <span class="vertical-timeline-element-date">12:25 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-danger">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title">
-                                Discussion with team about new product launch
-                            </h4>
-                            <p>
-                                meeting with team mates about the launch of new
-                                product. and tell them about new features
-                            </p>
-                            <span class="vertical-timeline-element-date">6:00 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-primary">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title text-success">
-                                Discussion with marketing team
-                            </h4>
-                            <p>
-                                Discussion with marketing team about the popularity
-                                of last product
-                            </p>
-                            <span class="vertical-timeline-element-date">9:00 AM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-success">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title">
-                                Purchase new hosting plan
-                            </h4>
-                            <p>
-                                Purchase new hosting plan as discussed with
-                                development team, today at
-                                <a href="javascript:void(0);" data-abc="true">10:00 AM</a>
-                            </p>
-                            <span class="vertical-timeline-element-date">10:30 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-warning">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <p>
-                                Another conference call today, at
-                                <b class="text-danger">11:00 AM</b>
-                            </p>
-                            <p>
-                                Yet another one, at
-                                <span class="text-success">1:00 PM</span>
-                            </p>
-                            <span class="vertical-timeline-element-date">12:25 PM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-warning">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <p>
-                                Another meeting with UK client today, at
-                                <b class="text-danger">3:00 PM</b>
-                            </p>
-                            <p>
-                                Yet another one, at
-                                <span class="text-success">5:00 PM</span>
-                            </p>
-                            <span class="vertical-timeline-element-date">12:25 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-danger">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title">
-                                Discussion with team about new product launch
-                            </h4>
-                            <p>
-                                meeting with team mates about the launch of new
-                                product. and tell them about new features
-                            </p>
-                            <span class="vertical-timeline-element-date">6:00 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-primary">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title text-success">
-                                Discussion with marketing team
-                            </h4>
-                            <p>
-                                Discussion with marketing team about the popularity
-                                of last product
-                            </p>
-                            <span class="vertical-timeline-element-date">9:00 AM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-success">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <h4 class="timeline-title">
-                                Purchase new hosting plan
-                            </h4>
-                            <p>
-                                Purchase new hosting plan as discussed with
-                                development team, today at
-                                <a href="javascript:void(0);" data-abc="true">10:00 AM</a>
-                            </p>
-                            <span class="vertical-timeline-element-date">10:30 PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="vertical-timeline-item vertical-timeline-element">
-                    <div>
-                        <span class="vertical-timeline-element-icon bounce-in">
-                            <i class="badge badge-dot badge-dot-xl badge-warning">
-                            </i>
-                        </span>
-                        <div class="vertical-timeline-element-content bounce-in">
-                            <p>
-                                Another conference call today, at
-                                <b class="text-danger">11:00 AM</b>
-                            </p>
-                            <p>
-                                Yet another one, at
-                                <span class="text-success">1:00 PM</span>
-                            </p>
-                            <span class="vertical-timeline-element-date">12:25 PM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="one p-4 bg-white mt-5">
-        <div class="widget-area no-padding blank">
-            <div class="status-upload">
-                <form>
-                    <textarea placeholder="Do You Have Any Query? Message Us..." name="message"></textarea>
-                    <a id="btn-submit" href="#" class="btn btn-success green">
-                        <i class="fa fa-share"></i>Post
-                    </a>
-                </form>
-            </div>
-            <!-- Status Upload  -->
-        </div>
-    </div>
-
-        </div>
-        <div class="offcanvas-body" id="offcanvas-content">
-        
+    
+    <div class="offcanvas-body" id="offcanvas-content">
     </div>
         <!-- <div class="col-sm-4 mt-5">
       <h3 class="mb-4">It is a long established</h3>
@@ -587,8 +691,6 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </div>
    
 </aside>
-
-
 
 
  <aside class="offcanvas offcanvas-right" id="my_offcanvas3">
@@ -664,7 +766,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
           </div>
         </div>
       </div>
-    </aside>
+</aside>
 @endforeach
 
 <div class="main__body__wrapp">
@@ -738,12 +840,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
 
                                         <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
                                             <div class="account__form">
-                                                <input type="text" name="" id="" placeholder="Vishal" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
-                                            <div class="account__form">
-                                                <input type="text" name="" id="" placeholder="Rajak" />
+                                                <input type="text" name="name" id="" value="{{Auth::user()->name}}" />
                                             </div>
                                         </div>
                                     </div>
@@ -760,7 +857,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
 
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                             <div class="account__form">
-                                                <input type="text" name="" id="" placeholder="vishalrajak20@gmail.com" />
+                                                <input type="text" name="email" id="" placeholder="{{Auth::user()->email}}" />
                                             </div>
                                         </div>
                                     </div>
@@ -776,7 +873,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
 
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                             <div class="account__form">
-                                                <input type="text" name="" id="" placeholder="+91 9874563210" />
+                                                <input type="text" name="phone" id="" placeholder="{{Auth::user()->phone}}" />
                                             </div>
                                         </div>
                                     </div>
@@ -829,26 +926,26 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                             <td>
                                                 <!-- <button data-trigger="#my_offcanvas2" class="btn" type="button" data-toggle="tooltip" data-placement="top" title="Details"> <i class="fa-solid fa-chevron-right"></i> </button> -->
                                                 <button 
-    class="btn details-button" 
-    type="button" 
-    data-toggle="tooltip" 
-    data-placement="top" 
-    title="Details" 
-    data-trigger="#my_offcanvas2"
-    data-order-id="{{ $order->order_id }}"
-    data-info1="{{ $order->thesis_main }}" 
-    data-stat1="{{ $order->tmain_stat }}"
-    data-info2="{{ $order->thesis_hard_cover }}" 
-    data-stat2="{{ $order->thard_stat }}"
-    data-info3="{{ $order->thesis_soft_cover }}" 
-    data-stat3="{{ $order->tsoft_stat }}"
-    data-info4="{{ $order->synopsis_main }}" 
-    data-stat4="{{ $order->smain_stat }}"
-    data-info5="{{ $order->synopsis_cover }}"
-    data-stat5="{{ $order->scover_stat }}">
-    <i class="fa-solid fa-chevron-right"></i>
-</button>
-
+                                                    class="btn details-button" 
+                                                    type="button" 
+                                                    data-toggle="tooltip" 
+                                                    data-placement="top" 
+                                                    title="Details" 
+                                                    data-trigger="#my_offcanvas2"
+                                                    data-order-id="{{ $order->order_id }}"
+                                                    data-info1="{{ $order->thesis_file ?? '' }}" 
+                                                    data-stat1="{{ $order->tmain_stat ?? '' }}"
+                                                    data-info2="{{ $order->thesis_hard_cover ?? '' }}" 
+                                                    data-stat2="{{ $order->thard_stat ?? '' }}"
+                                                    data-info3="{{ $order->thesis_soft_cover ?? '' }}" 
+                                                    data-stat3="{{ $order->tsoft_stat ?? '' }}"
+                                                    data-info4="{{ $order->synopsis_main ?? '' }}" 
+                                                    data-stat4="{{ $order->smain_stat ?? '' }}"
+                                                    data-info5="{{ $order->synopsis_cover ?? '' }}"
+                                                    data-stat5="{{ $order->scover_stat ?? '' }}"
+                                                    >
+                                                    <i class="fa-solid fa-chevron-right"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -874,86 +971,81 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                         Ticket
                                     </button>
                                 </div>
- <table
-                      id="example"
-                      class="table table-striped table-bordered"
-                      style="width: 100%"
-                    >
-                      <thead>
-                        <tr>
-                          <th>Ticket</th>
-                          <th>Date</th>
-                          <th>Subject</th>
-                          <th>priority</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>TKT1661</td>
-                          <td>early leave</td>
-                          <td>Early Leave</td>
-                          <td>Jan 2, 2024</td>
-                          <td>Sarita Tressy Nair</td>
-                          <td>
-                            <button
-                              data-trigger="#my_offcanvas3"
-                              class="btn btn-primary"
-                              type="button"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Details"
-                            >
-                              <i class="fa-solid fa-chevron-right"></i>
-                            </button>
-                          </td>
-                        </tr>
+                                <table id="example" class="table table-striped table-bordered" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                        <th>Ticket</th>
+                                        <th>Date</th>
+                                        <th>Subject</th>
+                                        <th>priority</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td>TKT1661</td>
+                                        <td>early leave</td>
+                                        <td>Early Leave</td>
+                                        <td>Jan 2, 2024</td>
+                                        <td>Sarita Tressy Nair</td>
+                                        <td>
+                                            <button
+                                            data-trigger="#my_offcanvas3"
+                                            class="btn btn-primary"
+                                            type="button"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Details"
+                                            >
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                            </button>
+                                        </td>
+                                        </tr>
 
-                        <tr>
-                          <td>TKT1661</td>
-                          <td>early leave</td>
-                          <td>Early Leave</td>
-                          <td>Jan 2, 2024</td>
-                          <td>Sarita Tressy Nair</td>
-                          <td>$372,000</td>
-                        </tr>
-                        <tr>
-                          <td>TKT1661</td>
-                          <td>early leave</td>
-                          <td>Early Leave</td>
-                          <td>Jan 2, 2024</td>
-                          <td>Sarita Tressy Nair</td>
-                          <td>$372,000</td>
-                        </tr>
+                                        <tr>
+                                        <td>TKT1661</td>
+                                        <td>early leave</td>
+                                        <td>Early Leave</td>
+                                        <td>Jan 2, 2024</td>
+                                        <td>Sarita Tressy Nair</td>
+                                        <td>$372,000</td>
+                                        </tr>
+                                        <tr>
+                                        <td>TKT1661</td>
+                                        <td>early leave</td>
+                                        <td>Early Leave</td>
+                                        <td>Jan 2, 2024</td>
+                                        <td>Sarita Tressy Nair</td>
+                                        <td>$372,000</td>
+                                        </tr>
 
-                        <tr>
-                          <td>Michael Bruce</td>
-                          <td>Javascript Developer</td>
-                          <td>Singapore</td>
-                          <td>29</td>
-                          <td>2011-06-27</td>
-                          <td>$183,000</td>
-                        </tr>
-                        <tr>
-                          <td>Donna Snider</td>
-                          <td>Customer Support</td>
-                          <td>New York</td>
-                          <td>27</td>
-                          <td>2011-01-25</td>
-                          <td>$112,000</td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th>Name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
-                        </tr>
-                      </tfoot>
-                    </table>
-
+                                        <tr>
+                                        <td>Michael Bruce</td>
+                                        <td>Javascript Developer</td>
+                                        <td>Singapore</td>
+                                        <td>29</td>
+                                        <td>2011-06-27</td>
+                                        <td>$183,000</td>
+                                        </tr>
+                                        <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Customer Support</td>
+                                        <td>New York</td>
+                                        <td>27</td>
+                                        <td>2011-01-25</td>
+                                        <td>$112,000</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -964,63 +1056,57 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </section>
 </div>
 
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ticket Request</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="card__holder">
-              <div class="row">
-                <div class="mb-3 col-sm-12">
-                  <label for="exampleFormControlInput1" class="form-label"
-                    >Ticket Name
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="name@example.com"
-                  />
-                </div>
-
-                <div class="mb-3 col-sm-12">
-                  <label for="exampleFormControlTextarea1" class="form-label"
-                    >Example textarea</label
-                  >
-                  <textarea
-                    class="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary col-sm-6 ml-4 mt-4"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
+<diV class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ticket Request</h5>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
         </div>
-      </div>
+        <div class="modal-body">
+        <div class="card__holder">
+            <div class="row">
+            <div class="mb-3 col-sm-12">
+                <label for="exampleFormControlInput1" class="form-label"
+                >Ticket Name
+                </label>
+                <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+                />
+            </div>
+
+            <div class="mb-3 col-sm-12">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                >Example textarea</label
+                >
+                <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                ></textarea>
+            </div>
+            <button
+                type="submit"
+                class="btn btn-primary col-sm-6 ml-4 mt-4"
+            >
+                Submit
+            </button>
+            </div>
+        </div>
+        </div>
     </div>
+    </div>
+</div>
    
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
@@ -1215,33 +1301,25 @@ function createDivStructure(info, index, orderId, tit) {
     return div;
 }
 
+    var pdfUrl = "https://d2xe8shibzpjog.cloudfront.net/Notice/makaut1/2905_1702468867.pdf";
+    if (pdfUrl) {
+        var pdfPreviewContainer = document.getElementById('pdfPreview');
 
+        // Create an iframe to display the PDF
+        var iframe = document.createElement('iframe');
+        iframe.src = pdfUrl + "#toolbar=0"; // Append "#toolbar=0" to the URL to remove the toolbar
+        iframe.style.width = '600px'; // Set a larger width to load the PDF properly
+        iframe.style.height = '600px'; // Set a larger height to load the PDF properly
+        iframe.style.overflow = 'hidden'; // Hide the overflow
+        iframe.scrolling = 'no'; // Disable scrolling
 
-
-
-
-
-
-
-           var pdfUrl = "https://d2xe8shibzpjog.cloudfront.net/Notice/makaut1/2905_1702468867.pdf";
-        if (pdfUrl) {
-            var pdfPreviewContainer = document.getElementById('pdfPreview');
-
-            // Create an iframe to display the PDF
-            var iframe = document.createElement('iframe');
-            iframe.src = pdfUrl + "#toolbar=0"; // Append "#toolbar=0" to the URL to remove the toolbar
-            iframe.style.width = '600px'; // Set a larger width to load the PDF properly
-            iframe.style.height = '600px'; // Set a larger height to load the PDF properly
-            iframe.style.overflow = 'hidden'; // Hide the overflow
-            iframe.scrolling = 'no'; // Disable scrolling
-
-            // Clear previous content and append the iframe
-            pdfPreviewContainer.innerHTML = '';
-            pdfPreviewContainer.appendChild(iframe);
-        } else {
-            alert("Please enter a URL.");
-        }
-    </script>
+        // Clear previous content and append the iframe
+        pdfPreviewContainer.innerHTML = '';
+        pdfPreviewContainer.appendChild(iframe);
+    } else {
+        alert("Please enter a URL.");
+    }
+</script>
 <script>
     $(document).ready(function(){
         $('textarea[name="message"]').change(function(){

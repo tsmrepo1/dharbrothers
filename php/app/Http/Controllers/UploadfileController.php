@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UploadfileModel;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class UploadfileController extends Controller
 {
     public function upload(Request $request)
     {
+        Mail::raw("Welcome", function ($message) {
+            $message->to('tamoghna@thinksurfmedia.info')->subject('fff');
+        });
         $exists = UploadfileModel::where('orderid', $request->input('order_id'))->exists();
         if($exists){
             if ($request->hasFile('thesis_main_doc')) {

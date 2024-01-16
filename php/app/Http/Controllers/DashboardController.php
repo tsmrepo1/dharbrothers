@@ -23,47 +23,38 @@ class DashboardController extends Controller
     public function single_order(Request $request)
     {
         $order = FacadesDB::table("orders")
-                        ->join("users", "orders.user_id", "=", "users.id")
-                        ->where("orders.order_id", $request->order_id)
-                        ->select("users.name as user_name", "users.email as user_email", "users.phone as user_phone", "orders.*")
-                        ->first();
-
-                        $totalUsersWithRole = UploadfileModel::where('orderid', $request->order_id)->count();
-                         if($totalUsersWithRole==1){
-                       $pics = UploadfileModel::where('orderid', $request->order_id)->get();
-                       $allpics = [];
-
-foreach ($pics as $user) {
-    $picdata = [];
-
-    foreach ($user->getAttributes() as $columnName => $value) {
-        // Exclude 'created_at' and 'updated_at' columns
-        if ($columnName !== 'created_at' && $columnName !== 'updated_at') {
-            if ($value !== '') {
-                $picdata[$columnName] = $value;
-                
+            ->join("users", "orders.user_id", "=", "users.id")
+            ->where("orders.order_id", $request->order_id)
+            ->select("users.name as user_name", "users.email as user_email", "users.phone as user_phone", "orders.*")
+            ->first();
+    
+        $allpics = []; // Initialize $allpics outside the conditional block
+    
+        $totalUsersWithRole = UploadfileModel::where('orderid', $request->order_id)->count();
+        if ($totalUsersWithRole == 1) {
+            $pics = UploadfileModel::where('orderid', $request->order_id)->get();
+    
+            if ($pics->isNotEmpty()) {
+                foreach ($pics as $user) {
+                    $picdata = [];
+    
+                    foreach ($user->getAttributes() as $columnName => $value) {
+                        // Exclude 'created_at' and 'updated_at' columns
+                        if ($columnName !== 'created_at' && $columnName !== 'updated_at') {
+                            if ($value !== '') {
+                                $picdata[$columnName] = $value;
+                            }
+                        }
+                    }
+    
+                    if (!empty($picdata)) {
+                        $allpics[] = $picdata;
+                    }
+                }
             }
         }
+    
+        return view("admin.order.detail", ["order" => $order, "picsdet" => $allpics]);
     }
-
-    if (!empty($picdata)) {
-        $allpics[] = $picdata;
-    }
-}
-                }
-                // $firstElement = $allpics[0];
-
-                // // Get all keys
-                // $allColumnNames = array_keys($firstElement);
-                
-                // // Extract column names from index 2 to 6
-                // $selectedColumnNames = array_slice($allColumnNames, 2, 5); // slice from index 2, take 5 elements
-                
-                // // Print the selected column names
-                // foreach ($selectedColumnNames as $columnName) {
-                //     echo $columnName . PHP_EOL;die;
-                // }
-        
-        return view("admin.order.detail", ["order" => $order,"picsdet" => $allpics]);
-    }
+    
 }
