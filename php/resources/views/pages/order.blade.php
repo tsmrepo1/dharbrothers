@@ -1635,7 +1635,7 @@
                                                             </button>
                                                             <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
                                                             <input type="file" class="fileup" value="" name="fileup"
-                                                                id="synopsis_binding_cover_design" name="synopsis_binding_cover_design" />
+                                                                id="synopsis_binding_cover_design_file" name="synopsis_binding_cover_design_file" />
                                                             
                                                         </div>
                                                     </div>
@@ -1859,6 +1859,10 @@ const SYNOPSIS_BINDING_COVER_PRICE = 30;
 var hard_binding_total_price = 0;
 var soft_binding_total_price = 0;
 var synopsis_binding_total_price = 0;
+
+var hard_printing_total_price = 0;
+var soft_printing_total_price = 0;
+var synopsis_printing_total_price = 0;
 
 var hard_binding_selected = false;
 var soft_binding_selected = false;
@@ -2094,7 +2098,7 @@ $(document).ready(function(event) {
     });
 
     // Upload Soft binding Cover Image Design
-    $('#synopsis_binding_cover_design').on('change', function () {
+    $('#synopsis_binding_cover_design_file').on('change', function () {
         var formData = new FormData();
         formData.append("file", this.files[0]); // Append the file
 
@@ -2109,7 +2113,7 @@ $(document).ready(function(event) {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                window.soft_binding_cover_design = data.file_name
+                window.synopsis_binding_cover_design_file = data.file_name
                 // Handle the server response here
             })
             .catch((error) => {
@@ -2179,34 +2183,34 @@ $(document).ready(function(event) {
         }
     });
 
-    // If User click on synopsis binding
-    $(document).on("change", "input[name='synopsis_binding']", function() {
-        // If synopsis binding is checked
-        if (this.checked) {
-            // Add Cover Price
-            synopsis_binding_total_price += SYNOPSIS_BINDING_COVER_PRICE;
+    // // If User click on synopsis binding
+    // $(document).on("change", "input[name='synopsis_binding']", function() {
+    //     // If synopsis binding is checked
+    //     if (this.checked) {
+    //         // Add Cover Price
+    //         synopsis_binding_total_price += SYNOPSIS_BINDING_COVER_PRICE;
 
-            // Display Tab Link
-            synopsis_binding_selected = true;
-            $("#step-5-link").removeClass("d-none");
-        } else {
-            // Deduct Cover Price
-            synopsis_binding_total_price -= SYNOPSIS_BINDING_COVER_PRICE;
+    //         // Display Tab Link
+    //         synopsis_binding_selected = true;
+    //         $("#step-5-link").removeClass("d-none");
+    //     } else {
+    //         // Deduct Cover Price
+    //         synopsis_binding_total_price -= SYNOPSIS_BINDING_COVER_PRICE;
 
-            // Hide Tab Link
-            synopsis_binding_selected = false;
-            $("#step-5-link").addClass("d-none");
-        }
-        if (
-            hard_binding_selected ||
-            soft_binding_selected ||
-            synopsis_binding_selected
-        ) {
-            $("#step-6-link").removeClass("d-none");
-        } else {
-            $("#step-6-link").addClass("d-none");
-        }
-    });
+    //         // Hide Tab Link
+    //         synopsis_binding_selected = false;
+    //         $("#step-5-link").addClass("d-none");
+    //     }
+    //     if (
+    //         hard_binding_selected ||
+    //         soft_binding_selected ||
+    //         synopsis_binding_selected
+    //     ) {
+    //         $("#step-6-link").removeClass("d-none");
+    //     } else {
+    //         $("#step-6-link").addClass("d-none");
+    //     }
+    // });
     
     $('input[name="synopsis_binding_cover_design"]').change(function () {
         if ($(this).val() === "Custom") {
@@ -2945,7 +2949,7 @@ function get_rate(paper_type, color) {
         {
             return {
                bw:      {first_page: 6, other_page: 2},
-               color:   {first_page: 0, ther_page: 0}
+               color:   {first_page: 0, other_page: 0}
             }
         } 
         else if (color == "Black & White & Color") 
@@ -2976,7 +2980,7 @@ function get_rate(paper_type, color) {
         {
             return {
                bw:      {first_page: 6, other_page: 2},
-               color:   {first_page: 0, ther_page: 0}
+               color:   {first_page: 0, other_page: 0}
             }
         } 
         else if (color == "Black & White & Color") 
@@ -3007,7 +3011,7 @@ function get_rate(paper_type, color) {
         {
             return {
                bw:      {first_page: 5, other_page: 1.5},
-               color:   {first_page: 0, ther_page: 0}
+               color:   {first_page: 0, other_page: 0}
             }
         } 
         else if (color == "Black & White & Color") 
@@ -3038,6 +3042,10 @@ function generate_order_summery() {
     hard_binding_total_price = 0;
     soft_binding_total_price = 0;
     synopsis_binding_total_price = 0;
+
+    hard_printing_total_price = 0;
+    soft_printing_total_price = 0;
+    synopsis_printing_total_price = 0;
 
     hard_binding_copies = 0;
     soft_binding_copies = 0;
@@ -3165,19 +3173,28 @@ function generate_order_summery() {
     
     var synopsis_binding_other_details = {
         synopsis_binding_cover_design: $("input[name='synopsis_binding_cover_design']:checked").val(),
+        synopsis_binding_cover_design_file: window.synopsis_binding_cover_design_file
     }
 
 
     order_summery = {
         thesis_file: window.thesis_file,
+        synopsis_file:  window.synopsis_file,
+
         hard_bindings_orders,
         hard_binding_other_details, 
+        
         soft_bindings_orders,
         soft_binding_other_details,
+        
         synopsis_bindings_orders,
-        soft_binding_other_details,
+        synopsis_binding_other_details,
+
         thesis_color_page,
-        thesis_bw_page
+        thesis_bw_page,
+        
+        synopsis_color_page,
+        synopsis_bw_page
     }
 
     // Hard Binding Order Summary DOM
@@ -3189,7 +3206,6 @@ function generate_order_summery() {
         let number_of_thesis_color_page = thesis_color_page
         let number_of_thesis_bw_page = thesis_bw_page
         let number_of_total_page = 0
-
 
         if (order.hard_binding_paper_color == "All Black & White") {
             number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
@@ -3203,24 +3219,30 @@ function generate_order_summery() {
         } else if (order.hard_binding_qty > 1) {
             total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
 
-            total += ((number_of_thesis_bw_page - 1) * rate.bw.other_page) + ((number_of_thesis_color_page - 1) * rate.color.other_page)
+            total += (((order.hard_binding_qty - 1) * number_of_thesis_bw_page) * rate.bw.other_page) + (((order.hard_binding_qty - 1) * number_of_thesis_color_page) * rate.color.other_page)
         } else {
             total += 0
         }
 
         hard_binding_copies = Number(hard_binding_copies) + Number(order.hard_binding_qty)
-        hard_binding_total_price = hard_binding_total_price + total
-        console.log({hard_binding_total_price, total})
+        hard_printing_total_price = hard_printing_total_price + total
 
         hard_binding_order_html = hard_binding_order_html + `<tr>
                                                                     <td>${order.hard_binding_paper_type}</td>
                                                                     <td>${order.hard_binding_qty}</td>
                                                                     <td>${order.hard_binding_paper_color}</td>
-                                                                    <td>${rate.first_page}</td>
-                                                                    <td>${rate.other_page}</td>
+                                                                    <td>Black & White: ${rate.bw.first_page}, Color: ${rate.color.first_page}</td>
+                                                                    <td>Black & White: ${rate.bw.other_page}, Color: ${rate.color.other_page}</td>
                                                                     <td class="text-right">₹ ${total}</td>
                                                                 </tr>`
     })
+
+    if(hard_binding_copies <= 3) {
+        hard_binding_total_price = hard_binding_copies * 300;
+    }
+    else {
+        hard_binding_total_price = (3 * 300) + ((hard_binding_copies - 3) * 270); 
+    }
 
     if (hard_binding_selected) {
         $("#order_summery").append(
@@ -3251,7 +3273,7 @@ function generate_order_summery() {
                             </table>
                             <div class="sub_total">
                                 <h4>Sub Total</h4>
-                                <h5>₹ ${hard_binding_total_price}</h5>
+                                <h5>₹ ${hard_printing_total_price}</h5>
                             </div>
                         </div>
                         <div class="printing__Details table-responsive">
@@ -3310,28 +3332,26 @@ function generate_order_summery() {
         } else if (order.soft_binding_qty > 1) {
             total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
 
-            total += ((number_of_thesis_bw_page - 1) * rate.bw.other_page) + ((number_of_thesis_color_page - 1) * rate.color.other_page)
+            total += (((order.soft_binding_qty - 1) * number_of_thesis_bw_page) * rate.bw.other_page) + (((order.soft_binding_qty - 1) * number_of_thesis_color_page) * rate.color.other_page)
         } else {
             total += 0
         }
 
-        // Calculate Binding Price
-        total += order.soft_binding_qty * 270
-
         soft_binding_copies = Number(soft_binding_copies) + Number(order.soft_binding_qty)
-        soft_binding_total_price = soft_binding_total_price + total
-        console.log({soft_binding_total_price, total})
+        soft_printing_total_price = soft_printing_total_price + total
 
 
         soft_binding_order_html = soft_binding_order_html + `<tr>
-                                                                    <td>${order.soft_binding_paper_type}</td>
-                                                                    <td>${order.soft_binding_qty}</td>
-                                                                    <td>${order.soft_binding_paper_color}</td>
-                                                                    <td>${rate.first_page}</td>
-                                                                    <td>${rate.other_page}</td>
-                                                                    <td class="text-right">₹ ${total}</td>
-                                                                </tr>`
+                                                                <td>${order.soft_binding_paper_type}</td>
+                                                                <td>${order.soft_binding_qty}</td>
+                                                                <td>${order.soft_binding_paper_color}</td>
+                                                                <td>Black & White: ${rate.bw.first_page}, Color: ${rate.color.first_page}</td>
+                                                                <td>Black & White: ${rate.bw.other_page}, Color: ${rate.color.other_page}</td>
+                                                                <td class="text-right">₹ ${total}</td>
+                                                            </tr>`
     })
+
+    soft_binding_total_price = soft_binding_copies * 270
 
     if (soft_binding_selected) {
         $("#order_summery").append(
@@ -3362,7 +3382,7 @@ function generate_order_summery() {
                             </table>
                             <div class="sub_total">
                                 <h4>Sub Total</h4>
-                                <h5>₹ ${soft_binding_total_price}</h5>
+                                <h5>₹ ${soft_printing_total_price}</h5>
                             </div>
                         </div>
                         <div class="printing__Details table-responsive">
@@ -3405,42 +3425,70 @@ function generate_order_summery() {
         let rate = get_rate(order.synopsis_binding_paper_type, order.synopsis_binding_paper_color)
         let total = 0
 
-        let number_of_thesis_color_page = thesis_color_page
-        let number_of_thesis_bw_page = thesis_bw_page
+        let number_of_synopsis_color_page = synopsis_color_page
+        let number_of_synopsis_bw_page = synopsis_bw_page
         let number_of_total_page = 0
 
         if (order.synopsis_binding_paper_color == "All Black & White") {
-            number_of_thesis_bw_page = number_of_thesis_bw_page + number_of_thesis_color_page
-            number_of_thesis_color_page = 0
-            number_of_total_page = number_of_thesis_bw_page
+            number_of_synopsis_bw_page = number_of_synopsis_bw_page + number_of_synopsis_color_page
+            number_of_synopsis_color_page = 0
+            number_of_total_page = number_of_synopsis_bw_page
         } 
 
         // Calculate Page Printing Price
         if (order.synopsis_binding_qty == 1) {
-            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
+            total += (number_of_synopsis_bw_page * rate.bw.first_page) + (number_of_synopsis_color_page * rate.color.first_page)
         } else if (order.synopsis_binding_qty > 1) {
-            total += (number_of_thesis_bw_page * rate.bw.first_page) + (number_of_thesis_color_page * rate.color.first_page)
+            total += (number_of_synopsis_bw_page * rate.bw.first_page) + (number_of_synopsis_color_page * rate.color.first_page)
 
-            total += ((number_of_thesis_bw_page - 1) * rate.bw.other_page) + ((number_of_thesis_color_page - 1) * rate.color.other_page)
+            total += (((order.synopsis_binding_qty - 1) * number_of_synopsis_bw_page) * rate.bw.other_page) + (((order.synopsis_binding_qty - 1) * number_of_synopsis_color_page) * rate.color.other_page)
         } else {
             total += 0
         }
 
-        // Calculate Binding Price
-        total += order.synopsis_binding_qty * 30
-
         synopsis_binding_copies = Number(synopsis_binding_copies) + Number(order.synopsis_binding_qty)
-        synopsis_binding_total_price = synopsis_binding_total_price + total
+        synopsis_printing_total_price = synopsis_printing_total_price + total
 
         synopsis_binding_order_html = synopsis_binding_order_html + `<tr>
                                                                     <td>${order.synopsis_binding_paper_type}</td>
                                                                     <td>${order.synopsis_binding_qty}</td>
                                                                     <td>${order.synopsis_binding_paper_color}</td>
-                                                                    <td>${rate.first_page}</td>
-                                                                    <td>${rate.other_page}</td>
+                                                                    <td>Black & White: ${rate.bw.first_page}, Color: ${rate.color.first_page}</td>
+                                                                    <td>Black & White: ${rate.bw.other_page}, Color: ${rate.color.other_page}</td>
                                                                     <td class="text-right">₹ ${total}</td>
                                                                 </tr>`
     })
+
+    let synopsis_binding_cover_design_value = $('input[name="synopsis_binding_cover_design"]:checked').val()
+
+    if(synopsis_binding_cover_design_value == "Same as Hard Binding Cover")
+    {
+        if(synopsis_binding_copies <= 3) {
+            synopsis_binding_total_price = synopsis_binding_copies * 300;
+        }
+        else {
+            synopsis_binding_total_price = (3 * 300) + ((synopsis_binding_copies - 3) * 270); 
+        }
+    }
+    else if(synopsis_binding_cover_design_value == "Same as Soft Binding Cover")
+    {
+        synopsis_binding_total_price = (synopsis_binding_copies * 270); 
+    }
+    else if(synopsis_binding_cover_design_value == "Custom")
+    {
+        synopsis_binding_total_price = (synopsis_binding_copies * 30); 
+    }
+    else {
+        synopsis_binding_total_price = 0; 
+    }
+
+    $('input[name="synopsis_binding_cover_design"]').change(function () {
+        if ($(this).val() === "Custom") {
+            $('#synopsis_upload').show();
+        } else {
+            $('#synopsis_upload').hide();
+        }
+    });
 
     if (synopsis_binding_selected) {
         $("#order_summery").append(
@@ -3471,7 +3519,7 @@ function generate_order_summery() {
                             </table>
                             <div class="sub_total">
                                 <h4>Sub Total</h4>
-                                <h5>₹ ${synopsis_binding_total_price}</h5>
+                                <h5>₹ ${synopsis_printing_total_price}</h5>
                             </div>
                         </div>
                         <div class="printing__Details table-responsive">
@@ -3508,7 +3556,7 @@ function generate_order_summery() {
         )
     }
 
-    let sub_amount = hard_binding_total_price + soft_binding_total_price + synopsis_binding_total_price
+    let sub_amount = (hard_printing_total_price + hard_binding_total_price) + (soft_printing_total_price + soft_binding_total_price) + (synopsis_printing_total_price + synopsis_binding_total_price)
     let cgst = 17
     let sgst = 17
     let total_amount = sub_amount + ((sub_amount * (cgst + sgst)) / 100)
