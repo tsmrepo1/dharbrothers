@@ -6,12 +6,11 @@
         <div class="m-auto thank__holder">
             <img src="{{ asset('web/images/illustration-image.png') }}" class="m-auto d-block" alt="">
             <h2>Thank You!</h2>
-            <p>Check your inbox for the download</p>
+            <p>Your order has been placed successfully</p>
             <table>
             <thead>
                 <tr>
-                <th scope="col">billing information</th>
-
+                    <th scope="col">Order Information</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +39,7 @@
                 @endif
             </tbody>
             </table>
-            <a href="#" class="home">Go Home</a>
+            <a href="{{route('user.myaccount')}}" class="home text-dark">Login</a>
         </div>
         </div>
     </div>

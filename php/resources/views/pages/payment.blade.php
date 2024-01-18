@@ -1,5 +1,10 @@
 <button id="rzp-button1">Pay</button>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+    #rzp-button1 {
+        display: none !important;
+    }
+</style>
 <script>
 var options = {
     "key": "{{ env('RAZORPAY_KEY') }}", // Enter the Key ID generated from the Dashboard
@@ -29,10 +34,8 @@ rzp1.on('payment.failed', function (response){
         alert(response.error.metadata.order_id);
         alert(response.error.metadata.payment_id);
 });
-document.getElementById('rzp-button1').onclick = function(e){
-    rzp1.open();
-    e.preventDefault();
-}
+
+rzp1.open()
 </script>
 
 {{-- 
