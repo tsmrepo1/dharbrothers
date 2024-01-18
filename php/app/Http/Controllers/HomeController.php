@@ -13,6 +13,10 @@ use App\Models\UserPermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Razorpay\Api\Api;
+use Razorpay\Api\Errors\SignatureVerificationError;
+use Session;
+use Exception;
 
 class HomeController extends Controller
 {
@@ -160,9 +164,71 @@ class HomeController extends Controller
 
         $order->save();
 
-        $this->create_shiprocket_order($order);
-        Auth::login($user);
-        return redirect()->route("user.myaccount");
+        // Auth::login($user);
+        // return redirect()->route("user.myaccount");
+
+        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+        $razorpay_order = $api->order->create(array('receipt' => (string)$order->id, 'amount' => $order->total_amount * 100, 'currency' => 'INR'));
+        
+        return view("pages.payment", ["order_id" => $order->id, "razorpay_order" => $razorpay_order, "price" => $order->total_amount * 100, "name" => $user->name, "email" => $user->email, "phone" => $user->phone]);
+    }
+
+    public function payment_store(Request $request, $id)
+    {
+        $order = Order::find($id);
+        $order->payment_status = "SUCCESS";
+        $order->transaction_id = $request->razorpay_payment_id;
+        $order->payment_date = date("Y-m-d");
+
+        $success = true;
+        $error = "payment_failed";
+        if (empty($request->razorpay_payment_id) === false) {
+            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+            try {
+                $attributes = array(
+                    'razorpay_order_id'     => $request->razorpay_order_id,
+                    'razorpay_payment_id'   => $request->razorpay_payment_id,
+                    'razorpay_signature'    => $request->razorpay_signature
+                );
+                $api->utility->verifyPaymentSignature($attributes);
+            } catch (SignatureVerificationError $e) {
+                $success = false;
+                $error = 'Razorpay_Error : ' . $e->getMessage();
+            }
+        }
+        if ($success === true) 
+        {
+            if($order->save() === true) 
+            {
+                return view("pages.payment_response", [
+                    "order_id" => $order->id,
+                    "payment_status" => "Success",
+                    "payment_date" => date("Y-m-d"),
+                    "transaction_id" => $request->razorpay_payment_id,
+                    "reason" => null
+                ]);
+            }
+            else
+            {
+                return view("pages.payment_response", [
+                    "order_id" => $order->id,
+                    "payment_status" => "Failed",
+                    "payment_date" => date("Y-m-d"),
+                    "transaction_id" => $request->razorpay_payment_id,
+                    "reason" => "Something went wrong! Please, contact to support team with the Transaction ID"
+                ]);
+            }
+        } 
+        else 
+        {
+            return view("pages.payment_response", [
+                "order_id" => null,
+                "payment_status" => "Failed",
+                "payment_date" => date("Y-m-d"),
+                "transaction_id" => null,
+                "reason" => $error
+            ]);
+        }
     }
 
     public function get_token()

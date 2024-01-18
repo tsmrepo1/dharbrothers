@@ -41,8 +41,9 @@ Route::post('/submit-lead', [LeadController::class, "store"])->name('web.lead');
 Route::get('/order', [HomeController::class, "order"])->name('web.order');
 Route::post('/order', [HomeController::class, "checkout"])->name('web.checkout');
 Route::post('/place-order', [HomeController::class, "place_order"])->name('web.place_order');
-
 Route::post('/upload-file', [HomeController::class, "upload_file"])->name('web.upload_file');
+
+Route::post('razorpay-payment-verify/{id}', [HomeController::class, 'payment_store'])->name('razorpay.payment.verify')->withoutMiddleware(['App\Http\Middleware\VerifyCsrfToken']);
 
 Route::middleware([
     'auth:sanctum',
