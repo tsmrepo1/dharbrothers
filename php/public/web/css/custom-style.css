@@ -1835,3 +1835,7 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
        margin-left: 15px;
      }
      .app__text button{background: #159EB0; border: solid 1px #159EB0;}
+     .ulaa{width: 150px; height: 150px;}
+    .ulaa img{width: 100%; height: 100%;}
+    .app__text h3{font-size: 18px;}
+    .button_wrapp button{margin: 18px 10px 0 0; height: 40px;}

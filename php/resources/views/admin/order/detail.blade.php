@@ -52,6 +52,7 @@
         }
     @endphp
 
+
     <!--start page wrapper -->
     <div class="page-wrapper">
         <div class="page-content">
@@ -507,6 +508,37 @@
                                 @endif
                         </div>
                         <div class="documents-for-approval">
+                            <h3>Documents for Approval</h3>
+
+                            <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="file-upload-wrapper" style="display:flex">
+                                    <input type="hidden" name="order_id" value="{{ $order->order_id }}">
+
+                                    @if ($hard_binding_qty > 0 || $soft_binding_qty > 0)
+                                        <p>Upload thesis Document:</p>
+                                        <input type="file" name="thesis_main_doc" accept="image/*" required>
+                                        @if ($hard_binding_qty > 0)
+                                            <p>Upload Hard Copy cover Design:</p>
+                                            <input type="file" name="hard_cover_design" accept="image/*" required>
+                                        @endif
+                                        @if ($soft_binding_qty > 0)
+                                            <p>Upload Soft Copy cover Design:</p>
+                                            <input type="file" name="soft_cover_design" accept="image/*" required>
+                                        @endif
+                                    @endif
+                                    @if ($synopsis_binding_qty > 0)
+                                        <p>Upload Synopsis Cover Design:</p>
+                                        <input type="file" name="synopsis_cover_design" accept="image/*" required>
+                                        <p>Upload Synopsis:</p>
+                                        <input type="file" name="synopsis_main_doc" accept="image/*" required>
+                                    @endif
+
+                                </div>
+
+                                <button type="submit" class="btn btn-primary"
+                                    style="padding-top: 10px; padding-bottom: 10px;">Upload Files</button>
+                            </form>
 
                         </div>
                         @if (!empty($picsdet))

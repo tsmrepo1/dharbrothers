@@ -427,8 +427,13 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                     </div>
                 </div>
             @endif
+        </div>
 
-        <div class="main-card mb-3 card">
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <div id="data"></div>
+        </div>
+
+        <div class="main-card mb-3 card d-none">
             <div class="card-body">
                 <h5 class="card-title">User Timeline</h5>
                 <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
@@ -637,53 +642,38 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                 </div>
             </div>
         </div>
-
-        <div class="one p-4 bg-white mt-5">
-            <div class="widget-area no-padding blank">
-                <div class="status-upload">
-                    <form>
-                        <textarea placeholder="Do You Have Any Query? Message Us..." name="message"></textarea>
-                        <a id="btn-submit" href="#" class="btn btn-success green">
-                            <i class="fa fa-share"></i>Post
-                        </a>
-                    </form>
-                </div>
-                <!-- Status Upload  -->
-            </div>
-        </div>
-
     </div>
     
     <div class="offcanvas-body" id="offcanvas-content">
     </div>
         <!-- <div class="col-sm-4 mt-5">
-      <h3 class="mb-4">It is a long established</h3>
-      <div class="approve__wrapp p-4">
-        <div class="preview__holder">
-          <div class="ulaa">
-           <div id="pdfPreview"></div>
-           <div class="button_wrapp">
-            <button type="button" class="btn btn-secondary">Preview</button>
-           <a href="#"><i class="fa-solid fa-circle-down"></i></a>
-           </div>
+            <h3 class="mb-4">It is a long established</h3>
+            <div class="approve__wrapp p-4">
+                <div class="preview__holder">
+                <div class="ulaa">
+                <div id="pdfPreview"></div>
+                <div class="button_wrapp">
+                    <button type="button" class="btn btn-secondary">Preview</button>
+                <a href="#"><i class="fa-solid fa-circle-down"></i></a>
+                </div>
+                
+                </div>
+                <div class="app__text">
+                <h3>It is a long established</h3>
+                <button type="button" class="btn btn-success">Approve</button>
+                <button type="button" class="btn btn-danger" id="formButton">Reject</button>
+                <form id="form1">
+
         
-          </div>
-        <div class="app__text">
-          <h3>It is a long established</h3>
-          <button type="button" class="btn btn-success">Approve</button>
-          <button type="button" class="btn btn-danger" id="formButton">Reject</button>
-          <form id="form1">
 
-   
-
- 
-  <textarea name="comment" placeholder=" Enter your comment here">
-  
-  </textarea>
-   
-  <button type="submit" id="submit">Submit</button>
-  </form>
-        </div>
+        
+        <textarea name="comment" placeholder=" Enter your comment here">
+        
+        </textarea>
+        
+        <button type="submit" id="submit">Submit</button>
+        </form>
+                </div>
         
         </div>
       </div> -->
@@ -1125,7 +1115,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         var info5 = this.getAttribute('data-info5');
         var s5 = this.getAttribute('data-stat5');
 
-        var container = document.getElementById('offcanvas-content');
+        var container = document.getElementById('data');
         container.innerHTML = ''; // Clear previous content
 
         var infos = [info1, info2, info3, info4, info5].filter(info => info !== "");
@@ -1167,7 +1157,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
             container.appendChild(div);
         });
 
-        var offcanvas = new bootstrap.Offcanvas(document.getElementById('my_offcanvas2'));
+        var offcanvas = new bootstrap.Offcanvas(document.getElementById('data'));
         offcanvas.show();
     });
 });
@@ -1186,9 +1176,9 @@ function createDivStructure(info, index, orderId, tit) {
     if (info) {
         var fileExtension = info.split('.').pop().toLowerCase();
         if (fileExtension === 'pdf') {
-            content = `<iframe src="${fileUrl}" style="width:100px; height:200px;" frameborder="0"></iframe>`;
+            content = `<iframe src="${fileUrl}" style="width:150px; height:150px;" frameborder="0"></iframe>`;
         } else {
-            content = `<img src="${fileUrl}" style="width:100px; height:200px;" alt="Preview" />`;
+            content = `<img src="${fileUrl}" style="width:150px; height:150px;" alt="Preview" />`;
         }
     } else {
         content = '';

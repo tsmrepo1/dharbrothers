@@ -136,9 +136,9 @@ class UserDashboard extends Controller
 
         if ($design->save()) {
             $mes = $dyn.$vab.", Please check the site for details.";
-            Mail::raw($mes, function ($message) {
-                $message->to("raktimbanerjee9@gmail.com")->subject('Rejection By User');
-            });
+            // Mail::raw($mes, function ($message) {
+            //     $message->to("raktimbanerjee9@gmail.com")->subject('Rejection By User');
+            // });
             $response = [
                 'status' => 'success',
                 'message' => 'Comment submitted successfully',
