@@ -245,42 +245,62 @@ class HomeController extends Controller
         return $token;
     }
 
-    public function create_shiprocket_order($order)
-    {
-        // Get the Shiprocket token (you can use the getToken() function from the previous response)
-        $token = $this->get_token();
+    // public function create_shiprocket_order($order)
+    // {
+    //     // Get the Shiprocket token (you can use the getToken() function from the previous response)
+    //     $token = $this->get_token();
 
-        // Define order details (customize this according to your needs)
-        $orderData = [
-            "channel_id" => "4669360",
-            'order_id' => '12345', // Your unique order ID
-            'pickup_location' => 'Your Warehouse',
-            'shipping_address' => [
-                'name' => 'John Doe',
-                'address' => '123 Main St',
-                'city' => 'Your City',
-                'state' => 'Your State',
-                'country' => 'India',
-                'pincode' => '123456',
-                // Add other relevant fields
-            ],
-            // Add more order details (products, weight, etc.)
-        ];
+    //     // Define order details (customize this according to your needs)
+    //     $orderData =
+    //     [
+    //         "channel_id" => "4669360",
+    //         "order_id" => $order->id,
+    //         "order_date" => "2024-01-18 13:25",
+    //         "pickup_location" => "Primary",
+    //         "comment" => "fast and furious",
+    //         "billing_address" => "29E/1 Rammohan Mukherjee Lane",
+    //         "billing_customer_name" => "Raktim",
+    //         "billing_last_name" => "Banerjee",
+    //         "billing_city" => "new delhi",
+    //         "billing_pincode" => "273303",
+    //         "billing_state" => "delhi",
+    //         "billing_country" => "india",
+    //         "billing_email" => "raktimbanerjee9@gmail.com",
+    //         "billing_phone" => "9836739907",
+    //         "shipping_is_billing" => 1,
+    //         "order_items" => [
+    //             [
+    //                 "name" => "shoes",
+    //                 "sku" => "shoes123",
+    //                 "units" => "2",
+    //                 "selling_price" => "1500",
+    //                 "discount" => "100",
+    //                 "tax" => "50",
+    //                 "hsn" => ""
+    //             ]
+    //         ],
+    //         "payment_method" => "Prepaid",
+    //         "sub_total" => "2950",
+    //         "length" => "10",
+    //         "breadth" => "10",
+    //         "height" => "10",
+    //         "weight" => "1.5"
+    //     ];
 
-        // Make an API call to create the order
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-            'Content-Type' => 'application/json',
-        ])->post('https://apiv2.shiprocket.in/v1/external/orders/create/', $orderData);
+    //     // Make an API call to create the order
+    //     $response = Http::withHeaders([
+    //         'Authorization' => 'Bearer ' . $token,
+    //         'Content-Type' => 'application/json',
+    //     ])->post('https://apiv2.shiprocket.in/v1/external/orders/create/', $orderData);
 
-        // Handle the response (you can log it or return it to the user)
-        if ($response->successful()) {
-            $orderResponse = $response->json();
-            return response()->json(['status' => true, 'data' => $orderResponse]);
-        } else {
-            return response()->json(['status' => false]);
-        }
-    }
+    //     // Handle the response (you can log it or return it to the user)
+    //     if ($response->successful()) {
+    //         $orderResponse = $response->json();
+    //         return response()->json(['status' => true, 'data' => $orderResponse]);
+    //     } else {
+    //         return response()->json(['status' => false]);
+    //     }
+    // }
 
     public function upload_file(Request $request)
     {

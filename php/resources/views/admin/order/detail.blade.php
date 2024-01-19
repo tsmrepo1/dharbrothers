@@ -52,472 +52,472 @@
         }
     @endphp
 
+    @php
+        $order_detail = json_decode($order->order_detail);
+        $color_page = property_exists($order_detail, 'color_page') ? $order_detail->color_page : '0';
+        $bw_page = property_exists($order_detail, 'bw_page') ? $order_detail->bw_page : '0';
+
+        $hard_binding_qty = 0;
+        $soft_binding_qty = 0;
+        $synopsis_binding_qty = 0;
+
+        $hard_binding_price = 0;
+        $soft_binding_price = 0;
+        $synopsis_binding_price = 0;
+    @endphp
+
+    @foreach ($order_detail->hard_bindings_orders as $hard_order)
+        @php
+            $hard_binding_qty = $hard_binding_qty + $hard_order->hard_binding_qty;
+        @endphp
+    @endforeach
+
+    @foreach ($order_detail->soft_bindings_orders as $soft_order)
+        @php
+            $soft_binding_qty = $soft_binding_qty + $soft_order->soft_binding_qty;
+        @endphp
+    @endforeach
+
+    @foreach ($order_detail->synopsis_bindings_orders as $synopsis_order)
+        @php
+            $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_binding_qty;
+        @endphp
+    @endforeach
+
+    @php
+        $billing_address = json_decode($order->billing_address);
+        $shipping_address = json_decode($order->shipping_address);
+    @endphp
+
 
     <!--start page wrapper -->
     <div class="page-wrapper">
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Orders</div>
+                <div class="breadcrumb-title pe-3">Orders - #{{ $order->order_id }}</div>
             </div>
-            <!--end breadcrumb-->
+
             <div class="row row-cols-1 row-cols-1">
-                <div class="col">
-                    <div class="card border-top border-0 border-4 border-primary">
-                        <div class="card-body p-5">
-                            <h4>Order</h4>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <p>Name: {{ $order->user_name }}</p>
-                                    <p>Email: {{ $order->user_email }}</p>
-                                    <p>Phone: {{ $order->user_phone }}</p>
+                <div class="col-md-9">
+                    @if (property_exists($order_detail, 'hard_bindings_orders'))
+                        @if ($hard_binding_qty > 0)
+                            <div class="card border-top border-0 border-4 border-primary p-4">
+                                <h6>Hard Printing Details</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Paper Size</th>
+                                                <th scope="col">Colour/ BW</th>
+                                                <th scope="col">Printing Type</th>
+                                                <th scope="col">A4 Pockets</th>
+                                                <th scope="col">CD Pockets</th>
+                                                <th scope="col">Information</th>
+                                                <th scope="col">Copies</th>
+                                                <th scope="col" class="text-right">Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($order_detail->hard_bindings_orders as $hard_order)
+                                                @php
+                                                    $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
+                                                    $total = 0;
+
+                                                    $numberOfColorPage = $color_page;
+                                                    $numberOfBWPage = $bw_page;
+                                                    $numberOfTotalPage = 0;
+
+                                                    if ($hard_order->hard_binding_paper_color == 'Normal - Black & White' || $hard_order->hard_binding_paper_color == 'Royal - Black & White') {
+                                                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                                                        $numberOfColorPage = 0;
+                                                        $numberOfTotalPage = $numberOfBWPage;
+                                                    } else {
+                                                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                                                        $numberOfBWPage = 0;
+                                                        $numberOfTotalPage = $numberOfColorPage;
+                                                    }
+
+                                                    // Calculate Page Printing Price
+                                                    if ($hard_order->hard_binding_qty == 1) {
+                                                        $total += $numberOfTotalPage * $rate['first_page'];
+                                                    } elseif ($hard_order->hard_binding_qty > 1) {
+                                                        $total += $numberOfTotalPage * $rate['first_page'];
+
+                                                        $total += ($hard_order->hard_binding_qty - 1) * $numberOfTotalPage * $rate['other_page'];
+                                                    } else {
+                                                        $total += 0;
+                                                    }
+
+                                                    // Calculate Binding Price
+                                                    if ($hard_order->hard_binding_qty < 3) {
+                                                        $total += $hard_order->hard_binding_qty * 300;
+                                                    } elseif ($hard_order->hard_binding_qty >= 3) {
+                                                        $total += $hard_order->hard_binding_qty * 270;
+                                                    } else {
+                                                        $total += 0;
+                                                    }
+
+                                                    $hard_binding_qty = $hard_binding_qty + $hard_order->hard_binding_qty;
+                                                    $hard_binding_price = $hard_binding_price + $total;
+                                                @endphp
+                                                <tr>
+                                                    @if (isset($hard_order->hard_binding_paper_type))
+                                                        <td>{{ $hard_order->hard_binding_paper_type }}</td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_paper_size))
+                                                        <td>{{ $hard_order->hard_binding_paper_size }}</td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_paper_color))
+                                                        <td>{{ $hard_order->hard_binding_paper_color }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_printing_type))
+                                                        <td>{{ $hard_order->hard_binding_printing_type }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_a4_pockets))
+                                                        <td>{{ $hard_order->hard_binding_a4_pockets }}</td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_cd_pockets))
+                                                        <td>{{ $hard_order->hard_binding_cd_pockets }}</td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_information))
+                                                        <td>{{ $hard_order->hard_binding_information }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($hard_order->hard_binding_qty))
+                                                        <td>{{ $hard_order->hard_binding_qty }}</td>
+                                                    @endif
+                                                    <td class="text-right">₹ {{ $total }}</td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="8">Total</td>
+                                                <td>₹ {{ $hard_binding_price }}</td>
+                                            </tr>
+                                        <tfoot>
+                                    </table>
                                 </div>
-                                <div class="col-md-3">
-                                    <p>Order ID: {{ $order->order_id }}</p>
-                                    <p>Order Date: {{ date('d-m-Y', strtotime($order->created_at)) }}</p>
-                                    <p>Order Amount: {{ $order->order_amount }}</p>
-                                    <p>Payment Status: {{ $order->payment_status }}</p>
-                                    <p>Transaction ID: {{ $order->transaction_id }}</p>
+
+                                <div class="my-3">
+                                    <p>Cover DB:
+                                        {{ $order_detail->hard_binding_other_details->hard_binding_cover_color_db ?? '' }}
+                                    </p>
+                                    <p>Cover Text Color:
+                                        {{ $order_detail->hard_binding_other_details->hard_binding_cover_text_color ?? '' }}
+                                    </p>
+                                    <p>Cover Design: <a class="btn btn-sm btn-info" target="_blank"
+                                            href="{{ url('storage') }}/{{ $order_detail->hard_binding_other_details->hard_binding_cover_design ?? '' }}">View</a>
+                                    </p>
+                                    <p>Spine Printing:
+                                        {{ $order_detail->hard_binding_other_details->hard_binding_spine ?? '' }}
+                                    </p>
+                                    <p>Spine Top Content:
+                                        {{ $order_detail->hard_binding_other_details->hard_binding_spine_top_content ?? '' }}
+                                    </p>
+                                    <p>Spine Middle Content:
+                                        {{ $order_detail->hard_binding_other_details->hard_binding_spine_middle_content ?? '' }}
+                                    </p>
+                                    <p>Spine Bottom Content:
+                                        {{ $order_detail->hard_binding_other_details->hard_binding_spine_bottom_content ?? '' }}
+                                    </p>
+
                                 </div>
-                                <div class="col-md-3">
-                                    @php
-                                        $billing_address = json_decode($order->billing_address);
-                                        $shipping_address = json_decode($order->shipping_address);
-                                    @endphp
-                                    <p>Billing Street: {{ $billing_address->billing_street }}</p>
-                                    <p>Billing Apartment: {{ $billing_address->billing_apartment }}</p>
-                                    <p>Billing Country: {{ $billing_address->billing_country }}</p>
-                                    <p>Billing City: {{ $billing_address->billing_city }}</p>
-                                    <p>Billing State: {{ $billing_address->billing_state }}</p>
-                                    <p>Billing PIN: {{ $billing_address->billing_pin }}</p>
-                                </div>
-                                @if ($shipping_address)
-                                    <div class="col-md-3">
-                                        <p>Shipping Street: {{ $shipping_address->shipping_street }}</p>
-                                        <p>Shipping Apartment: {{ $shipping_address->shipping_apartment }}</p>
-                                        <p>Shipping Country: {{ $shipping_address->shipping_country }}</p>
-                                        <p>Shipping City: {{ $shipping_address->shipping_city }}</p>
-                                        <p>Shipping State:{{ $shipping_address->shipping_state }} </p>
-                                        <p>Shipping PIN: {{ $shipping_address->shipping_pin }}</p>
-                                    </div>
-                                @endif
                             </div>
+                        @endif
+                    @endif
+
+                    @if (property_exists($order_detail, 'soft_bindings_orders'))
+                        @if ($soft_binding_qty > 0)
+                            <div class="card border-top border-0 border-4 border-primary p-4">
+                                <h6>Soft Printing Details</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Paper Size</th>
+                                                <th scope="col">Colour/ BW</th>
+                                                <th scope="col">Printing Type</th>
+                                                <th scope="col">A4 Pockets</th>
+                                                <th scope="col">CD Pockets</th>
+                                                <th scope="col">Information</th>
+                                                <th scope="col">Copies</th>
+                                                <th scope="col" class="text-right">Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($order_detail->soft_bindings_orders as $soft_order)
+                                                @php
+                                                    $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
+                                                    $total = 0;
+
+                                                    $numberOfColorPage = $color_page;
+                                                    $numberOfBWPage = $bw_page;
+                                                    $numberOfTotalPage = 0;
+
+                                                    if ($soft_order->soft_binding_paper_color == 'Normal - Black & White' || $soft_order->soft_binding_paper_color == 'Royal - Black & White') {
+                                                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                                                        $numberOfColorPage = 0;
+                                                        $numberOfTotalPage = $numberOfBWPage;
+                                                    } else {
+                                                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                                                        $numberOfBWPage = 0;
+                                                        $numberOfTotalPage = $numberOfColorPage;
+                                                    }
+
+                                                    // Calculate Page Printing Price
+                                                    if ($soft_order->soft_binding_qty == 1) {
+                                                        $total += $numberOfTotalPage * $rate['first_page'];
+                                                    } elseif ($soft_order->soft_binding_qty > 1) {
+                                                        $total += $numberOfTotalPage * $rate['first_page'];
+
+                                                        $total += ($soft_order->soft_binding_qty - 1) * $numberOfTotalPage * $rate['other_page'];
+                                                    } else {
+                                                        $total += 0;
+                                                    }
+
+                                                    // Calculate Binding Price
+                                                    $total += $soft_order->soft_binding_qty * 270;
+
+                                                    $soft_binding_qty = $soft_binding_qty + $soft_order->soft_binding_qty;
+                                                    $soft_binding_price = $soft_binding_price + $total;
+                                                @endphp
+                                                <tr>
+                                                    @if (isset($soft_order->soft_binding_paper_type))
+                                                        <td>{{ $soft_order->soft_binding_paper_type }}</td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_paper_size))
+                                                        <td>{{ $soft_order->soft_binding_paper_size }}</td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_paper_color))
+                                                        <td>{{ $soft_order->soft_binding_paper_color }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_printing_type))
+                                                        <td>{{ $soft_order->soft_binding_printing_type }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_a4_pockets))
+                                                        <td>{{ $soft_order->soft_binding_a4_pockets }}</td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_cd_pockets))
+                                                        <td>{{ $soft_order->soft_binding_cd_pockets }}</td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_information))
+                                                        <td>{{ $soft_order->soft_binding_information }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($soft_order->soft_binding_qty))
+                                                        <td>{{ $soft_order->soft_binding_qty }}</td>
+                                                    @endif
+                                                    <td class="text-right">₹ {{ $total }}</td>
+                                                </tr>
+                                            @endforeach
+
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="8">Total</td>
+                                                <td>₹ {{ $soft_binding_price }}</td>
+                                            </tr>
+                                        <tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="my-3">
+                                    <p>Cover DB:
+                                        {{ $order_detail->soft_binding_other_details->soft_binding_cover_color_db ?? '' }}
+                                    </p>
+                                    <p>Cover Text Color:
+                                        {{ $order_detail->soft_binding_other_details->soft_binding_cover_text_color ?? '' }}
+                                    </p>
+                                    <p>Cover Design: <a class="btn btn-sm btn-info" target="_blank"
+                                            href="{{ url('storage') }}/{{ $order_detail->soft_binding_other_details->soft_binding_cover_design ?? '' }}">View</a>
+                                    </p>
+                                    <p>Spine Printing:
+                                        {{ $order_detail->soft_binding_other_details->soft_binding_spine ?? '' }}
+                                    </p>
+                                    <p>Spine Top Content:
+                                        {{ $order_detail->soft_binding_other_details->soft_binding_spine_top_content ?? '' }}
+                                    </p>
+                                    <p>Spine Middle Content:
+                                        {{ $order_detail->soft_binding_other_details->soft_binding_spine_middle_content ?? '' }}
+                                    </p>
+                                    <p>Spine Bottom Content:
+                                        {{ $order_detail->soft_binding_other_details->soft_binding_spine_bottom_content ?? '' }}
+                                    </p>
+
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+
+                    @if (property_exists($order_detail, 'synopsis_bindings_orders'))
+                        @if ($synopsis_binding_qty > 0)
+                            <div class="card border-top border-0 border-4 border-primary p-4">
+                                <h6>Synopsis Printing Details</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Paper Size</th>
+                                                <th scope="col">Colour/ BW</th>
+                                                <th scope="col">Printing Type</th>
+                                                <th scope="col">Copies</th>
+                                                <th scope="col" class="text-right">Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($order_detail->synopsis_bindings_orders as $synopsis_order)
+                                                @php
+                                                    $rate = get_binding_rate($synopsis_order->synopsis_binding_paper_type, $synopsis_order->synopsis_binding_paper_color);
+                                                    $total = 0;
+
+                                                    $numberOfColorPage = $color_page;
+                                                    $numberOfBWPage = $bw_page;
+                                                    $numberOfTotalPage = 0;
+
+                                                    if ($synopsis_order->synopsis_binding_paper_color == 'Normal - Black & White' || $synopsis_order->synopsis_binding_paper_color == 'Royal - Black & White') {
+                                                        $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
+                                                        $numberOfColorPage = 0;
+                                                        $numberOfTotalPage = $numberOfBWPage;
+                                                    } else {
+                                                        $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
+                                                        $numberOfBWPage = 0;
+                                                        $numberOfTotalPage = $numberOfColorPage;
+                                                    }
+
+                                                    // Calculate Page Printing Price
+                                                    if ($synopsis_order->synopsis_binding_qty == 1) {
+                                                        $total += $numberOfTotalPage * $rate['first_page'];
+                                                    } elseif ($synopsis_order->synopsis_binding_qty > 1) {
+                                                        $total += $numberOfTotalPage * $rate['first_page'];
+
+                                                        $total += ($synopsis_order->synopsis_binding_qty - 1) * $numberOfTotalPage * $rate['other_page'];
+                                                    } else {
+                                                        $total += 0;
+                                                    }
+
+                                                    // Calculate Binding Price
+                                                    $total += $synopsis_order->synopsis_binding_qty * 30;
+
+                                                    $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_binding_qty;
+                                                    $synopsis_binding_price = $synopsis_binding_price + $total;
+                                                @endphp
+                                                <tr>
+                                                    @if (isset($synopsis_order->synopsis_binding_paper_type))
+                                                        <td>{{ $synopsis_order->synopsis_binding_paper_type }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($synopsis_order->synopsis_binding_paper_size))
+                                                        <td>{{ $synopsis_order->synopsis_binding_paper_size }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($synopsis_order->synopsis_binding_paper_color))
+                                                        <td>{{ $synopsis_order->synopsis_binding_paper_color }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($synopsis_order->synopsis_binding_printing_type))
+                                                        <td>{{ $synopsis_order->synopsis_binding_printing_type }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($synopsis_order->synopsis_binding_qty))
+                                                        <td>{{ $synopsis_order->synopsis_binding_qty }}
+                                                        </td>
+                                                    @endif
+                                                    <td class="text-right">₹ {{ $total }}</td>
+                                                </tr>
+                                            @endforeach
+
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5">Total</td>
+                                                <td>₹ {{ $synopsis_binding_price }}</td>
+                                            </tr>
+                                        <tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="my-3">
+
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card border-top border-0 border-4 border-primary mb-4">
+                        <div class="card-body p-5">
+                            <h6>Order Details</h6>
+                            <p>Order ID: {{ $order->order_id }}</p>
+                            <p>Order Date: {{ date('d-m-Y', strtotime($order->created_at)) }}</p>
+                            <p>Order Amount: {{ $order->order_amount }}</p>
+                            <p>Payment Status: {{ $order->payment_status }}</p>
+                            <p>Transaction ID: {{ $order->transaction_id }}</p>
                         </div>
                     </div>
 
-                    <div class="card border-top border-0 border-4 border-primary">
+                    <div class="card border-top border-0 border-4 border-primary mb-4">
                         <div class="card-body p-5">
-                            <h4>Printing and Binding Details</h4>
-                            @php
-                                $order_detail = json_decode($order->order_detail);
-                                $color_page = property_exists($order_detail, 'color_page') ? $order_detail->color_page : '0';
-                                $bw_page = property_exists($order_detail, 'bw_page') ? $order_detail->bw_page : '0';
-
-                                $hard_binding_qty = 0;
-                                $soft_binding_qty = 0;
-                                $synopsis_binding_qty = 0;
-
-                                $hard_binding_price = 0;
-                                $soft_binding_price = 0;
-                                $synopsis_binding_price = 0;
-                            @endphp
-
-                            @foreach ($order_detail->hard_bindings_orders as $hard_order)
-                                @php
-                                    $hard_binding_qty = $hard_binding_qty + $hard_order->hard_binding_qty;
-                                @endphp
-                            @endforeach
-
-                            @foreach ($order_detail->soft_bindings_orders as $soft_order)
-                                @php
-                                    $soft_binding_qty = $soft_binding_qty + $soft_order->soft_binding_qty;
-                                @endphp
-                            @endforeach
-
-                            @foreach ($order_detail->synopsis_bindings_orders as $synopsis_order)
-                                @php
-                                    $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_binding_qty;
-                                @endphp
-                            @endforeach
-
-                            @if (!empty($order_detail->thesis_file))
-                                <p>Thesis File: <a class="btn btn-sm btn-info" target="_blank"
-                                        href="{{ url('storage/' . $order_detail->thesis_file) }}">View</a></p>
-                                @endif @if (property_exists($order_detail, 'hard_bindings_orders'))
-                                    @if ($hard_binding_qty > 0)
-                                        <div>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr class="table-dark">
-                                                            <th colspan="9" class="text-center">Hard Binding &
-                                                                Printing</th>
-                                                        </tr>
-                                                        <tr class="table-dark">
-                                                            <th scope="col">Description</th>
-                                                            <th scope="col">Paper Size</th>
-                                                            <th scope="col">Colour/ BW</th>
-                                                            <th scope="col">Printing Type</th>
-                                                            <th scope="col">A4 Pockets</th>
-                                                            <th scope="col">CD Pockets</th>
-                                                            <th scope="col">Information</th>
-                                                            <th scope="col">Copies</th>
-                                                            <th scope="col" class="text-right">Cost</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-
-
-                                                        @foreach ($order_detail->hard_bindings_orders as $hard_order)
-                                                            @php
-                                                                $rate = get_binding_rate($hard_order->hard_binding_paper_type, $hard_order->hard_binding_paper_color);
-                                                                $total = 0;
-
-                                                                $numberOfColorPage = $color_page;
-                                                                $numberOfBWPage = $bw_page;
-                                                                $numberOfTotalPage = 0;
-
-                                                                if ($hard_order->hard_binding_paper_color == 'Normal - Black & White' || $hard_order->hard_binding_paper_color == 'Royal - Black & White') {
-                                                                    $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
-                                                                    $numberOfColorPage = 0;
-                                                                    $numberOfTotalPage = $numberOfBWPage;
-                                                                } else {
-                                                                    $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
-                                                                    $numberOfBWPage = 0;
-                                                                    $numberOfTotalPage = $numberOfColorPage;
-                                                                }
-
-                                                                // Calculate Page Printing Price
-                                                                if ($hard_order->hard_binding_qty == 1) {
-                                                                    $total += $numberOfTotalPage * $rate['first_page'];
-                                                                } elseif ($hard_order->hard_binding_qty > 1) {
-                                                                    $total += $numberOfTotalPage * $rate['first_page'];
-
-                                                                    $total += ($hard_order->hard_binding_qty - 1) * $numberOfTotalPage * $rate['other_page'];
-                                                                } else {
-                                                                    $total += 0;
-                                                                }
-
-                                                                // Calculate Binding Price
-                                                                if ($hard_order->hard_binding_qty < 3) {
-                                                                    $total += $hard_order->hard_binding_qty * 300;
-                                                                } elseif ($hard_order->hard_binding_qty >= 3) {
-                                                                    $total += $hard_order->hard_binding_qty * 270;
-                                                                } else {
-                                                                    $total += 0;
-                                                                }
-
-                                                                $hard_binding_qty = $hard_binding_qty + $hard_order->hard_binding_qty;
-                                                                $hard_binding_price = $hard_binding_price + $total;
-                                                            @endphp
-                                                            <tr>
-                                                                @if (isset($hard_order->hard_binding_paper_type))
-                                                                    <td>{{ $hard_order->hard_binding_paper_type }}</td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_paper_size))
-                                                                    <td>{{ $hard_order->hard_binding_paper_size }}</td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_paper_color))
-                                                                    <td>{{ $hard_order->hard_binding_paper_color }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_printing_type))
-                                                                    <td>{{ $hard_order->hard_binding_printing_type }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_a4_pockets))
-                                                                    <td>{{ $hard_order->hard_binding_a4_pockets }}</td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_cd_pockets))
-                                                                    <td>{{ $hard_order->hard_binding_cd_pockets }}</td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_information))
-                                                                    <td>{{ $hard_order->hard_binding_information }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($hard_order->hard_binding_qty))
-                                                                    <td>{{ $hard_order->hard_binding_qty }}</td>
-                                                                @endif
-                                                                <td class="text-right">₹ {{ $total }}</td>
-                                                            </tr>
-                                                        @endforeach
-
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="8">Total</td>
-                                                            <td>₹ {{ $hard_binding_price }}</td>
-                                                        </tr>
-                                                        <tfoot>
-                                                </table>
-                                            </div>
-
-                                            <div class="my-3">
-                                                <p>Cover DB:
-                                                    {{ $order_detail->hard_binding_other_details->hard_binding_cover_color_db ?? '' }}
-                                                </p>
-                                                <p>Cover Text Color:
-                                                    {{ $order_detail->hard_binding_other_details->hard_binding_cover_text_color ?? '' }}
-                                                </p>
-                                                <p>Cover Design: <a class="btn btn-sm btn-info" target="_blank"
-                                                        href="{{ url('storage') }}/{{ $order_detail->hard_binding_other_details->hard_binding_cover_design ?? '' }}">View</a>
-                                                </p>
-                                                <p>Spine Printing:
-                                                    {{ $order_detail->hard_binding_other_details->hard_binding_spine ?? '' }}
-                                                </p>
-                                                <p>Spine Top Content:
-                                                    {{ $order_detail->hard_binding_other_details->hard_binding_spine_top_content ?? '' }}
-                                                </p>
-                                                <p>Spine Middle Content:
-                                                    {{ $order_detail->hard_binding_other_details->hard_binding_spine_middle_content ?? '' }}
-                                                </p>
-                                                <p>Spine Bottom Content:
-                                                    {{ $order_detail->hard_binding_other_details->hard_binding_spine_bottom_content ?? '' }}
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endif
-                                @if (property_exists($order_detail, 'soft_bindings_orders'))
-                                    @if ($soft_binding_qty > 0)
-                                        <div>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr class="table-dark">
-                                                            <th colspan="9" class="text-center">Soft Binding &
-                                                                Printing</th>
-                                                        </tr>
-                                                        <tr class="table-dark">
-                                                            <th scope="col">Description</th>
-                                                            <th scope="col">Paper Size</th>
-                                                            <th scope="col">Colour/ BW</th>
-                                                            <th scope="col">Printing Type</th>
-                                                            <th scope="col">A4 Pockets</th>
-                                                            <th scope="col">CD Pockets</th>
-                                                            <th scope="col">Information</th>
-                                                            <th scope="col">Copies</th>
-                                                            <th scope="col" class="text-right">Cost</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                        @foreach ($order_detail->soft_bindings_orders as $soft_order)
-                                                            @php
-                                                                $rate = get_binding_rate($soft_order->soft_binding_paper_type, $soft_order->soft_binding_paper_color);
-                                                                $total = 0;
-
-                                                                $numberOfColorPage = $color_page;
-                                                                $numberOfBWPage = $bw_page;
-                                                                $numberOfTotalPage = 0;
-
-                                                                if ($soft_order->soft_binding_paper_color == 'Normal - Black & White' || $soft_order->soft_binding_paper_color == 'Royal - Black & White') {
-                                                                    $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
-                                                                    $numberOfColorPage = 0;
-                                                                    $numberOfTotalPage = $numberOfBWPage;
-                                                                } else {
-                                                                    $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
-                                                                    $numberOfBWPage = 0;
-                                                                    $numberOfTotalPage = $numberOfColorPage;
-                                                                }
-
-                                                                // Calculate Page Printing Price
-                                                                if ($soft_order->soft_binding_qty == 1) {
-                                                                    $total += $numberOfTotalPage * $rate['first_page'];
-                                                                } elseif ($soft_order->soft_binding_qty > 1) {
-                                                                    $total += $numberOfTotalPage * $rate['first_page'];
-
-                                                                    $total += ($soft_order->soft_binding_qty - 1) * $numberOfTotalPage * $rate['other_page'];
-                                                                } else {
-                                                                    $total += 0;
-                                                                }
-
-                                                                // Calculate Binding Price
-                                                                $total += $soft_order->soft_binding_qty * 270;
-
-                                                                $soft_binding_qty = $soft_binding_qty + $soft_order->soft_binding_qty;
-                                                                $soft_binding_price = $soft_binding_price + $total;
-                                                            @endphp
-                                                            <tr>
-                                                                @if (isset($soft_order->soft_binding_paper_type))
-                                                                    <td>{{ $soft_order->soft_binding_paper_type }}</td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_paper_size))
-                                                                    <td>{{ $soft_order->soft_binding_paper_size }}</td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_paper_color))
-                                                                    <td>{{ $soft_order->soft_binding_paper_color }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_printing_type))
-                                                                    <td>{{ $soft_order->soft_binding_printing_type }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_a4_pockets))
-                                                                    <td>{{ $soft_order->soft_binding_a4_pockets }}</td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_cd_pockets))
-                                                                    <td>{{ $soft_order->soft_binding_cd_pockets }}</td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_information))
-                                                                    <td>{{ $soft_order->soft_binding_information }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($soft_order->soft_binding_qty))
-                                                                    <td>{{ $soft_order->soft_binding_qty }}</td>
-                                                                @endif
-                                                                <td class="text-right">₹ {{ $total }}</td>
-                                                            </tr>
-                                                        @endforeach
-
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="8">Total</td>
-                                                            <td>₹ {{ $soft_binding_price }}</td>
-                                                        </tr>
-                                                        <tfoot>
-                                                            </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="my-3">
-                                                <p>Cover DB:
-                                                    {{ $order_detail->soft_binding_other_details->soft_binding_cover_color_db ?? '' }}
-                                                </p>
-                                                <p>Cover Text Color:
-                                                    {{ $order_detail->soft_binding_other_details->soft_binding_cover_text_color ?? '' }}
-                                                </p>
-                                                <p>Cover Design: <a class="btn btn-sm btn-info" target="_blank"
-                                                        href="{{ url('storage') }}/{{ $order_detail->soft_binding_other_details->soft_binding_cover_design ?? '' }}">View</a>
-                                                </p>
-                                                <p>Spine Printing:
-                                                    {{ $order_detail->soft_binding_other_details->soft_binding_spine ?? '' }}
-                                                </p>
-                                                <p>Spine Top Content:
-                                                    {{ $order_detail->soft_binding_other_details->soft_binding_spine_top_content ?? '' }}
-                                                </p>
-                                                <p>Spine Middle Content:
-                                                    {{ $order_detail->soft_binding_other_details->soft_binding_spine_middle_content ?? '' }}
-                                                </p>
-                                                <p>Spine Bottom Content:
-                                                    {{ $order_detail->soft_binding_other_details->soft_binding_spine_bottom_content ?? '' }}
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endif
-                                @if (property_exists($order_detail, 'synopsis_bindings_orders'))
-                                    @if ($synopsis_binding_qty > 0)
-                                        <div>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr class="table-dark">
-                                                            <th colspan="9" class="text-center">Synopsis Binding &
-                                                                Printing</th>
-                                                        </tr>
-                                                        <tr class="table-dark">
-                                                            <th scope="col">Description</th>
-                                                            <th scope="col">Paper Size</th>
-                                                            <th scope="col">Colour/ BW</th>
-                                                            <th scope="col">Printing Type</th>
-                                                            <th scope="col">Copies</th>
-                                                            <th scope="col" class="text-right">Cost</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($order_detail->synopsis_bindings_orders as $synopsis_order)
-                                                            @php
-                                                                $rate = get_binding_rate($synopsis_order->synopsis_binding_paper_type, $synopsis_order->synopsis_binding_paper_color);
-                                                                $total = 0;
-
-                                                                $numberOfColorPage = $color_page;
-                                                                $numberOfBWPage = $bw_page;
-                                                                $numberOfTotalPage = 0;
-
-                                                                if ($synopsis_order->synopsis_binding_paper_color == 'Normal - Black & White' || $synopsis_order->synopsis_binding_paper_color == 'Royal - Black & White') {
-                                                                    $numberOfBWPage = $numberOfBWPage + $numberOfColorPage;
-                                                                    $numberOfColorPage = 0;
-                                                                    $numberOfTotalPage = $numberOfBWPage;
-                                                                } else {
-                                                                    $numberOfColorPage = $numberOfColorPage + $numberOfBWPage;
-                                                                    $numberOfBWPage = 0;
-                                                                    $numberOfTotalPage = $numberOfColorPage;
-                                                                }
-
-                                                                // Calculate Page Printing Price
-                                                                if ($synopsis_order->synopsis_binding_qty == 1) {
-                                                                    $total += $numberOfTotalPage * $rate['first_page'];
-                                                                } elseif ($synopsis_order->synopsis_binding_qty > 1) {
-                                                                    $total += $numberOfTotalPage * $rate['first_page'];
-
-                                                                    $total += ($synopsis_order->synopsis_binding_qty - 1) * $numberOfTotalPage * $rate['other_page'];
-                                                                } else {
-                                                                    $total += 0;
-                                                                }
-
-                                                                // Calculate Binding Price
-                                                                $total += $synopsis_order->synopsis_binding_qty * 30;
-
-                                                                $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_binding_qty;
-                                                                $synopsis_binding_price = $synopsis_binding_price + $total;
-                                                            @endphp
-                                                            <tr>
-                                                                @if (isset($synopsis_order->synopsis_binding_paper_type))
-                                                                    <td>{{ $synopsis_order->synopsis_binding_paper_type }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($synopsis_order->synopsis_binding_paper_size))
-                                                                    <td>{{ $synopsis_order->synopsis_binding_paper_size }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($synopsis_order->synopsis_binding_paper_color))
-                                                                    <td>{{ $synopsis_order->synopsis_binding_paper_color }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($synopsis_order->synopsis_binding_printing_type))
-                                                                    <td>{{ $synopsis_order->synopsis_binding_printing_type }}
-                                                                    </td>
-                                                                @endif
-                                                                @if (isset($synopsis_order->synopsis_binding_qty))
-                                                                    <td>{{ $synopsis_order->synopsis_binding_qty }}
-                                                                    </td>
-                                                                @endif
-                                                                <td class="text-right">₹ {{ $total }}</td>
-                                                            </tr>
-                                                        @endforeach
-
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="5">Total</td>
-                                                            <td>₹ {{ $synopsis_binding_price }}</td>
-                                                        </tr>
-                                                        <tfoot>
-                                                            </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="my-3">
-
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endif
+                            <h6>Customer Details</h6>
+                            <p>Name: {{ $order->user_name }}</p>
+                            <p>Email: {{ $order->user_email }}</p>
+                            <p>Phone: {{ $order->user_phone }}</p>
                         </div>
+                    </div>
+
+                    <div class="card border-top border-0 border-4 border-primary mb-4">
+                        <div class="card-body p-5">
+                            <h6>Billing Details</h6>
+                            <p>Billing Street: {{ $billing_address->billing_street }}</p>
+                            <p>Billing Apartment: {{ $billing_address->billing_apartment }}</p>
+                            <p>Billing Country: {{ $billing_address->billing_country }}</p>
+                            <p>Billing City: {{ $billing_address->billing_city }}</p>
+                            <p>Billing State: {{ $billing_address->billing_state }}</p>
+                            <p>Billing PIN: {{ $billing_address->billing_pin }}</p>
+                        </div>
+                    </div>
+
+                    @if ($shipping_address)
+                    <div class="card border-top border-0 border-4 border-primary mb-4">
+                        <div class="card-body p-5">
+                            <h6>Shipping Details</h6>
+                            <p>Shipping Street: {{ $shipping_address->shipping_street }}</p>
+                            <p>Shipping Apartment: {{ $shipping_address->shipping_apartment }}</p>
+                            <p>Shipping Country: {{ $shipping_address->shipping_country }}</p>
+                            <p>Shipping City: {{ $shipping_address->shipping_city }}</p>
+                            <p>Shipping State:{{ $shipping_address->shipping_state }} </p>
+                            <p>Shipping PIN: {{ $shipping_address->shipping_pin }}</p>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
+            <!--end breadcrumb-->
+            <div class="row row-cols-1 row-cols-1">
+                <div class="col">
+
+                    <div class="card border-top border-0 border-4 border-primary p-5">
                         <div class="documents-for-approval">
                             <h3>Documents for Approval</h3>
 
                             <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="file-upload-wrapper" style="display:flex">
+                                <div class="file-upload-wrapper">
                                     <input type="hidden" name="order_id" value="{{ $order->order_id }}">
 
                                     @if ($hard_binding_qty > 0 || $soft_binding_qty > 0)
                                         <p>Upload thesis Document:</p>
                                         <input type="file" name="thesis_main_doc" accept="image/*" required>
+                                        
                                         @if ($hard_binding_qty > 0)
                                             <p>Upload Hard Copy cover Design:</p>
                                             <input type="file" name="hard_cover_design" accept="image/*" required>
@@ -527,13 +527,13 @@
                                             <input type="file" name="soft_cover_design" accept="image/*" required>
                                         @endif
                                     @endif
+                                    
                                     @if ($synopsis_binding_qty > 0)
                                         <p>Upload Synopsis Cover Design:</p>
                                         <input type="file" name="synopsis_cover_design" accept="image/*" required>
                                         <p>Upload Synopsis:</p>
                                         <input type="file" name="synopsis_main_doc" accept="image/*" required>
                                     @endif
-
                                 </div>
 
                                 <button type="submit" class="btn btn-primary"
@@ -611,8 +611,6 @@
                                         @endif
                                     @endif
 
-
-
                                     {{-- Display status and reason --}}
                                     @if ($result)
                                         @if ($result->status == 'Accepted')
@@ -625,8 +623,6 @@
                                 @endforeach
                             </div>
                         @endif
-
-
                     </div>
                 </div>
             </div>

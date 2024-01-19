@@ -154,6 +154,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
         </div>
         <button class="btn  btn-close"> &times Close </button>
     </header>
+
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
             @if($hard_binding_qty > 0)
@@ -223,7 +224,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                             <h4>Sub Total</h4>
                             <h5>₹ {{$hard_printing_price}} INR</h5>
                         </div>
-                         <div class="printing__Details table-responsive">
+                        <div class="printing__Details table-responsive">
                             <p>Binding Details <a href="#"
                                 data-toggle="tooltip" title="Hooray!">
                                 <i class=" fa-solid fa-circle-info"
@@ -312,7 +313,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                             <h4>Sub Total</h4>
                             <h5>₹ {{$soft_printing_price}} INR</h5>
                         </div>
-                         <div class="printing__Details table-responsive">
+                        <div class="printing__Details table-responsive">
                             <p>Binding Details <a href="#"
                                 data-toggle="tooltip" title="Hooray!">
                                 <i class=" fa-solid fa-circle-info"
@@ -401,7 +402,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                             <h4>Sub Total</h4>
                             <h5>₹ {{$synopsis_printing_price}} INR</h5>
                         </div>
-                         <div class="printing__Details table-responsive">
+                        <div class="printing__Details table-responsive">
                             <p>Binding Details <a href="#"
                                 data-toggle="tooltip" title="Hooray!">
                                 <i class=" fa-solid fa-circle-info"
@@ -646,44 +647,10 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     
     <div class="offcanvas-body" id="offcanvas-content">
     </div>
-        <!-- <div class="col-sm-4 mt-5">
-            <h3 class="mb-4">It is a long established</h3>
-            <div class="approve__wrapp p-4">
-                <div class="preview__holder">
-                <div class="ulaa">
-                <div id="pdfPreview"></div>
-                <div class="button_wrapp">
-                    <button type="button" class="btn btn-secondary">Preview</button>
-                <a href="#"><i class="fa-solid fa-circle-down"></i></a>
-                </div>
-                
-                </div>
-                <div class="app__text">
-                <h3>It is a long established</h3>
-                <button type="button" class="btn btn-success">Approve</button>
-                <button type="button" class="btn btn-danger" id="formButton">Reject</button>
-                <form id="form1">
-
-        
-
-        
-        <textarea name="comment" placeholder=" Enter your comment here">
-        
-        </textarea>
-        
-        <button type="submit" id="submit">Submit</button>
-        </form>
-                </div>
-        
-        </div>
-      </div> -->
-    </div>
-    </div>
-   
 </aside>
 
 
- <aside class="offcanvas offcanvas-right" id="my_offcanvas3">
+<aside class="offcanvas offcanvas-right" id="my_offcanvas3">
       <header class="p-4">
         <button class="btn btn-close">&times Close</button>
       </header>
@@ -865,31 +832,6 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                             <div class="account__form">
                                                 <input type="text" name="phone" id="" placeholder="{{Auth::user()->phone}}" />
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="search__holder__account">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h3 class="personal__text">
-                                                Address
-                                                <span><i class="fa-solid fa-pen-to-square"></i></span>
-                                            </h3>
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                            <form action="" method="post">
-                                                <div id="dynamic-field-1" class="form-group dynamic-field">
-                                                    <div class="account__form">
-                                                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix mt-4">
-                                                    <button type="button" id="add-button" class="btn float-left shadow-sm">
-                                                        Add Adress
-                                                    </button>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
