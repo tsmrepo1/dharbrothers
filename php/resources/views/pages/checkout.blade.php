@@ -41,13 +41,13 @@
                                     <div class="col-sm-12 mb-3">
                                         <div class="searche__wrapp">
                                             <p>Email Address</p>
-                                            <input type="text" name="email" required id="" value="braktim99@gmail.com" />
+                                            <input type="text" name="email" required id="" value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-5">
                                         <div class="searche__wrapp">
                                             <p>Phone Number</p>
-                                            <input type="text" name="phone" required id="" value="9836739907" />
+                                            <input type="text" name="phone" required id="" value="" />
                                         </div>
                                     </div>
                                 </div>
@@ -61,61 +61,61 @@
                                     <div class="col-sm-6 mb-3">
                                         <div class="searche__wrapp">
                                             <p>First Name</p>
-                                            <input type="text" name="first_name" id="" required value="Raktim" />
+                                            <input type="text" name="first_name" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <div class="searche__wrapp">
                                             <p>Last Name</p>
-                                            <input type="text" name="last_name" id="" required value="Banerjee" />
+                                            <input type="text" name="last_name" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-3">
                                         <div class="searche__wrapp">
                                             <p>University Name </p>
-                                            <input type="text" name="university_name" id="" required value="MAKAUT" />
+                                            <input type="text" name="university_name" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-3">
                                         <div class="searche__wrapp">
                                             <p>Company</p>
-                                            <input type="text" name="company" id="" required value="TSM" />
+                                            <input type="text" name="company" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-3">
                                         <div class="searche__wrapp">
                                             <p>Address</p>
-                                            <input type="text" name="billing_street" id="" required value="Rammohan Mukherjee Lane" />
+                                            <input type="text" name="billing_street" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-3">
                                         <div class="searche__wrapp">
                                             <p>Apartment, suite,etc. ( optional )</p>
-                                            <input type="text" name="billing_apartment" id="" required value="29E/1" />
+                                            <input type="text" name="billing_apartment" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-3">
                                         <div class="searche__wrapp">
                                             <p>Country</p>
-                                            <input type="text" name="billing_country" id="" required value="India" />
+                                            <input type="text" name="billing_country" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-4 mb-5">
                                         <div class="searche__wrapp">
                                             <p>City</p>
-                                            <input type="text" name="billing_city" id="" required value="Howrah" />
+                                            <input type="text" name="billing_city" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-4 mb-5">
                                         <div class="searche__wrapp">
                                             <p>State</p>
-                                            <input type="text" name="billing_state" id="" required value="West Bengal" />
+                                            <input type="text" name="billing_state" id="" required value="" />
                                         </div>
                                     </div>
                                     <div class="col-sm-4 mb-5">
                                         <div class="searche__wrapp">
                                             <p>PIN code</p>
-                                            <input type="text" name="billing_pin" id="" required value="711102" />
+                                            <input type="text" name="billing_pin" id="" required value="" />
                                         </div>
                                     </div>
                                 </div>
