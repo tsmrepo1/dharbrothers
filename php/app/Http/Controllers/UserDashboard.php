@@ -83,14 +83,11 @@ class UserDashboard extends Controller
             $response = [
                 'status' => 'success',
                 'message' => 'Feedback submitted successfully',
-
-
             ];
         } else {
             $response = [
                 'status' => 'Failed',
-
-
+                'message' => 'Sorry, something went wrong! Please, try again!',
             ];
         }
 
@@ -148,7 +145,7 @@ class UserDashboard extends Controller
         } else {
             $response = [
                 'status' => 'Failed',
-                'message' => 'Some Issue Happened',
+                'message' => 'Sorry, something went wrong! Please, try again!',
 
             ];
         }
