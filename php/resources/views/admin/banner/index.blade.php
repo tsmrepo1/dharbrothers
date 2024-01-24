@@ -41,7 +41,7 @@
                                             <td>{{ $banner->title1  }}</td>
                                             <td>{{ $banner->title2  }}</td>
                                             <td>{{ $banner->title3  }}</td>
-                                            <td><img src="{{Storage::url($banner->image)}}" style="height: 100px; width: 200px;" /></td>
+                                            <td><img src="{{asset('storage/'.$banner->image)}}" style="height: 100px; width: 200px;" /></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

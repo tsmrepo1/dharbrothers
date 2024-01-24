@@ -7,7 +7,7 @@
       @foreach($banners as $banner)
       <div class="slide-item">
         <div class="image__box">
-          <img src="{{ Storage::url($banner->image) }}" alt="" />
+          <img src="{{asset('storage/'.$banner->image)}}" alt="" />
         </div>
         <div class="banner__content">
           <div class="container">
