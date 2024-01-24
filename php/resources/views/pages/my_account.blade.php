@@ -1177,13 +1177,13 @@ function createDivStructure(info, index, orderId, tit) {
                 return response.json();
             })
             .then(data => {
-                console.log('Approval successful', data);
+                alert('Document Accepted');
                 // Hide both Approve and Reject buttons upon successful approval
                 document.getElementById(approveButtonId).style.display = 'none';
                 document.getElementById(rejectButtonId).style.display = 'none';
             })
             .catch(error => {
-                console.error('Approval failed', error);
+                console.error('Sorry! Something went wrong, Please try again.');
             });
     });
 
@@ -1220,13 +1220,13 @@ function createDivStructure(info, index, orderId, tit) {
                 return response.json();
             })
             .then(data => {
-                console.log('Comment submission successful', data);
+                console.log('Feedback submission successful', data);
                 // Optionally, also hide the buttons upon successful comment submission
                 document.getElementById(approveButtonId).style.display = 'none';
                 document.getElementById(rejectButtonId).style.display = 'none';
             })
             .catch(error => {
-                console.error('Comment submission failed', error);
+                console.error('Sorry! Something went wrong, Please try again.');
             });
     });
 

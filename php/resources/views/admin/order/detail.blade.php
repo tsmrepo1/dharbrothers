@@ -507,7 +507,7 @@
 
                     <div class="card border-top border-0 border-4 border-primary p-5">
                         <div class="documents-for-approval">
-                            <h6>Documents for Approval</h6>
+                            <h6>Upload Documents for Approval</h6>
 
                             <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -545,7 +545,7 @@
                         </div>
                         @if (!empty($picsdet))
                             <div class="documents-for-approval">
-                                <h3>Uploaded for Approval</h3>
+                                <h6 class="mt-5">Uploaded for Approval</h6>
 
                                 @php
                                     $firstElement = $picsdet[0];
@@ -567,59 +567,83 @@
                                     @endphp
 
                                     @if ($columnName == 'thesis_main')
-                                        <span>Thesis Main Document</span>
+                                        <br><h5>Thesis Main Document</h5>
                                         @if ($fileExtension === 'pdf')
                                             <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 frameborder="0"></iframe>
+
+                                                <br>
+                                                <hr>
                                         @else
                                             <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 alt="Preview" />
+                                                <br>
+                                                <hr>
                                         @endif
+
                                     @elseif ($columnName == 'thesis_hard_cover')
-                                        <span>Thesis Hard Cover Design</span>
+                                        <br><h5>Thesis Hard Cover Design</h5>
+                                        <br>
                                         @if ($fileExtension === 'pdf')
                                             <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 frameborder="0"></iframe>
+                                                <br>
+                                                <hr>
                                         @else
                                             <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 alt="Preview" />
+                                                <br>
+                                                <hr>
                                         @endif
                                     @elseif ($columnName == 'thesis_soft_cover')
-                                        <span>Thesis Soft Cover Design</span>
+                                        <br><h5>Thesis Soft Cover Design</h5>
+                                        
                                         @if ($fileExtension === 'pdf')
                                             <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 frameborder="0"></iframe>
+                                                <br>
+                                                <hr>
                                         @else
                                             <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 alt="Preview" />
+                                                <br>
+                                                <hr>
                                         @endif
                                     @elseif ($columnName == 'synopsis_main')
-                                        <span>Synopsis Main Documents</span>
+                                        <br><h5>Synopsis Main Documents</h5>
                                         @if ($fileExtension === 'pdf')
                                             <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 frameborder="0"></iframe>
+                                                <br>
+                                                <hr>
                                         @else
                                             <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 alt="Preview" />
+                                                <br>
+                                                <hr>
                                         @endif
                                     @elseif ($columnName == 'synopsis_cover')
-                                        <span>Synopsis Cover</span>
+                                        <br><h5>Synopsis Cover</h5>
                                         @if ($fileExtension === 'pdf')
                                             <iframe src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 frameborder="0"></iframe>
+                                                <br>
+                                                <hr>
                                         @else
                                             <img src="{{ $imageUrl }}" style="width: 100px; height: 200px;"
                                                 alt="Preview" />
+                                                <br>
+                                                <hr>
                                         @endif
                                     @endif
 
                                     {{-- Display status and reason --}}
                                     @if ($result)
                                         @if ($result->status == 'Accepted')
-                                            <div style="color: green;">Accept</div>
+                                            <h6 class="text-success">Document was accepted</h6>
                                         @elseif ($result->status == 'Rejected')
-                                            <div style="color: red;">Reject</div>
-                                            <div>Reason: {{ $result->reason }}</div>
+                                            <h6 class="text-danger">Document was rejected</h6>
+                                            <p>Reason: {{ $result->reason }}</p>
                                         @endif
                                     @endif
                                 @endforeach
