@@ -120,9 +120,9 @@ class UploadfileController extends Controller
         $mes = $vab . $dyn . ", Please check the site for approval.";
 
 
-        // Mail::raw($mes, function ($message) use ($users) {
-        //     $message->to($users->email)->subject('Approval Sending');
-        // });
+        Mail::raw($mes, function ($message) use ($users) {
+            $message->to($users->email)->subject('Dharbrothers Order Approval');
+        });
 
         return redirect()->route('admin.orders');
     }

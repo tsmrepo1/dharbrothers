@@ -78,10 +78,11 @@ class UserDashboard extends Controller
         if ($design->save()) {
             $mes = $dyn.$vab.", Please check the site for details.";
             Mail::raw($mes, function ($message) {
-                $message->to("raktimbanerjee9@gmail.com")->subject('Acceptance By User');
+                $message->to("raktimbanerjee9@gmail.com")->subject('Order Accepted By Client');
             });
             $response = [
                 'status' => 'success',
+                'message' => 'Feedback submitted successfully',
 
 
             ];
@@ -136,12 +137,12 @@ class UserDashboard extends Controller
 
         if ($design->save()) {
             $mes = $dyn.$vab.", Please check the site for details.";
-            // Mail::raw($mes, function ($message) {
-            //     $message->to("raktimbanerjee9@gmail.com")->subject('Rejection By User');
-            // });
+            Mail::raw($mes, function ($message) {
+                $message->to("raktimbanerjee9@gmail.com")->subject('Order Rejected By Client');
+            });
             $response = [
                 'status' => 'success',
-                'message' => 'Comment submitted successfully',
+                'message' => 'Feedback submitted successfully',
 
             ];
         } else {

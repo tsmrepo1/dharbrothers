@@ -507,7 +507,7 @@
 
                     <div class="card border-top border-0 border-4 border-primary p-5">
                         <div class="documents-for-approval">
-                            <h3>Documents for Approval</h3>
+                            <h6>Documents for Approval</h6>
 
                             <form action="{{ route('doc.uploading') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -515,29 +515,31 @@
                                     <input type="hidden" name="order_id" value="{{ $order->order_id }}">
 
                                     @if ($hard_binding_qty > 0 || $soft_binding_qty > 0)
-                                        <p>Upload thesis Document:</p>
-                                        <input type="file" name="thesis_main_doc" accept="image/*" required>
+                                        
+                                        <label class="form-label">Thesis Main Document:</label>
+                                        <input class="form-control mb-4" type="file" name="thesis_main_doc" required>
                                         
                                         @if ($hard_binding_qty > 0)
-                                            <p>Upload Hard Copy cover Design:</p>
-                                            <input type="file" name="hard_cover_design" accept="image/*" required>
+                                            <label class="form-label">Hard Copy cover Design:</label>
+                                            <input class="form-control mb-4" type="file" name="hard_cover_design" required>
                                         @endif
                                         @if ($soft_binding_qty > 0)
-                                            <p>Upload Soft Copy cover Design:</p>
-                                            <input type="file" name="soft_cover_design" accept="image/*" required>
+                                            <label class="form-label">Upload Soft Copy cover Design:</label>
+                                            <input class="form-control mb-4" type="file" name="soft_cover_design" required>
                                         @endif
                                     @endif
                                     
                                     @if ($synopsis_binding_qty > 0)
-                                        <p>Upload Synopsis Cover Design:</p>
-                                        <input type="file" name="synopsis_cover_design" accept="image/*" required>
-                                        <p>Upload Synopsis:</p>
-                                        <input type="file" name="synopsis_main_doc" accept="image/*" required>
+                                        <label class="form-label">Upload Synopsis Cover Design:</label>
+                                        <input class="form-control mb-4" type="file" name="synopsis_cover_design" required>
+                                        
+                                        <label class="form-label">Upload Synopsis:</label>
+                                        <input class="form-control mb-4" type="file" name="synopsis_main_doc" required>
                                     @endif
                                 </div>
 
-                                <button type="submit" class="btn btn-primary"
-                                    style="padding-top: 10px; padding-bottom: 10px;">Upload Files</button>
+                                <button type="submit" class="btn btn-sm btn-primary"
+                                    style="padding-top: 10px; padding-bottom: 10px;">Submit For Review</button>
                             </form>
 
                         </div>

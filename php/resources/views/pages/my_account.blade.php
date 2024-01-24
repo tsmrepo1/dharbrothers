@@ -148,7 +148,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     <header class="p-4">
         <div class="row">
             <div class="col-8">
-                <h5>Order ID #{{$order->id}}</h5>
+                <h5>Order ID #{{$order->order_id}}</h5>
             </div>
             <div class="col-4"></div>
         </div>
@@ -156,7 +156,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
     </header>
 
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
             @if($hard_binding_qty > 0)
                 <div class="printing__wrapp p-4 bg-white mt-5">
                     <h3 class="mb-4">Hard Binding &amp; Printing</h3>
@@ -430,7 +430,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
             @endif
         </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
             <div id="data"></div>
         </div>
 
@@ -769,9 +769,9 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Order History</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" id="ticket-tab" data-toggle="tab" href="#ticket" role="tab" aria-controls="ticket" aria-selected="false">Ticket Issues</a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="button__account">
                             <form method="POST" action="{{ route('logout') }}">
@@ -790,14 +790,14 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h3 class="personal__text">
-                                                Personal information
-                                                <span><i class="fa-solid fa-pen-to-square"></i></span>
+                                                Name
+                                                {{-- <span><i class="fa-solid fa-pen-to-square"></i></span> --}}
                                             </h3>
                                         </div>
 
                                         <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
                                             <div class="account__form">
-                                                <input type="text" name="name" id="" value="{{Auth::user()->name}}" />
+                                                <input type="text" name="name" id="" value="{{Auth::user()->name}}" readonly disabled />
                                             </div>
                                         </div>
                                     </div>
@@ -808,13 +808,13 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                         <div class="col-sm-12">
                                             <h3 class="personal__text">
                                                 Email Address
-                                                <span><i class="fa-solid fa-pen-to-square"></i></span>
+                                                {{-- <span><i class="fa-solid fa-pen-to-square"></i></span> --}}
                                             </h3>
                                         </div>
 
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                             <div class="account__form">
-                                                <input type="text" name="email" id="" placeholder="{{Auth::user()->email}}" />
+                                                <input type="text" name="email" id="" value="{{Auth::user()->email}}" readonly disabled />
                                             </div>
                                         </div>
                                     </div>
@@ -824,13 +824,13 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                         <div class="col-sm-12">
                                             <h3 class="personal__text">
                                                 Mobile Number
-                                                <span><i class="fa-solid fa-pen-to-square"></i></span>
+                                                {{-- <span><i class="fa-solid fa-pen-to-square"></i></span> --}}
                                             </h3>
                                         </div>
 
                                         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                             <div class="account__form">
-                                                <input type="text" name="phone" id="" placeholder="{{Auth::user()->phone}}" />
+                                                <input type="text" name="phone" id="" value="{{Auth::user()->phone}}" readonly disabled />
                                             </div>
                                         </div>
                                     </div>
@@ -843,7 +843,7 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                         <tr>
                                             <th>Order ID</th>
                                             <th>Price</th>
-                                            <th>Order Date</th>
+                                            <th></th>
                                             <th>Payment Status</th>
                                             <th></th>
                                         </tr>
@@ -852,8 +852,8 @@ $synopsis_binding_qty = $synopsis_binding_qty + $synopsis_order->synopsis_bindin
                                         @foreach($orders as $order)
                                         <tr>
                                             <td>{{$order->order_id}}</td>
-                                            <td>{{$order->order_amount}} INR</td>
-                                            <td>{{date('d-m-Y', strtotime($order->created_at))}}</td>
+                                            <td>{{$order->total_amount}} INR</td>
+                                            <td></td>
                                             <td>{{$order->payment_status}}</td>
                                             <td>
                                                 <!-- <button data-trigger="#my_offcanvas2" class="btn" type="button" data-toggle="tooltip" data-placement="top" title="Details"> <i class="fa-solid fa-chevron-right"></i> </button> -->
@@ -1145,7 +1145,7 @@ function createDivStructure(info, index, orderId, tit) {
                 <button type="button" class="btn btn-danger" id="${rejectButtonId}">Reject</button>
                 <form id="${uniqueId}" style="display:none;" data-order-id="${orderId}">
                     <textarea name="comment" placeholder="Enter your comment here"></textarea>
-                    <button type="submit">Submit</button>
+                    <button class="text-light mb-5" type="submit">Submit</button>
                 </form>
             </div>
         </div>`;
