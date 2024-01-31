@@ -623,9 +623,9 @@ height: 126px; top: 217px;
 .next__button{padding: 10px 30px; background: #FAEDAE; border: none;}
 .conv{text-align: center; margin: 20px 0; color: #000;}
 .document__details{background: #fff;box-shadow: 0 0 10px rgba(0, 0, 0, 0.10); width: 100%;}
-.document__details h3{text-transform: uppercase; color: #159EB0; font-size: 24px; font-weight: 500; padding: 30px; margin: 0;}
-.document__details h3 span{text-transform: capitalize; color: #6C6C6C; font-weight: 400;}
-.table-striped td{font-size: 18px; border: none;}
+.document__details h3{text-transform: uppercase; color: #159EB0; font-size: 18px; font-weight: 500; padding: 20px 30px; margin: 0;}
+.document__details h3 span{text-transform: capitalize; color: #6C6C6C; font-weight: 400; font-size: 16px;}
+.table-striped td{font-size: 16px; border: none;}
 .table-striped tbody tr:nth-of-type(2n+1){background: #F0FEFF;}
 
 .document__detailsone h3{ color: #000; font-size: 24px; font-weight: 500; margin: 0;}
@@ -635,7 +635,7 @@ grid-template-rows: 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px; margin-top: 25px; }
 
-.check__holder{ border-right: solid 1px #D9D9D9; padding: 40px 40px;text-align: center;}
+.check__holder{ border-right: solid 1px #D9D9D9; padding: 20px 20px;text-align: center;}
 
 .custom-control-label::before {
   top: -1px;
@@ -727,8 +727,8 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
 }
 .document__detailsone .card-header{background: #F0FEFF; display: flex; flex-wrap: nowrap;}
 .document__detailsone .card{margin: 0 0 20px; border: none;}
-.searche__wrapp select{width: 100%; outline: none; color: #000; border: solid 1px #D2D2D2; height: 60px;}
-.searche__wrapp input[type="text"]{width: 100%; outline: none; color: #000; border: solid 1px #D2D2D2; height: 60px; padding: 0 15px;}
+.searche__wrapp select{width: 100%; outline: none; color: #000; border: solid 1px #D2D2D2; height: 50px;}
+.searche__wrapp input[type="text"]{width: 100%; outline: none; color: #000; border: solid 1px #D2D2D2; height: 50px; padding: 0 15px;}
 
 /*--------------------------*/
 .qty-container{
@@ -757,7 +757,7 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
 .qty-container .qty-btn-minus{
   margin-right: -1px;
 }
-#add-button{padding: 15px 60px; color: #000; text-align: center; font-size: 16px; background: #FAEDAE; margin-bottom: 100px;}
+#add-button{padding: 15px 60px; color: #000; text-align: center; font-size: 16px; background: #FAEDAE; margin-bottom: 50px;}
 .binding__details{width: 100%; padding: 30px; background: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.10); margin-top: 35px;}
 .bin__holder{width: 100%; margin: 20px 0 0 0; }
 
@@ -770,9 +770,9 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
 .printing__Details .table thead th{border: none; font-size: 14px;}
 .printing__Details .table th{border: none;}
 .printing__Details .table{margin-bottom: 0px;}
-.sub_total{border-top: solid 1px #D8D8D8; padding: 7px 7px; display: flex;}
-.sub_total h4{font-size: 24px; font-weight: 700; color: #159EB0; margin: 0;}
-.sub_total h5{font-size: 24px; font-weight: 700; color: #159EB0; margin: 0; margin-left: auto;}
+.sub_total{border-top: solid 1px #D8D8D8; padding: 7px 7px; display: flex;justify-content: center; align-items: center;}
+.sub_total h4{font-size:20px; font-weight: 700; color: #159EB0; margin: 0;}
+.sub_total h5{font-size: 20px; font-weight: 700; color: #159EB0; margin: 0; margin-left: auto;}
 .edit__wrapp{text-align: right; color: #000; font-size: 16px; font-weight: 400;}
 .edit__wrapp .fa-pen-to-square{font-size: 20px; color: #159EB0;}
 .colo__holder{font-size: 32px; font-weight: 500;color: #159EB0; margin-bottom: 25px; width: 100%; display: block;}
@@ -1909,7 +1909,7 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www
                     }
           
                     .dropbox-container {
-                      width: min(100%, 360px);
+                      width: min(100%, 270px);
                       margin-inline: auto;
                       margin-top: 4rem;
                     }
